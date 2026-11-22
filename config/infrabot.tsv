@@ -1,0 +1,42 @@
+# Damiao hardware parameter template for the InfraBot H7C arm
+# Sources: MotorBridge Studio Damiao template + openarm_can DM model limits
+# Mapping: J1=DM8009(ID=0x01/MST=0x11), J2=DM8009(0x02/0x12),
+#          J3=DM4340P(0x03/0x13), J4=DM4340P(0x04/0x14),
+#          J5=DM4310(0x05/0x15), J6=DM4310(0x06/0x16),
+#          J7=DM4310(0x07/0x17), J8=DM4310 gripper(0x08/0x18)
+# Units in motor registers: rad, rad/s, Nm as defined by the Damiao RID.
+# CTRL_MODE is deliberately hardware-specific: J1..J7=MIT (1), J8=POS_FORCE (4).
+# PMAX/VMAX/TMAX use the exact OpenArm model limits; do not replace them with
+# the generic MotorBridge Studio J1..J3/J4..J7 grouping.
+# Identity/address/timeout/CAN baud RIDs are intentionally excluded.
+# ACC/DEC 50 for J1..J7 (was 2).  They did not cause the slow
+# position-velocity motion (2 -> 50 changed nothing): a position-velocity
+# joint trails its target by gear ratio / KP_APR seconds of motion (KP_APR 54:
+# 0.17 s J1/J2, 0.74 s J3/J4, 0.19 s J5..J7), which the MCU compensates (it
+# reads KP_APR when the position-velocity profile is applied).  Keep them
+# high: they only cap the drive's own acceleration, the MCU plans the actual
+# motion, and its compensation assumes the drive is not acceleration-limited
+# (the manual also suggests raising them against oscillation).  J8 (gripper)
+# keeps 2.
+rid	type	name	desc_zh	group	priority	J1	J2	J3	J4	J5	J6	J7	J8
+10	u32	CTRL_MODE	控制模式	core	high	1	1	1	1	1	1	1	4
+24	f32	I_BW	电流环控制带宽	core	normal	1000	1000	1000	1000	1000	1000	1000	1000
+25	f32	KP_ASR	速度环 Kp	core	normal	0.0038399999029934406	0.0038399999029934406	0.0038399999029934406	0.003719999920576811	0.003719999920576811	0.003719999920576811	0.003719999920576811	0.003719999920576811
+26	f32	KI_ASR	速度环 Ki	core	normal	0.0020000000949949026	0.0020000000949949026	0.0020000000949949026	0.0020000000949949026	0.0020000000949949026	0.0020000000949949026	0.0020000000949949026	0.0020000000949949026
+27	f32	KP_APR	位置环 Kp	core	normal	54	54	54	54	54	54	54	54
+28	f32	KI_APR	位置环 Ki	core	normal	0	0	0	0	0	0	0	0
+0	f32	UV_Value	低压保护值	limits	normal	15	15	15	15	15	15	15	15
+2	f32	OT_Value	过温保护值	limits	normal	100	100	100	100	100	100	100	100
+3	f32	OC_Value	过流保护值	limits	normal	0.800000011920929	0.800000011920929	0.800000011920929	0.800000011920929	0.800000011920929	0.800000011920929	0.800000011920929	0.800000011920929
+6	f32	MAX_SPD	最大速度	limits	normal	600	600	600	600	600	600	600	600
+21	f32	PMAX	位置映射范围	limits	high	12.5	12.5	12.5	12.5	12.5	12.5	12.5	12.5
+22	f32	VMAX	速度映射范围	limits	high	45	45	10	10	30	30	30	30
+23	f32	TMAX	扭矩映射范围	limits	high	54	54	28	28	10	10	10	10
+4	f32	ACC	加速度	advanced	normal	50	50	50	50	50	50	50	2
+5	f32	DEC	减速度	advanced	normal	-50	-50	-50	-50	-50	-50	-50	-2
+29	f32	OV_Value	过压保护值	advanced	normal	32	32	32	32	32	32	32	32
+30	f32	GREF	齿轮力矩效率	advanced	normal	1	1	1	1	1	1	1	1
+31	f32	Deta	速度环阻尼系数	advanced	normal	4	4	4	4	4	4	4	4
+32	f32	V_BW	速度环滤波带宽	advanced	normal	40	40	40	40	40	40	40	40
+33	f32	IQ_c1	电流环增强系数	advanced	normal	2500	2500	2500	2500	2500	2500	2500	2500
+34	f32	VL_c1	速度环增强系数	advanced	normal	500	500	500	500	500	500	500	500

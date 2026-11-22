@@ -1,0 +1,17 @@
+# PC 1 kHz whole-arm runtime control template
+# units: velocity=rad/s, torque=Nm, ratio=0..1; kp/kd are unscaled MIT gains.
+# The Qt "写入 MCU 控制模板" action sends this profile to the MCU and commits
+# it to the MCU Flash record (it does not write the motor's own parameter Flash).
+# Import/write with the arm disabled; verify targets and support the arm before enabling.
+# velocity_limit_rad_s is v_des of position-velocity drives (unused in MIT):
+# 3 rad/s for J1..J7 (J3/J4 rated 3.77) so position-velocity Cartesian moves
+# are not held at 0.9 rad/s; the J1..J7 application ceiling is 3.14 rad/s.
+motor	velocity_rad_s	kp	kd	torque_Nm	velocity_limit_rad_s	torque_ratio
+1	0.000000	300.000000	2.500000	0.000000	3.000000	1.000000
+2	0.000000	300.000000	2.500000	0.000000	3.000000	1.000000
+3	0.000000	150.000000	2.500000	0.000000	3.000000	1.000000
+4	0.000000	150.000000	2.500000	0.000000	3.000000	1.000000
+5	0.000000	40.000000	0.800000	0.000000	3.000000	1.000000
+6	0.000000	40.000000	0.800000	0.000000	3.000000	1.000000
+7	0.000000	30.000000	0.800000	0.000000	3.000000	1.000000
+8	0.000000	3.000000	0.800000	0.000000	1.000000	1.000000

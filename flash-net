@@ -1,0 +1,4 @@
+#!/bin/sh
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Yaolin Dong
+exec python3 -B "$(dirname "$0")/tools/update/flash_board.py" net "$@"

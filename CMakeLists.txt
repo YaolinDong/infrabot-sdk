@@ -99,6 +99,82 @@ if(INFRABOT_BUILD_PYTHON)
     endif()
 endif()
 
+# Optional Qt Widgets front-end.  The command-line tests remain buildable on
+# systems without Qt; install qtbase5-dev or qt6-base-dev to enable this GUI.
+if(INFRABOT_BUILD_GUI)
+    find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets QUIET)
+endif()
+if(INFRABOT_BUILD_GUI AND QT_FOUND)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+    # OpenGL 2.1 viewer for external infrabot-description meshes.
+    # Without Qt Xml (Qt 6: also OpenGL
+    # and OpenGLWidgets) the GUI is built without it.
+    set(UDP_ARM_VIEW_LIBS "")
+    if(QT_VERSION_MAJOR EQUAL 6)
+        find_package(Qt6 QUIET COMPONENTS Xml OpenGL OpenGLWidgets)
+        if(Qt6Xml_FOUND AND Qt6OpenGL_FOUND AND Qt6OpenGLWidgets_FOUND)
+            set(UDP_ARM_VIEW_LIBS Qt6::Xml Qt6::OpenGL Qt6::OpenGLWidgets)
+        endif()
+    else()
+        find_package(Qt5 QUIET COMPONENTS Xml)
+        if(Qt5Xml_FOUND)
+            set(UDP_ARM_VIEW_LIBS Qt5::Xml)
+        endif()
+    endif()
+    if(UDP_ARM_VIEW_LIBS)
+        add_library(udp_arm_view STATIC tools/gui/urdf_viewer.cpp)
+        target_include_directories(udp_arm_view PUBLIC tools/gui)
+        target_compile_options(udp_arm_view PRIVATE -O2)
+        target_link_libraries(udp_arm_view PUBLIC Qt${QT_VERSION_MAJOR}::Widgets ${UDP_ARM_VIEW_LIBS})
+        target_compile_definitions(udp_arm_view PUBLIC
+            INFRABOT_HAS_ARM_VIEW INFRABOT_DEFAULT_DESCRIPTION_DIR="${INFRABOT_DESCRIPTION_DIR}")
+    else()
+        message(WARNING "Qt Xml not found: udp_control_gui is built without the 3D arm view")
+    endif()
+    add_executable(udp_control_gui tools/gui/qt_control_gui.cpp)
+    target_include_directories(udp_control_gui PRIVATE src)
+    target_compile_options(udp_control_gui PRIVATE -Wall -Wextra -Wpedantic -O2)
+    target_link_libraries(udp_control_gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets pthread infrabot_sdk infrabot_ik_native)
+    if(TARGET udp_arm_view)
+        target_link_libraries(udp_control_gui PRIVATE udp_arm_view)
+    endif()
+    if(INFRABOT_BUILD_TESTS)
+        add_executable(test_qt_motion tests/test_qt_motion.cpp)
+        target_include_directories(test_qt_motion PRIVATE src)
+        target_compile_options(test_qt_motion PRIVATE -Wall -Wextra -Wpedantic -Wno-unused-function -UNDEBUG)
+        target_link_libraries(test_qt_motion PRIVATE Qt${QT_VERSION_MAJOR}::Widgets pthread infrabot_sdk infrabot_ik_native)
+        if(TARGET udp_arm_view)
+            target_link_libraries(test_qt_motion PRIVATE udp_arm_view)
+        endif()
+        add_test(NAME qt_motion_loopback COMMAND test_qt_motion)
+        set_tests_properties(qt_motion_loopback PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen" TIMEOUT 90)
+        if(TARGET udp_arm_view)
+            add_test(NAME qt_without_description COMMAND test_qt_motion)
+            set_tests_properties(qt_without_description PROPERTIES TIMEOUT 90
+                ENVIRONMENT "QT_QPA_PLATFORM=offscreen;INFRABOT_DESCRIPTION_DIR=${CMAKE_CURRENT_BINARY_DIR}/missing-model;INFRABOT_TEST_MISSING_MODEL=1")
+        endif()
+    endif()
+    # Template-only changes must also run the post-build deployment step.
+    set_property(TARGET udp_control_gui APPEND PROPERTY LINK_DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/config/infrabot.tsv"
+        "${CMAKE_CURRENT_SOURCE_DIR}/config/control_template.tsv")
+    # Keep the project-provided default motor template beside the GUI binary.
+    # The GUI resolves it relative to the executable; no user file selection or
+    # machine-specific absolute path is required for the default action.
+    add_custom_command(TARGET udp_control_gui POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_CURRENT_SOURCE_DIR}/config/infrabot.tsv"
+            "$<TARGET_FILE_DIR:udp_control_gui>/infrabot.tsv"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_CURRENT_SOURCE_DIR}/config/control_template.tsv"
+            "$<TARGET_FILE_DIR:udp_control_gui>/control_template.tsv")
+elseif(INFRABOT_BUILD_GUI)
+    message(WARNING "Qt Widgets not found: udp_control_gui is not built (install qtbase5-dev or qt6-base-dev)")
+endif()
+
+add_executable(infrabot_update tools/update/update_firmware.cpp)
+target_link_libraries(infrabot_update PRIVATE infrabot_sdk)
+
 install(TARGETS infrabot_sdk infrabot_ik_native EXPORT infrabot_sdkTargets
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 install(DIRECTORY include/ DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
