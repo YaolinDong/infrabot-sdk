@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Yaolin Dong
+recursive-include include *.h *.hpp *.license
+recursive-include src *.cpp *.hpp
+recursive-include python *.cpp
+recursive-include third_party/infrabot_ik/include *.h *.hpp
+recursive-include third_party/infrabot_ik/src *.cpp
+
+include firmware/release.pub
+recursive-include python/infrabot *.py *.pyi py.typed release.pub

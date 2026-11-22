@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Yaolin Dong
+[build-system]
+requires = ["setuptools>=77.0.3", "pybind11>=3.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "infrabot-sdk"
+version = "0.1.0"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "THIRD_PARTY.md", "LICENSES/*.txt", "third_party/infrabot_ik/LICENSE", "third_party/infrabot_ik/README.md"]
+description = "C++ Robot SDK and Python bindings for Infrabot"
+requires-python = ">=3.10"
