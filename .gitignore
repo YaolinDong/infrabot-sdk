@@ -1,0 +1,56 @@
+# CMake and build output
+/build/
+/build-*/
+/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+*.ninja
+.ninja_deps
+.ninja_log
+.ninja_lock
+
+# Compiled artifacts and generated dependency files
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.d
+*.elf
+*.map
+*.hex
+*.bin
+*.out
+*.exe
+
+# Editable Python SDK packaging metadata
+*.egg-info/
+
+# Runtime logs (the application keeps the current log and dated archives here)
+/.log/
+*.log
+
+# 1 kHz recordings (Robot::start_recording / the GUI's 诊断 page)
+/recordings/
+
+# Locally exported/generated parameter snapshots
+/arm_parameters*.tsv
+/arm_control_parameters*.tsv
+/parameters*.tsv
+
+# Local editor and OS state
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Python launcher imports / locally packaged distributions
+__pycache__/
+/dist/
+/firmware/*.ifw
