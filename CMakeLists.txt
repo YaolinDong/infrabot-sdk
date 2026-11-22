@@ -99,6 +99,65 @@ if(INFRABOT_BUILD_PYTHON)
     endif()
 endif()
 
+if(INFRABOT_BUILD_TESTS)
+    # protocol.h has both C11 and C++17 wire-layout coverage.
+    add_executable(test_protocol_c tests/test_protocol.c)
+    set_target_properties(test_protocol_c PROPERTIES LINKER_LANGUAGE C)
+    target_include_directories(test_protocol_c PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+    target_compile_options(test_protocol_c PRIVATE -std=c11 -Wall -Wextra -Wpedantic -Werror -UNDEBUG)
+    add_test(NAME protocol_c COMMAND test_protocol_c)
+    add_executable(test_protocol tests/test_protocol.cpp)
+    target_include_directories(test_protocol PRIVATE src)
+    target_link_libraries(test_protocol PRIVATE infrabot_sdk)
+    target_compile_options(test_protocol PRIVATE -Wall -Wextra -Wpedantic -Werror -UNDEBUG)
+    add_test(NAME protocol COMMAND test_protocol)
+    find_package(Python3 COMPONENTS Interpreter QUIET)
+    if(NOT INFRABOT_FIRMWARE_DIR)
+        set(skip_reason "SKIP: INFRABOT_FIRMWARE_DIR is unset")
+        message(STATUS "${skip_reason} (shared protocol and firmware FK checks)")
+        add_test(NAME shared_protocol COMMAND ${CMAKE_COMMAND} -E echo "${skip_reason}")
+        set_tests_properties(shared_protocol PROPERTIES SKIP_REGULAR_EXPRESSION "SKIP:")
+    elseif(Python3_Interpreter_FOUND)
+        add_test(NAME shared_protocol COMMAND ${Python3_EXECUTABLE} -B
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_shared_protocol.py "${INFRABOT_FIRMWARE_DIR}")
+    else()
+        add_test(NAME shared_protocol COMMAND ${CMAKE_COMMAND} -E compare_files
+            "${INFRABOT_FIRMWARE_DIR}/protocol/infrabot/protocol.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/include/infrabot/protocol.h")
+    endif()
+    if(Python3_Interpreter_FOUND)
+        add_test(NAME passive_record_offline COMMAND ${Python3_EXECUTABLE} -B
+                 ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_passive_record.py)
+        execute_process(COMMAND ${Python3_EXECUTABLE} -c "import numpy"
+                        RESULT_VARIABLE INFRABOT_HAS_NUMPY OUTPUT_QUIET ERROR_QUIET)
+        if(INFRABOT_HAS_NUMPY EQUAL 0)
+            add_test(NAME admittance_return_offline COMMAND ${Python3_EXECUTABLE} -B
+                     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_analyze_return.py)
+            set_tests_properties(admittance_return_offline PROPERTIES
+                ENVIRONMENT "INFRABOT_FIRMWARE_DIR=${INFRABOT_FIRMWARE_DIR}")
+        endif()
+
+    endif()
+    add_executable(test_robot_sdk tests/test_robot_sdk.cpp)
+    target_include_directories(test_robot_sdk PRIVATE src)
+    target_link_libraries(test_robot_sdk PRIVATE infrabot_sdk pthread)
+    target_compile_options(test_robot_sdk PRIVATE -Wall -Wextra -Wpedantic -UNDEBUG)
+    add_test(NAME robot_sdk_loopback COMMAND test_robot_sdk)
+    add_executable(test_serial_log tests/test_serial_log.cpp)
+    target_include_directories(test_serial_log PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_link_libraries(test_serial_log PRIVATE infrabot_sdk util)
+    target_compile_options(test_serial_log PRIVATE -Wall -Wextra -Wpedantic -UNDEBUG)
+    add_test(NAME serial_log COMMAND test_serial_log)
+    set_tests_properties(serial_log PROPERTIES TIMEOUT 30)
+    add_executable(test_run_log tests/test_run_log.cpp)
+    target_include_directories(test_run_log PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_link_libraries(test_run_log PRIVATE infrabot_sdk)
+    target_compile_options(test_run_log PRIVATE -Wall -Wextra -Wpedantic -UNDEBUG)
+    add_test(NAME run_log_loopback COMMAND test_run_log)
+    set_tests_properties(run_log_loopback PROPERTIES TIMEOUT 60)
+    set_tests_properties(robot_sdk_loopback PROPERTIES TIMEOUT 60)
+endif()
+
 # Optional Qt Widgets front-end.  The command-line tests remain buildable on
 # systems without Qt; install qtbase5-dev or qt6-base-dev to enable this GUI.
 if(INFRABOT_BUILD_GUI)
@@ -174,6 +233,14 @@ endif()
 
 add_executable(infrabot_update tools/update/update_firmware.cpp)
 target_link_libraries(infrabot_update PRIVATE infrabot_sdk)
+
+if(INFRABOT_BUILD_EXAMPLES)
+    foreach(example 01_connect_info 02_enable_hold 03_movej 04_rt_joint_stream_1khz
+                    05_gravity_compensation 06_joint_impedance 07_download_mcu_log)
+        add_executable(${example} examples/cpp/${example}.cpp)
+        target_link_libraries(${example} PRIVATE infrabot_sdk)
+    endforeach()
+endif()
 
 install(TARGETS infrabot_sdk infrabot_ik_native EXPORT infrabot_sdkTargets
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
