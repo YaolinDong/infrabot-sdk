@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.1.0 — 2026-11-23
 
 - C++17 Robot API and Python bindings for H7C joint and Cartesian control, with local gravity, impedance and admittance modes.
 - MCU telemetry, recording, serial and on-board log retrieval, plus an optional Qt control GUI with an external H7C model.
