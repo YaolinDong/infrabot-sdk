@@ -46,6 +46,21 @@ Bytes readkey(const std::string &path){
     for(unsigned i=0;i<64;i+=2)k.push_back(nib(b[i])*16+nib(b[i+1]));
     OPENSSL_cleanse(b.data(),b.size());return k;
 }
+/* Firmware 0.1.1+ keeps "IBFWVER1<version>\0" in its image (app_info.c).
+ * The image is already signature-checked when this runs.  Older images have
+ * no record: no version is sent and the screen shows "?". */
+std::string image_version(const unsigned char *image,uint32_t size){
+    static const char magic[]="IBFWVER1";
+    const unsigned char *begin=image+64,*end=image+size-64;
+    auto at=std::search(begin,end,magic,magic+8);
+    if(at==end)return {};
+    std::string v;
+    for(auto c=at+8;c<end && *c && v.size()<23;++c){
+        if(*c<0x20 || *c>=0x7f)return {};
+        v.push_back(char(*c));
+    }
+    return v;
+}
 bool signed_image(const Bytes &pub,const unsigned char *p,uint32_t n){
     if(n<72)return false;
     unsigned char digest[32];SHA256(p+64,n-64,digest);
@@ -100,13 +115,18 @@ struct Client {
         if(!probe)session=a.session;
         return a;
     }
-    void permission(unsigned op,const unsigned char *tag,uint32_t initial_base){
+    void permission(unsigned op,const unsigned char *tag,uint32_t initial_base,const std::string &version={}){
         if(tag)std::fprintf(stderr,"请核对屏幕上的镜像标识：%02x%02x%02x%02x\n",tag[0],tag[1],tag[2],tag[3]);
+        if(tag && !version.empty())std::fprintf(stderr,"新固件版本：%s\n",version.c_str());
+        Bytes request;
+        if(tag){request.assign(tag,tag+32);request.insert(request.end(),version.begin(),version.end());}
         std::fprintf(stderr,"请在控制板屏幕上选择允许或拒绝（60 秒）。\n");
         auto end=Clock::now()+std::chrono::seconds(65);
         while(Clock::now()<end){
             Answer a{};
-            if(exchange(op,0,tag,tag?32:0,a,2,250)){
+            if(exchange(op,0,request.data(),request.size(),a,2,250)){
+                // Firmware 0.1.0 accepts only the 32-byte tag: retry without the version.
+                if(a.status==2 && request.size()>32){request.resize(32);continue;}
                 if(a.status==3 && ((op==enter && a.role==2)||(op==revert && a.role==1)))return;
                 if(a.status!=8){accepted(a);return;}
             }else{
@@ -159,7 +179,8 @@ void update_firmware(const std::string &ip,const std::string &path,const std::st
     Answer a=c.discover(8);
     if(a.role==1){
         if(same(a,0)||same(a,1)){if(progress)progress(sizes[a.offset==bank_b],sizes[a.offset==bank_b]);return;}
-        c.permission(enter,images[a.offset==base?1:0]+32,a.offset);
+        const unsigned next=a.offset==base?1:0;
+        c.permission(enter,images[next]+32,a.offset,image_version(images[next],sizes[next]));
         a=c.discover(60);
     }
     require(a.role==2 && (a.offset==base || a.offset==bank_b),"loader not ready; old firmware retained");
