@@ -128,6 +128,15 @@ if(INFRABOT_BUILD_TESTS)
     if(Python3_Interpreter_FOUND)
         add_test(NAME passive_record_offline COMMAND ${Python3_EXECUTABLE} -B
                  ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_passive_record.py)
+        # Needs a package signed by the publisher of firmware/release.pub.
+        set(INFRABOT_TEST_IFW "${CMAKE_CURRENT_SOURCE_DIR}/firmware/infrabot_firmware.ifw"
+            CACHE FILEPATH "Signed release IFW for the offline download test")
+        if(EXISTS "${INFRABOT_TEST_IFW}")
+            add_test(NAME flash_download COMMAND ${Python3_EXECUTABLE} -B
+                     ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_flash_download.py
+                     "${INFRABOT_TEST_IFW}"
+                     ${CMAKE_CURRENT_SOURCE_DIR}/firmware/release.pub)
+        endif()
         execute_process(COMMAND ${Python3_EXECUTABLE} -c "import numpy"
                         RESULT_VARIABLE INFRABOT_HAS_NUMPY OUTPUT_QUIET ERROR_QUIET)
         if(INFRABOT_HAS_NUMPY EQUAL 0)

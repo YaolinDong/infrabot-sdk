@@ -78,6 +78,7 @@ tests/fake_log_board.hpp
 tests/fake_mcu.hpp
 tests/test_analyze_return.py
 tests/test_examples.py
+tests/test_flash_download.py
 tests/test_joint_stream.cpp
 tests/test_motion_session.cpp
 tests/test_passive_record.py

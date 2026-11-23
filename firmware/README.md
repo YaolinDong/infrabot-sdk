@@ -4,8 +4,9 @@
 
 ```sh
 ./flash-net --prepare --package /path/to/infrabot_firmware.ifw
+./flash-net --prepare --download v0.1.1   # or fetch it from the release page
 ```
 
-This command checks the signature offline. Firmware binaries are distributed separately from the source and Python wheel.
+`--prepare` checks the signature without contacting the board. Downloaded packages are kept in `cache/<version>/`, which is not tracked. Firmware binaries are distributed separately from the source and Python wheel.
 
 The previous basename `fdcantest.ifw` remains a fallback for one SDK version. When both files are present the tools verify and use `infrabot_firmware.ifw`.
