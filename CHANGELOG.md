@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 — 2026-11-23
+
+- The firmware updater sends the new image's version, so firmware 0.1.1 can show it on the update prompt. Firmware 0.1.0 is still updated as before.
+
 ## 0.1.0 — 2026-11-23
 
 - C++17 Robot API and Python bindings for H7C joint and Cartesian control, with local gravity, impedance and admittance modes.
