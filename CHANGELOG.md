@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 — 2026-11-23
+
+- `flash-net` and `flash-swd` accept `--download [VERSION]` to fetch the signed package from the firmware GitHub Release, verify it and cache it under `firmware/cache/`. `--url` selects a mirror.
+
 ## 0.1.1 — 2026-11-23
 
 - The firmware updater sends the new image's version, so firmware 0.1.1 can show it on the update prompt. Firmware 0.1.0 is still updated as before.

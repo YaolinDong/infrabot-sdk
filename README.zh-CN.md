@@ -95,7 +95,7 @@ finally:
 
 ## 兼容性与文档
 
-SDK 0.1.1 使用协议 1.0。V2 握手可以读取固件、板型和机械臂型号。仅支持 V1 的固件按 1.0 连接，固件版本显示 `unknown`。主版本不同或握手超时会在启动心跳前返回错误；可选功能按能力位判断。
+SDK 0.1.2 使用协议 1.0。V2 握手可以读取固件、板型和机械臂型号。仅支持 V1 的固件按 1.0 连接，固件版本显示 `unknown`。主版本不同或握手超时会在启动心跳前返回错误；可选功能按能力位判断。
 
 [协议与能力位](docs/protocol.md) · [固件升级](docs/firmware-update.md) · [C++ 示例](examples/cpp) · [Python 示例](examples/python) · [构建与测试](CONTRIBUTING.md)
 
