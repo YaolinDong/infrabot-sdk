@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.3 — unreleased
+## 0.1.3 — 2026-11-24
 
 - The updater reports `The board already runs this firmware; nothing was sent.` instead of a transfer and a confirmation when the board already runs an image from the package. `update_firmware` returns whether it installed an image (Python: `bool`).
 
