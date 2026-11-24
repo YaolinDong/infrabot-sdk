@@ -32,7 +32,7 @@ Support the arm, explicitly disable the drives and disconnect motor power. Keep 
 ./flash-net --probe 192.168.0.50
 ```
 
-Wait for `Confirmed application is running.` and compare the probed image ID with the selected release. The board verifies the signed image, writes the inactive slot and trial-boots it. A failed, unconfirmed trial returns to the previous confirmed application. To update with a CMSIS-DAP/SWD probe, use `./flash-swd --package /path/to/infrabot_firmware.ifw`. SWD makes a local backup before programming.
+Wait for `Confirmed application is running.` and compare the probed image ID with the selected release. If the board already runs an image from the package, the tool prints `The board already runs this firmware; nothing was sent.` and asks for no approval. The board verifies the signed image, writes the inactive slot and trial-boots it. A failed, unconfirmed trial returns to the previous confirmed application. To update with a CMSIS-DAP/SWD probe, use `./flash-swd --package /path/to/infrabot_firmware.ifw`. SWD makes a local backup before programming.
 
 For an empty board, a legacy loader, or a change of publisher key, follow the firmware project's [factory provisioning and recovery instructions](https://github.com/YaolinDong/infrabot-firmware/blob/main/docs/flashing.md) with the matching factory image. Keep the verified backup private.
 

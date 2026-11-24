@@ -26,7 +26,7 @@ Choose one transport. 二选一：
 ./flash-swd
 ```
 
-Press Enter or type `yes` to continue, or `no` to cancel. For Ethernet, match the image ID on the touchscreen and select Allow within 60 seconds. Wait for `Confirmed application is running.`, then query the running slot and image ID again. Reinstalling the same image can keep the current slot.
+Press Enter or type `yes` to continue, or `no` to cancel. For Ethernet, match the image ID on the touchscreen and select Allow within 60 seconds. Wait for `Confirmed application is running.`, then query the running slot and image ID again. If the board already runs an image from the package, the tool prints `The board already runs this firmware; nothing was sent.` and changes nothing.
 
 回车或输入 `yes` 继续，输入 `no` 取消。网口升级时核对屏幕镜像标识，60 秒内点允许；拒绝或超时会取消写入。传输到 100% 后仍需等待运行确认。相同镜像可以保留当前槽位。
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 — unreleased
+
+- The updater reports `The board already runs this firmware; nothing was sent.` instead of a transfer and a confirmation when the board already runs an image from the package. `update_firmware` returns whether it installed an image (Python: `bool`).
+
 ## 0.1.2 — 2026-11-23
 
 - `flash-net` and `flash-swd` accept `--download [VERSION]` to fetch the signed package from the firmware GitHub Release, verify it and cache it under `firmware/cache/`. `--url` selects a mirror.

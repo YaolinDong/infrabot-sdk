@@ -155,7 +155,7 @@ std::string firmware_status(const std::string &ip,const std::string &key,uint16_
     for(auto byte:a.payload){result+=hex[byte>>4];result+=hex[byte&15];}
     return result;
 }
-void update_firmware(const std::string &ip,const std::string &path,const std::string &key,
+bool update_firmware(const std::string &ip,const std::string &path,const std::string &key,
                      std::function<void(unsigned,unsigned)> progress,uint16_t port){
     Bytes bundle=readfile(path,16+2*(capacity+64));
     require(bundle.size()>=16 && !memcmp(bundle.data(),"IFABv002",8),"expected signed v2 A/B firmware bundle");
@@ -178,7 +178,7 @@ void update_firmware(const std::string &ip,const std::string &path,const std::st
         !CRYPTO_memcmp(images[i]+32,a.payload.data(),32);};
     Answer a=c.discover(8);
     if(a.role==1){
-        if(same(a,0)||same(a,1)){if(progress)progress(sizes[a.offset==bank_b],sizes[a.offset==bank_b]);return;}
+        if(same(a,0)||same(a,1))return false;
         const unsigned next=a.offset==base?1:0;
         c.permission(enter,images[next]+32,a.offset,image_version(images[next],sizes[next]));
         a=c.discover(60);
@@ -197,7 +197,7 @@ void update_firmware(const std::string &ip,const std::string &path,const std::st
     while(Clock::now()<deadline){
         if(c.exchange(hello,0,nullptr,0,a,1,500) && !a.status){
             if(a.role==1){
-                if(same(a,dest))return;
+                if(same(a,dest))return true;
                 throw std::runtime_error("previous confirmed application is running; update rolled back");
             }
             if(a.role==3 && same(a,dest)){

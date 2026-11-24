@@ -13,7 +13,8 @@ std::string firmware_status(const std::string &ipv4,const std::string &public_ke
 // Dedicated maintenance socket; does not connect a Robot, enable or disable motors.
 // Throws std::runtime_error on refusal, timeout, invalid package, or verification failure.
 // Completion requires a reply from the rebooted application with the expected image tag.
-void update_firmware(const std::string &ipv4, const std::string &package_path,
+// Returns false without sending anything when the board already runs an image from this package.
+bool update_firmware(const std::string &ipv4, const std::string &package_path,
                      const std::string &public_key_file = {},
                      std::function<void(unsigned,unsigned)> progress = {}, uint16_t port = 5002);
 }

@@ -16,7 +16,7 @@ PYBIND11_MODULE(infrabot_native, m) {
     m.def("rollback_firmware", [](const std::string& ip,const std::string& key){infrabot::rollback_firmware(ip,key);},py::arg("ip"),py::arg("public_key_file")="",Unlock{});
     m.def("firmware_status", [](const std::string& ip,const std::string& key){return infrabot::firmware_status(ip,key);}, py::arg("ip"),py::arg("public_key_file")="",Unlock{});
     m.def("update_firmware", [](const std::string& ip,const std::string& package,const std::string& key){
-        infrabot::update_firmware(ip,package,key);
+        return infrabot::update_firmware(ip,package,key);
     },py::arg("ip"),py::arg("package"),py::arg("public_key_file")="", Unlock{});
     m.doc() = "Bindings for the existing infrabot::Robot C++ SDK (joint SI units)";
     py::enum_<Mode>(m, "Mode").value("Idle",Mode::Idle).value("RtJoint",Mode::RtJoint)
