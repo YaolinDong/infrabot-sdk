@@ -187,13 +187,18 @@ public:
         parameters_.target = positions;
         // Startup hold gets its own settle budget, independent of the next requested move.
         parameters_.timeout_ms = 10000;
+        // It holds the MCU's command, which a stiffness-only (MIT) arm sags
+        // below by up to tens of mrad: judge stillness, not that distance.
+        parameters_.position_tolerance = kHoldTolerance;
         begin(now, true);
     }
     void begin_hold_cartesian(uint64_t now) {
         if (!preparing() || !cartesian_mode_) return;
         cartesian_parameters_.timeout_ms = 10000;
+        cartesian_parameters_.position_tolerance = kHoldTolerance;
         begin(now, true);
     }
+    static constexpr float kHoldTolerance = 0.05f;  // the MCU's largest accepted tolerance
     bool movej(const Parameters &p, uint64_t now, std::string &error) {
         if (!snapshot(now).can_execute) { error = "当前动作未完成、应答过期或尚未使能就绪"; return false; }
         if (!valid(p, error)) return false;

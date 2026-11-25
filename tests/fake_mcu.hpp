@@ -132,6 +132,9 @@ public:
     std::atomic<uint8_t> stop_mode{INFRABOT_CONTROL_IDLE};
     std::atomic<int32_t> arm_velocity_mrad_s{0};
     std::atomic<unsigned> busy_replies{0}, mode_requests{0};
+    // SET_CONTROL_MODE answered as the MCU answers a new endpoint while the
+    // previous owner of the enabled arm spoke less than 0.5 s ago (status 5).
+    std::atomic<unsigned> owner_reject_replies{0};
 
 private:
     static int open_socket(int &port) {
@@ -353,7 +356,8 @@ private:
                 }
             } else if (q.command == INFRABOT_CMD_SET_CONTROL_MODE) {
                 ++mode_requests;
-                if(q.mode>INFRABOT_CONTROL_CARTESIAN_ADMITTANCE || (q.mode>=INFRABOT_CONTROL_JOINT_ADMITTANCE && !supports_admittance))
+                if (owner_reject_replies > 0) { --owner_reject_replies; status = INFRABOT_REPLY_DISABLE_FIRST; }
+                else if(q.mode>INFRABOT_CONTROL_CARTESIAN_ADMITTANCE || (q.mode>=INFRABOT_CONTROL_JOINT_ADMITTANCE && !supports_admittance))
                     status=INFRABOT_REPLY_UNSUPPORTED;
                 else if (!supports_cartesian && (q.mode == INFRABOT_CONTROL_RT_CARTESIAN || q.mode == INFRABOT_CONTROL_NRT_CARTESIAN))
                     status = INFRABOT_REPLY_UNSUPPORTED;

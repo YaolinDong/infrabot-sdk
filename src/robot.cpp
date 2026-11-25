@@ -1394,14 +1394,37 @@ bool Robot::enter_mode(Mode mode, std::string &error, uint8_t *reply_status) {
     r.command = INFRABOT_CMD_SET_CONTROL_MODE;
     r.mode = static_cast<uint8_t>(mode);
     InfrabotMaintenanceReply reply{};
-    if (!d.maintenance(r, reply, 1000, error)) {
-        d.stop_without_waiting("switch_mode not answered");
-        error = "MCU 控制模式应答超时，结果未知；已请求受控停止（刹停并保持）";
+    // Two refusals pass within a second, so the request is repeated for that
+    // long: the MCU hands control of an enabled arm to a new endpoint only
+    // after the previous one has been silent for 0.5 s (status 5; a program
+    // started right after another one ended), and answers BUSY for the 0.5 s
+    // in which a stopped local mode hands its gains back to the hold.  A
+    // controller that keeps sending does not lose control.
+    const uint64_t owner_deadline = now_us() + 1000000U;
+    for (;;) {
+        if (!d.maintenance(r, reply, 1000, error)) {
+            d.stop_without_waiting("switch_mode not answered");
+            error = "MCU 控制模式应答超时，结果未知；已请求受控停止（刹停并保持）";
+            return false;
+        }
+        if ((reply.status != INFRABOT_REPLY_DISABLE_FIRST && reply.status != INFRABOT_REPLY_BUSY) ||
+            now_us() >= owner_deadline)
+            break;
+        sleep_ms(50);
+    }
+    if (reply.status == INFRABOT_REPLY_DISABLE_FIRST) {
+        if (reply_status) *reply_status = reply.status;
+        error = "MCU 拒绝控制模式：另一个程序正在控制机械臂（它停止发送 0.5 s 后才交出控制权）";
         return false;
     }
     if (reply.status != INFRABOT_REPLY_OK || reply.value != static_cast<uint32_t>(mode)) {
         if (reply_status) *reply_status = reply.status != INFRABOT_REPLY_OK ? reply.status : INFRABOT_REPLY_MISMATCH;
         error = std::string("MCU 拒绝控制模式：") + reply_status_text(reply.status);
+        // The MCU also refuses admittance with NOT_READY when a joint is
+        // within 0.03 rad of its limit; J2 and J4 have theirs at 0.
+        if (reply.status == INFRABOT_REPLY_NOT_READY &&
+            (mode == Mode::JointAdmittance || mode == Mode::CartesianAdmittance))
+            error += "；导纳模式还要求每个关节离限位至少 0.03 rad（J2、J4 的下限是 0，先把它们抬到 0.03 rad 以上）";
         return false;
     }
     // Seed from the MCU's hold command: the measured angle sits below it by

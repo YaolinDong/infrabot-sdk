@@ -182,8 +182,41 @@ static void test_diagnostics() {
     assert(board.diag_requests == before);
 }
 
+/* A program started right after another one ended: the MCU refuses the new
+ * endpoint for up to 0.5 s, then hands over control. The NRT hold move
+ * judges stillness, not the sag of a stiffness-only arm below its command. */
+static void test_control_handover() {
+    FakeMcu board;
+    board.telemetry_v3 = true;
+    board.calibrate_for_test();
+    Robot robot("127.0.0.2", board.command_port, board.telemetry_port);
+    std::string error;
+    assert(robot.connect(error));
+    wait_for([&] { return robot.state().telemetry_age_ms <= 100; }, "handover telemetry");
+    assert(robot.set_motor_profile(MotorProfile::Mit, error) && robot.servo_on(MotorGroup::Arm, error));
+    board.owner_reject_replies = 4;
+    assert(robot.switch_mode(Mode::JointImpedance, error) && board.mode == INFRABOT_CONTROL_JOINT_IMPEDANCE);
+    assert(board.owner_reject_replies == 0);
+    assert(robot.stop(error));
+    // A controller that keeps sending keeps control: refused, with the reason.
+    board.owner_reject_replies = 1000;
+    assert(!robot.switch_mode(Mode::JointImpedance, error) && error.find("另一个程序") != std::string::npos);
+    board.owner_reject_replies = 0;
+    assert(board.mode == INFRABOT_CONTROL_IDLE && board.enabled_mask == 0x7f);
+    // Right after a local mode stopped, the MCU answers BUSY while it hands
+    // the gains back to the hold: the switch waits that out.
+    board.busy_replies = 3;
+    assert(robot.switch_mode(Mode::JointAdmittance, error) && board.busy_replies == 0);
+    assert(robot.stop(error));
+    assert(robot.switch_mode(Mode::NrtJoint, error));
+    wait_for([&] { return board.motion_count > 0; }, "hold move");
+    assert(near(board.last_request().command.joint.position_tolerance, 0.05f));
+    assert(robot.stop(error));
+}
+
 int main() {
     offline();
+    test_control_handover();
     test_info_handshake();
     test_parameters();
     test_diagnostics();
