@@ -105,6 +105,14 @@ public:
     std::atomic<bool> v1_only{false}, corrupt_info{false}, stale_info{false};
     std::atomic<uint16_t> protocol_major{INFRABOT_PROTOCOL_MAJOR}, protocol_minor{INFRABOT_PROTOCOL_MINOR};
     std::atomic<unsigned> info_count{0}, stop_count{0}, heartbeat_count{0}, clear_error_count{0};
+    // Parameter service (DMPR/DMPA): supported by default; replies can be withheld or refused for ownership.
+    std::atomic<bool> supports_parameters{true}, param_not_owner{false};
+    std::atomic<unsigned> param_requests{0}, param_drop_replies{0};
+    float param_requested(uint16_t id) {
+        std::lock_guard<std::mutex> lock(param_mutex);
+        for (const auto &p : params) if (p.id == id) return p.requested;
+        return -1.f;
+    }
     std::atomic<unsigned> keepalive_count{0};
     // SET_ARM_MODE: the self-check fails on this joint/register (0xFF: passes).
     std::atomic<uint8_t> selfcheck_fail_joint{INFRABOT_NO_JOINT}, selfcheck_fail_rid{INFRABOT_RID_VMAX};
@@ -158,10 +166,71 @@ private:
         if (controlled_stop) { stop_reason = reason; stop_phase = INFRABOT_STOP_PHASE_NONE; ++stop_count; }
         else set_mask(0);
     }
+    struct FakeParam {
+        uint16_t id;
+        uint8_t group, flags;
+        const char *name, *unit;
+        float requested, applied, minimum, maximum, default_value, rate;
+    };
+    // A four-entry table: two gains, a switch and a read-only value.
+    std::array<FakeParam, 4> params{{
+        {INFRABOT_PARAM_ID(INFRABOT_PARAM_GROUP_GRAVITY, 0), INFRABOT_PARAM_GROUP_GRAVITY, INFRABOT_PARAM_FLAG_WRITABLE,
+         "gravity.damping", "Nms/rad", .8f, .8f, .1f, 3.f, .8f, 2.f},
+        {INFRABOT_PARAM_ID(INFRABOT_PARAM_GROUP_IMPEDANCE, 0), INFRABOT_PARAM_GROUP_IMPEDANCE, INFRABOT_PARAM_FLAG_WRITABLE,
+         "imp.joint_k", "Nm/rad", 8.f, 8.f, .5f, 30.f, 8.f, 20.f},
+        {INFRABOT_PARAM_ID(INFRABOT_PARAM_GROUP_ADMITTANCE, 12), INFRABOT_PARAM_GROUP_ADMITTANCE,
+         INFRABOT_PARAM_FLAG_WRITABLE | INFRABOT_PARAM_FLAG_BOOLEAN, "adm.bias_learning", "", 1.f, 1.f, 0.f, 1.f, 1.f, 0.f},
+        {INFRABOT_PARAM_ID(INFRABOT_PARAM_GROUP_ADMITTANCE, 13), INFRABOT_PARAM_GROUP_ADMITTANCE, 0,
+         "adm.fixed", "", 2.f, 2.f, 2.f, 2.f, 2.f, 0.f},
+    }};
+    std::mutex param_mutex;
+    void handle_param(const uint8_t *bytes, const sockaddr_in &peer) {
+        InfrabotParamRequest q{}; std::memcpy(&q, bytes, sizeof(q));
+        if (q.version != INFRABOT_PARAM_V1 || q.crc32 != infrabot_crc32(&q, offsetof(InfrabotParamRequest, crc32))) return;
+        ++param_requests;
+        if (!supports_parameters) return;
+        if (const unsigned drop = param_drop_replies) { param_drop_replies = drop - 1U; return; }
+        InfrabotParamReply r{};
+        r.magic = INFRABOT_MAGIC_PARAM_REPLY; r.version = INFRABOT_PARAM_V1; r.op = q.op;
+        r.request_id = q.request_id; r.param_count = static_cast<uint16_t>(params.size());
+        {
+            std::lock_guard<std::mutex> lock(param_mutex);
+            FakeParam *found = nullptr;
+            if (q.op > INFRABOT_PARAM_OP_SAVE || q.reserved0 != 0 || q.reserved1 != 0) r.result = INFRABOT_PARAM_INVALID;
+            else if ((q.op == INFRABOT_PARAM_OP_SET || q.op == INFRABOT_PARAM_OP_SAVE) && param_not_owner) r.result = INFRABOT_PARAM_BUSY;
+            else if (q.op == INFRABOT_PARAM_OP_SAVE) r.result = INFRABOT_PARAM_UNSUPPORTED;
+            else {
+                if (q.op == INFRABOT_PARAM_OP_INFO) { if (q.param_id < params.size()) found = &params[q.param_id]; }
+                else for (auto &p : params) if (p.id == q.param_id) found = &p;
+                if (!found) r.result = INFRABOT_PARAM_UNKNOWN;
+                else if (q.op == INFRABOT_PARAM_OP_SET) {
+                    const bool boolean = (found->flags & INFRABOT_PARAM_FLAG_BOOLEAN) != 0;
+                    if (!(found->flags & INFRABOT_PARAM_FLAG_WRITABLE)) r.result = INFRABOT_PARAM_READ_ONLY;
+                    else if (!std::isfinite(q.value) || q.value < found->minimum || q.value > found->maximum ||
+                             (boolean && q.value != 0.f && q.value != 1.f)) r.result = INFRABOT_PARAM_RANGE;
+                    else { found->requested = q.value; if (boolean) found->applied = q.value; }
+                }
+            }
+            if (found && r.result == INFRABOT_PARAM_OK) {
+                r.param_id = found->id; r.group = found->group; r.flags = found->flags;
+                r.requested = found->requested; r.applied = found->applied;
+                r.minimum = found->minimum; r.maximum = found->maximum;
+                r.default_value = found->default_value; r.rate = found->rate;
+                std::strncpy(r.name, found->name, sizeof(r.name) - 1U);
+                std::strncpy(r.unit, found->unit, sizeof(r.unit) - 1U);
+            }
+        }
+        r.crc32 = infrabot_crc32(&r, offsetof(InfrabotParamReply, crc32));
+        const ssize_t sent = sendto(command_fd, &r, sizeof(r), 0, reinterpret_cast<const sockaddr *>(&peer), sizeof(peer));
+        assert(sent == static_cast<ssize_t>(sizeof(r)));
+        (void)sent;
+    }
     void command(const uint8_t *bytes, size_t size, const sockaddr_in &peer) {
         uint32_t magic = 0;
         std::memcpy(&magic, bytes, sizeof(magic));
-        if (size == sizeof(InfrabotInfoRequest) && magic == INFRABOT_MAGIC_INFO_REQUEST) {
+        if (size == sizeof(InfrabotParamRequest) && magic == INFRABOT_MAGIC_PARAM_REQUEST) {
+            handle_param(bytes, peer);
+        } else if (size == sizeof(InfrabotInfoRequest) && magic == INFRABOT_MAGIC_INFO_REQUEST) {
             InfrabotInfoRequest q{}; std::memcpy(&q, bytes, size);
             assert(q.crc32 == infrabot_crc32(&q, sizeof(q) - 4));
             if (q.version != INFRABOT_INFO_V1 && (q.version != INFRABOT_INFO_V2 || v1_only)) return;
@@ -183,7 +252,8 @@ private:
                              (telemetry_v3 ? INFRABOT_CAP_TELEMETRY_V3 | INFRABOT_CAP_SELFCHECK : 0U) |
                              (controlled_stop ? INFRABOT_CAP_CONTROLLED_STOP : 0U) |
                              (controlled_stop && resume_supported ? INFRABOT_CAP_RESUME : 0U) |
-                             (supports_gravity ? INFRABOT_CAP_LOCAL_GRAVITY : 0U) | (supports_admittance?INFRABOT_CAP_ADMITTANCE:0U);
+                             (supports_gravity ? INFRABOT_CAP_LOCAL_GRAVITY : 0U) | (supports_admittance?INFRABOT_CAP_ADMITTANCE:0U) |
+                             (supports_parameters ? INFRABOT_CAP_PARAMETERS : 0U);
             r.crc32 = infrabot_crc32(&r, sizeof(r) - 4);
             size_t length = sizeof(r);
             if (q.version == INFRABOT_INFO_V2) {

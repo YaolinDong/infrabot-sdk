@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 — unreleased
+
+- Parameter service (protocol 1.1): `list_parameters`, `get_parameter` and `set_parameter` in C++ and Python read and write the gravity, impedance and admittance settings that were only reachable from the touchscreen. Firmware without `INFRABOT_CAP_PARAMETERS` is refused before anything is sent.
+- Example `08_parameters` in C++ and Python.
+- The protocol header is the firmware 1.1 header.
+
 ## 0.1.4 — 2026-11-26
 
 - `flash-net --download` without a version finds the latest release again. GitHub now redirects a release download on to a storage host whose URL does not name the release, so the version is read from every redirect, not only the last one.

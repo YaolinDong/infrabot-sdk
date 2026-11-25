@@ -83,7 +83,7 @@ static void test_info_handshake() {
     board.protocol_major = 2;
     const auto heartbeats = board.heartbeat_count.load();
     assert(!robot.connect(error) && !robot.connected() && !robot.info().received);
-    assert(error.find("2.17") != std::string::npos && error.find("1.0") != std::string::npos);
+    assert(error.find("2.17") != std::string::npos && error.find("1.1") != std::string::npos);
     assert(board.heartbeat_count == heartbeats);
     board.protocol_major = 1;
     board.stale_info = true;
@@ -95,9 +95,59 @@ static void test_info_handshake() {
     assert(robot.connect(error) && robot.info().protocol_minor == 17);
 }
 
+static void test_parameters() {
+    FakeMcu board;
+    Robot robot("127.0.0.2", board.command_port, board.telemetry_port);
+    std::string error;
+    std::vector<infrabot::ParameterInfo> list;
+    infrabot::ParameterInfo p;
+    const auto npos = std::string::npos;
+    // Not connected: refused before anything is sent.
+    assert(!robot.list_parameters(list, error) && !error.empty());
+    assert(board.param_requests == 0);
+    assert(robot.connect(error));
+    assert(robot.list_parameters(list, error));
+    assert(list.size() == 4 && list[0].name == "gravity.damping" && list[0].unit == "Nms/rad");
+    assert(list[1].writable && !list[1].boolean && list[2].boolean && !list[3].writable);
+    assert(near(list[1].minimum, .5f) && near(list[1].maximum, 30.f) && near(list[1].default_value, 8.f) && near(list[1].rate, 20.f));
+    // By name and by id; a write shows the requested value while the applied value has not moved yet.
+    assert(robot.get_parameter("imp.joint_k", p, error) && p.id == list[1].id && near(p.requested, 8.f));
+    assert(robot.set_parameter("imp.joint_k", 12.f, p, error) && near(p.requested, 12.f) && near(p.applied, 8.f));
+    assert(near(board.param_requested(list[1].id), 12.f));
+    assert(robot.set_parameter(list[2].id, 0.f, p, error) && near(p.requested, 0.f) && near(p.applied, 0.f));
+    // Refusals leave the stored value alone.
+    assert(!robot.set_parameter("imp.joint_k", 31.f, p, error) && error.find("超出范围") != npos);
+    assert(!robot.set_parameter("imp.joint_k", std::nanf(""), p, error) && error.find("超出范围") != npos);
+    assert(near(board.param_requested(list[1].id), 12.f));
+    assert(!robot.set_parameter("adm.fixed", 2.f, p, error) && error.find("只读") != npos);
+    assert(!robot.set_parameter("adm.bias_learning", .5f, p, error) && error.find("超出范围") != npos);
+    assert(!robot.get_parameter("nope", p, error) && error.find("nope") != npos);
+    assert(!robot.get_parameter(uint16_t(0x0909), p, error) && error.find("未知参数") != npos);
+    // A PC that does not control the arm may read but not write.
+    board.param_not_owner = true;
+    assert(!robot.set_parameter("imp.joint_k", 10.f, p, error) && error.find("另一台 PC") != npos);
+    assert(robot.get_parameter("imp.joint_k", p, error) && near(p.requested, 12.f));
+    board.param_not_owner = false;
+    // Lost datagrams are sent again; a silent board ends in a timeout.
+    board.param_drop_replies = 2;
+    assert(robot.get_parameter("gravity.damping", p, error) && board.param_drop_replies == 0);
+    board.param_drop_replies = 100;
+    assert(!robot.get_parameter("gravity.damping", p, error) && error.find("超时") != npos);
+    board.param_drop_replies = 0;
+    // Firmware without the service: refused at once, nothing is sent, and the name list is not reused.
+    robot.disconnect();
+    board.supports_parameters = false;
+    const unsigned before = board.param_requests;
+    assert(robot.connect(error));
+    assert(!robot.list_parameters(list, error) && error.find("INFRABOT_CAP_PARAMETERS") != npos);
+    assert(!robot.set_parameter("imp.joint_k", 9.f, p, error) && error.find("INFRABOT_CAP_PARAMETERS") != npos);
+    assert(board.param_requests == before);
+}
+
 int main() {
     offline();
     test_info_handshake();
+    test_parameters();
     const auto directory = std::filesystem::temp_directory_path() / ("infrabot_sdk_test_" + std::to_string(getpid()));
     {
         FakeMcu board;

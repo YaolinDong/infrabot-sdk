@@ -5,7 +5,7 @@ The firmware repository owns `protocol/infrabot/protocol.h`. The [SDK copy](../i
 | UDP port | Purpose |
 | --- | --- |
 | 5000 | Telemetry registration, DMTL telemetry, maintenance/info replies and clock synchronization |
-| 5001 | DMIF info requests, DMCP commands and DMOV/DMOS motion sessions |
+| 5001 | DMIF info requests, DMCP commands, DMOV/DMOS motion sessions and DMPR/DMPA parameter requests |
 | 5002 | Firmware update service |
 | 5003 | On-board run log download |
 
@@ -33,6 +33,20 @@ A different major or a handshake timeout fails `connect`; C++ returns `false` wi
 | `0x0800` | `LOCAL_GRAVITY` | On-controller gravity compensation |
 | `0x1000` | `ADMITTANCE` | Joint and Cartesian admittance |
 | `0x2000` | `RUN_LOG` | SDRAM text and telemetry log download |
+| `0x4000` | `PARAMETERS` | Parameter service (DMPR/DMPA), protocol 1.1 |
+
+## Parameter service
+
+Protocol 1.1 adds one request and one reply on the command port, answered to the sender. A DMPR (24 bytes) carries an operation, a request id and a parameter id. A DMPA (80 bytes) echoes the request id and describes the addressed parameter: name, unit, minimum, maximum, default, slew rate, and the requested and applied values. The parameter id is the group in the high byte (1 gravity, 2 impedance, 3 admittance) and the index in the low byte. INFO takes a list position instead and also returns the parameter count, so the PC lists every parameter without a table of its own and a firmware that adds parameters needs no new protocol version.
+
+| Operation | Meaning |
+| --- | --- |
+| `INFO` | Descriptor of the parameter at a list position |
+| `GET` | Descriptor of a parameter by id |
+| `SET` | Store a requested value; the reply shows the state after the write |
+| `SAVE` | Reserved; answered `UNSUPPORTED` |
+
+A write never steps a gain: the controller slews the applied value toward the requested one at the parameter rate. Values live in RAM and return to their defaults at reboot. INFO and GET are open to every PC. SET needs the PC that controls the arm, or no controlling PC, and is otherwise answered `BUSY`. A value that is not finite or lies outside the range is answered `RANGE` and changes nothing. Firmware without `INFRABOT_CAP_PARAMETERS` does not answer, and the SDK refuses before it sends.
 
 ## Verify a checkout
 

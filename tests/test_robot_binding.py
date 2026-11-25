@@ -46,10 +46,10 @@ class RobotBindingTests(unittest.TestCase):
 
     def test_protocol_negotiation(self):
         info = self.robot.info()
-        self.assertEqual((info.protocol_major, info.protocol_minor, info.firmware), (1, 0, "fixture-123"))
+        self.assertEqual((info.protocol_major, info.protocol_minor, info.firmware), (1, 1, "fixture-123"))
         self.robot.disconnect()
         self.board.protocol_major = 2
-        with self.assertRaisesRegex(RuntimeError, r"2\.0 firmware.*1\.0"):
+        with self.assertRaisesRegex(RuntimeError, r"2\.1 firmware.*1\.1"):
             self.robot.connect()
         self.assertFalse(self.robot.connected())
         self.board.v1_only = True
@@ -280,6 +280,45 @@ class RobotBindingTests(unittest.TestCase):
         self.assertEqual(self.robot.link_stats().mcu.control_missed, 0)
         self.assertFalse(self.robot.joint_stream_stats().active)
         self.robot.cancel_motion()
+
+    def test_parameter_service(self):
+        self.assertTrue(self.robot.info().capabilities & n.CAP_PARAMETERS)
+        params = self.robot.list_parameters()
+        self.assertEqual([p.name for p in params],
+                         ["gravity.damping", "imp.joint_k", "adm.bias_learning", "adm.fixed"])
+        self.assertEqual(params[1].unit, "Nm/rad")
+        self.assertTrue(params[1].writable and not params[1].boolean)
+        self.assertTrue(params[2].boolean and not params[3].writable)
+        self.assertEqual(params[0].group, n.PARAM_GROUP_GRAVITY)
+        joint_k = params[1].id
+        self.assertAlmostEqual(self.robot.get_parameter("imp.joint_k").requested, 8.0)
+        # A write shows the requested value while the applied value has not moved yet.
+        result = self.robot.set_parameter("imp.joint_k", 12.0)
+        self.assertEqual((result.requested, result.applied), (12.0, 8.0))
+        self.assertAlmostEqual(self.board.param_requested(joint_k), 12.0)
+        self.assertAlmostEqual(self.robot.get_parameter(joint_k).requested, 12.0)
+        self.assertAlmostEqual(self.robot.set_parameter(joint_k, 9.5).requested, 9.5)
+        # Refusals raise and leave the stored value alone.
+        with self.assertRaisesRegex(RuntimeError, "超出范围"):
+            self.robot.set_parameter("imp.joint_k", 31.0)
+        with self.assertRaisesRegex(RuntimeError, "只读"):
+            self.robot.set_parameter("adm.fixed", 2.0)
+        with self.assertRaisesRegex(RuntimeError, "nope"):
+            self.robot.get_parameter("nope")
+        self.assertAlmostEqual(self.board.param_requested(joint_k), 9.5)
+        self.board.param_not_owner = True
+        with self.assertRaisesRegex(RuntimeError, "另一台 PC"):
+            self.robot.set_parameter("imp.joint_k", 10.0)
+        self.assertAlmostEqual(self.robot.get_parameter("imp.joint_k").requested, 9.5)
+        self.board.param_not_owner = False
+        # Firmware without the service: refused before anything is sent.
+        self.robot.disconnect()
+        self.board.supports_parameters = False
+        self.robot.connect()
+        sent = self.board.param_requests
+        with self.assertRaisesRegex(RuntimeError, "INFRABOT_CAP_PARAMETERS"):
+            self.robot.list_parameters()
+        self.assertEqual(self.board.param_requests, sent)
 
 
 if __name__ == "__main__":

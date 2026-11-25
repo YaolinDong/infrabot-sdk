@@ -124,6 +124,9 @@ PYBIND11_MODULE(infrabot_native, m) {
         RO(InfrabotMoveReply,enabled_mask) RO(InfrabotMoveReply,fresh_mask) RO(InfrabotMoveReply,max_error_rad) RO(InfrabotMoveReply,reason);
     py::class_<MotionStatus>(m,"MotionStatus") RO(MotionStatus,phase) RO(MotionStatus,id) RO(MotionStatus,can_execute)
         RO(MotionStatus,has_reply) RO(MotionStatus,reply_age_us) RO(MotionStatus,error) RO(MotionStatus,reply);
+    py::class_<ParameterInfo>(m,"ParameterInfo") RO(ParameterInfo,id) RO(ParameterInfo,group) RO(ParameterInfo,name) RO(ParameterInfo,unit)
+        RO(ParameterInfo,requested) RO(ParameterInfo,applied) RO(ParameterInfo,minimum) RO(ParameterInfo,maximum)
+        RO(ParameterInfo,default_value) RO(ParameterInfo,rate) RO(ParameterInfo,writable) RO(ParameterInfo,boolean);
 #undef RO
 #undef RW
     py::class_<Robot>(m,"Robot")
@@ -182,6 +185,11 @@ PYBIND11_MODULE(infrabot_native, m) {
         .def("send_force_pos",[](Robot& r,uint8_t i,float p,float v,float f){std::string e;require(r.send_force_pos(i,p,v,f,e),e);},Unlock())
         .def("set_can_timeout_ms",[](Robot& r,uint8_t i,uint32_t t){std::string e;require(r.set_can_timeout_ms(i,t,e),e);},Unlock())
         .def("store_parameters",[](Robot& r,uint8_t i){std::string e;require(r.store_parameters(i,e),e);},Unlock())
+        .def("list_parameters",[](Robot& r){std::string e;std::vector<ParameterInfo> v;require(r.list_parameters(v,e),e);return v;},Unlock())
+        .def("get_parameter",[](Robot& r,uint16_t id){std::string e;ParameterInfo p;require(r.get_parameter(id,p,e),e);return p;},py::arg("id"),Unlock())
+        .def("get_parameter",[](Robot& r,const std::string& name){std::string e;ParameterInfo p;require(r.get_parameter(name,p,e),e);return p;},py::arg("name"),Unlock())
+        .def("set_parameter",[](Robot& r,uint16_t id,float value){std::string e;ParameterInfo p;require(r.set_parameter(id,value,p,e),e);return p;},py::arg("id"),py::arg("value"),Unlock())
+        .def("set_parameter",[](Robot& r,const std::string& name,float value){std::string e;ParameterInfo p;require(r.set_parameter(name,value,p,e),e);return p;},py::arg("name"),py::arg("value"),Unlock())
         .def_static("forward",&Robot::forward,Unlock());
     m.attr("ARM_MASK") = INFRABOT_ARM_MASK;
     m.attr("CAP_JOINT_RT") = INFRABOT_CAP_JOINT_RT;
@@ -191,6 +199,10 @@ PYBIND11_MODULE(infrabot_native, m) {
     m.attr("MOTOR_FEEDBACK_STALE") = INFRABOT_MOTOR_FEEDBACK_STALE;
     m.attr("CAP_ADMITTANCE")=py::int_(INFRABOT_CAP_ADMITTANCE);
     m.attr("CAP_LOCAL_GRAVITY") = INFRABOT_CAP_LOCAL_GRAVITY;
+    m.attr("CAP_PARAMETERS") = INFRABOT_CAP_PARAMETERS;
+    m.attr("PARAM_GROUP_GRAVITY") = INFRABOT_PARAM_GROUP_GRAVITY;
+    m.attr("PARAM_GROUP_IMPEDANCE") = INFRABOT_PARAM_GROUP_IMPEDANCE;
+    m.attr("PARAM_GROUP_ADMITTANCE") = INFRABOT_PARAM_GROUP_ADMITTANCE;
     m.attr("ARM_MAX_JOINT_VELOCITY") = INFRABOT_ARM_MAX_JOINT_VELOCITY;
     m.attr("REGISTER_U32") = INFRABOT_REGISTER_U32;
     m.attr("REGISTER_F32") = INFRABOT_REGISTER_F32;

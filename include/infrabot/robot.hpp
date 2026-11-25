@@ -356,6 +356,20 @@ struct McuLogResult {
     bool fault_latched = false;    // the board froze the telemetry at a fault: the CSV ends at that tick
 };
 
+/* One tunable controller parameter (firmware with INFRABOT_CAP_PARAMETERS, protocol 1.1). */
+struct ParameterInfo {
+    uint16_t id = 0;        // group << 8 | index
+    uint8_t group = 0;      // INFRABOT_PARAM_GROUP_*
+    std::string name;       // e.g. "imp.joint_k"
+    std::string unit;       // e.g. "Nm/rad"; empty when dimensionless
+    float requested = 0.f;  // the last value written, or the default after a reboot
+    float applied = 0.f;    // the value the controller uses now, slewing toward requested
+    float minimum = 0.f, maximum = 0.f, default_value = 0.f;
+    float rate = 0.f;       // largest change of the applied value, units per second
+    bool writable = false;
+    bool boolean = false;   // the value is 0 or 1
+};
+
 /* Optional native RT Joint/MIT producer, serviced by Robot's existing C++
  * thread. Starting it never configures/enables drives or changes modes. */
 struct JointStreamOptions {
@@ -591,6 +605,18 @@ public:
     /* [Blocking, 3 s] Stores the runtime control profile in the MCU Flash
      * (DMCP v5 STORE_CONTROL_PROFILE; all disabled). */
     bool store_control_profile(const StreamProfile& profile, uint8_t& status, std::string& error);
+    /* [Blocking, about 10 ms per parameter] Parameter service (firmware with INFRABOT_CAP_PARAMETERS,
+     * protocol 1.1): the gravity, impedance and admittance settings that the touchscreen sliders change.
+     * Every parameter describes itself (name, unit, range, default, slew rate), so the list needs no table
+     * compiled into the SDK. set_parameter stores the requested value and the controller slews its applied
+     * value toward it, so a write never steps a gain. Values are RAM only and return to their defaults at
+     * reboot. Reading is open; writing needs the PC that controls the arm (or no controlling PC). */
+    bool list_parameters(std::vector<ParameterInfo>& parameters, std::string& error);
+    bool get_parameter(uint16_t id, ParameterInfo& parameter, std::string& error);
+    bool get_parameter(const std::string& name, ParameterInfo& parameter, std::string& error);
+    bool set_parameter(uint16_t id, float value, ParameterInfo& result, std::string& error);
+    bool set_parameter(const std::string& name, float value, ParameterInfo& result, std::string& error);
+
     /* [Non-blocking registration] Called by the receive thread for every telemetry packet, after state()
      * reflects it.  Keep it short; it must not call back into a blocking
      * Robot function. */

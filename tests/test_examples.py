@@ -11,7 +11,7 @@ from _infrabot_test_mcu import FakeMcu, FakeLogBoard
 
 examples = Path(__file__).resolve().parents[1] / "examples/python"
 scripts = sorted(examples.glob("[0-9][0-9]_*.py"))
-assert [p.name[:2] for p in scripts] == [f"{n:02}" for n in range(1, 8)]
+assert [p.name[:2] for p in scripts] == [f"{n:02}" for n in range(1, 9)]
 for path in scripts:
     if path.name.startswith("07"):
         board = FakeLogBoard()
@@ -27,7 +27,7 @@ for path in scripts:
         subprocess.run([sys.executable, path, "--ip", "127.0.0.2", "--command-port",
                         str(board.command_port), "--telemetry-port", str(board.telemetry_port)],
                        check=True, timeout=12)
-        if path.name.startswith("01"):
+        if path.name.startswith(("01", "08")):
             assert board.enabled_mask == 0
         else:
             assert board.mode == 0 and board.enabled_mask == 127

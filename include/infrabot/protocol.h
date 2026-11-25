@@ -61,6 +61,9 @@ extern "C" {
 #define INFRABOT_MAGIC_MOVE_REPLY 0x444D4F53U   /* "DMOS" */
 #define INFRABOT_MAGIC_LOG_REQUEST 0x444D4C47U  /* "DMLG" run log request */
 #define INFRABOT_MAGIC_LOG_REPLY 0x444D4C52U    /* "DMLR" */
+#define INFRABOT_MAGIC_PARAM_REQUEST 0x444D5052U /* "DMPR" parameter service request */
+#define INFRABOT_MAGIC_PARAM_REPLY 0x444D5041U   /* "DMPA" parameter service reply */
+#define INFRABOT_PARAM_V1 1U
 
 #define INFRABOT_COMMAND_V2 2U /* legacy position packet (InfrabotCommandV2) */
 #define INFRABOT_COMMAND_V3 3U /* control command / heartbeat (InfrabotCommand) */
@@ -73,7 +76,7 @@ extern "C" {
 /* A major change is incompatible. Minor revisions are additive; use
  * capability bits to discover features. A V1-only reply implies 1.0. */
 #define INFRABOT_PROTOCOL_MAJOR 1U
-#define INFRABOT_PROTOCOL_MINOR 0U
+#define INFRABOT_PROTOCOL_MINOR 1U
 #define INFRABOT_INFO_V1 1U
 #define INFRABOT_INFO_V2 2U
 #define INFRABOT_SYNC_V1 1U
@@ -217,6 +220,7 @@ extern "C" {
 
 #define INFRABOT_CAP_ADMITTANCE 0x00001000U /* local admittance, no target stream */
 #define INFRABOT_CAP_RUN_LOG 0x00002000U    /* MCU run log on INFRABOT_LOG_PORT (DMLG) */
+#define INFRABOT_CAP_PARAMETERS 0x00004000U /* parameter service (DMPR/DMPA) on the command port */
 
 /* ---- Controlled stop -----------------------------------------------------------
  * On a stop condition the MCU leaves the control mode for IDLE, brakes the
@@ -680,6 +684,86 @@ typedef struct INFRABOT_PACKED {
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotLogRequest) == 20U, "DMLG size");
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotLogReplyHeader) == 64U, "DMLR header size");
 INFRABOT_STATIC_ASSERT(offsetof(InfrabotLogReplyHeader, now_us) == 24U, "DMLR now_us offset");
+
+/* ---- Parameter service (DMPR -> DMPA on INFRABOT_COMMAND_PORT) ---------------
+ * Reads and writes the controller's tunable parameters (gravity, impedance and
+ * admittance settings) by id, the same values the touchscreen sliders change.
+ * One request in, one reply out, sent from the command port to the sender.
+ * Every parameter describes itself, so the PC lists them with INFO instead of
+ * compiling in a table, and a firmware that adds parameters needs no new
+ * protocol version.
+ *
+ * param_id = group << 8 | index.  INFO takes a list position in param_id (0 ..
+ * param_count - 1) and returns that parameter's descriptor; GET and SET take
+ * the id.  SET stores a requested value; the control task slews the applied
+ * value toward it at the parameter's rate, so a write never steps a gain.
+ * Values are RAM only: they return to their defaults at reboot.  SAVE is
+ * reserved for persisting them.  Only the controlling PC may SET or SAVE
+ * (INFRABOT_PARAM_BUSY otherwise); INFO and GET are open to any PC. */
+#define INFRABOT_PARAM_OP_INFO 0U
+#define INFRABOT_PARAM_OP_GET 1U
+#define INFRABOT_PARAM_OP_SET 2U
+#define INFRABOT_PARAM_OP_SAVE 3U
+
+#define INFRABOT_PARAM_GROUP_GRAVITY 1U
+#define INFRABOT_PARAM_GROUP_IMPEDANCE 2U
+#define INFRABOT_PARAM_GROUP_ADMITTANCE 3U
+#define INFRABOT_PARAM_ID(group, index) ((uint16_t)(((group) << 8) | (index)))
+#define INFRABOT_PARAM_ID_GROUP(id) ((uint8_t)((id) >> 8))
+#define INFRABOT_PARAM_ID_INDEX(id) ((uint8_t)((id) & 0xFFU))
+
+#define INFRABOT_PARAM_OK 0U
+#define INFRABOT_PARAM_UNKNOWN 1U     /* no such parameter or list position */
+#define INFRABOT_PARAM_RANGE 2U       /* SET value not finite or outside [minimum, maximum] */
+#define INFRABOT_PARAM_READ_ONLY 3U
+#define INFRABOT_PARAM_BUSY 4U        /* another PC controls the arm */
+#define INFRABOT_PARAM_UNSUPPORTED 5U /* the operation is not available in this firmware */
+#define INFRABOT_PARAM_INVALID 6U     /* unknown op or reserved field not zero */
+
+#define INFRABOT_PARAM_FLAG_WRITABLE 0x01U
+#define INFRABOT_PARAM_FLAG_BOOLEAN 0x02U /* value 0 or 1 */
+#define INFRABOT_PARAM_NAME_LENGTH 24U
+#define INFRABOT_PARAM_UNIT_LENGTH 8U
+
+typedef struct INFRABOT_PACKED {
+  uint32_t magic;       /* INFRABOT_MAGIC_PARAM_REQUEST */
+  uint16_t version;     /* INFRABOT_PARAM_V1 */
+  uint8_t op;           /* INFRABOT_PARAM_OP_* */
+  uint8_t reserved0;    /* 0 */
+  uint32_t request_id;  /* echoed */
+  uint16_t param_id;    /* INFO: list position; GET, SET: id */
+  uint16_t reserved1;   /* 0 */
+  float value;          /* SET: the requested value; otherwise 0 */
+  uint32_t crc32;
+} InfrabotParamRequest;
+
+/* Every reply carries the descriptor of the addressed parameter.  On an error
+ * the descriptor fields are zero except param_count and request_id. */
+typedef struct INFRABOT_PACKED {
+  uint32_t magic;       /* INFRABOT_MAGIC_PARAM_REPLY */
+  uint16_t version;
+  uint8_t op;           /* of the request */
+  uint8_t result;       /* INFRABOT_PARAM_* */
+  uint32_t request_id;
+  uint16_t param_id;
+  uint16_t param_count; /* parameters in the firmware */
+  float requested;      /* last SET value, or the default after reboot */
+  float applied;        /* value the controller uses now (slewing toward requested) */
+  float minimum;
+  float maximum;
+  float default_value;
+  float rate;           /* largest change of the applied value, units per second */
+  uint8_t flags;        /* INFRABOT_PARAM_FLAG_* */
+  uint8_t group;        /* INFRABOT_PARAM_GROUP_* */
+  uint16_t reserved;    /* 0 */
+  char name[INFRABOT_PARAM_NAME_LENGTH];  /* NUL-terminated */
+  char unit[INFRABOT_PARAM_UNIT_LENGTH];  /* NUL-terminated, e.g. "Nm/rad" */
+  uint32_t crc32;
+} InfrabotParamReply;
+
+INFRABOT_STATIC_ASSERT(sizeof(InfrabotParamRequest) == 24U, "DMPR size");
+INFRABOT_STATIC_ASSERT(sizeof(InfrabotParamReply) == 80U, "DMPA size");
+INFRABOT_STATIC_ASSERT(offsetof(InfrabotParamReply, name) == 44U, "DMPA name offset");
 
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotCommandV2) == 64U, "DMCP v2 size");
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotCommand) == 68U, "DMCP v3 size");

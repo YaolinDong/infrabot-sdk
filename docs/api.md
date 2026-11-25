@@ -8,7 +8,7 @@ Create one `infrabot::Robot` (Python `infrabot.Robot`) per controller. Defaults 
 | --- | --- | --- |
 | RT | `state`, `servej`, `servep`, low-level `send_command` / `send_joint_stream` / `send_cartesian_stream` | The periodic target loop. Successful calls use a snapshot, publish a target or send a datagram without waiting for a firmware reply. |
 | Non-blocking | `info`, `link_stats`, `fault_log`, `hold_command`, `submit_movej`, `submit_movep`, `motion`, `joint_stream_stats` | Supervisory code. Returning without waiting for motion completion can still involve locks, copying or allocation. |
-| Blocking | `connect`, `disconnect`, `set_motor_profile`, `servo_on`, `switch_mode`, `movej`, `movep`, `wait_motion`, maintenance, log download | Setup, operator actions and teardown. These can wait for a peer, disk I/O or a worker thread. |
+| Blocking | `connect`, `disconnect`, `set_motor_profile`, `servo_on`, `switch_mode`, `movej`, `movep`, `wait_motion`, maintenance, parameters, log download | Setup, operator actions and teardown. These can wait for a peer, disk I/O or a worker thread. |
 
 Use only `[RT]` calls in a 1 kHz loop. These labels describe API behavior; OS scheduling and UDP delivery still affect timing. C++ reports most errors through a return value and an error string. Check both the result code and error for blocking moves. Python raises `RuntimeError` for SDK errors; a motion's `result` field reports the controller outcome.
 
@@ -28,6 +28,14 @@ Use only `[RT]` calls in a 1 kHz loop. These labels describe API behavior; OS sc
 4. On firmware with controlled-stop support, `stop()` brakes to enabled hold. `servo_off()` removes drive torque; support the load first. `cancel_motion()` cancels an NRT move, while the older `cancel()` API requests immediate group disable. `resume()` requires firmware support and re-enters the interrupted mode from hold.
 
 For host-controlled RT/NRT motion, a lost required stream triggers the MCU's stop supervisor. For a local compliance mode, issue STOP while connected before ending the session. Use an independent hardware emergency stop for drive-power isolation. [Joint, Cartesian and compliance examples](../examples/cpp)
+
+## Controller parameters
+
+Firmware with `INFRABOT_CAP_PARAMETERS` (protocol 1.1) exposes the gravity, impedance and admittance settings that the touchscreen sliders change. `list_parameters()` returns every parameter with its name, unit, range, default, slew rate and its requested and applied value, so the SDK needs no table of its own. `get_parameter` and `set_parameter` take an id or a name. `set_parameter` stores the requested value and the controller slews its applied value toward it at the parameter rate, so a write never steps a gain. Values are RAM only and return to their defaults at reboot. Reading is open to any PC; writing needs the PC that controls the arm, or no controlling PC, and is otherwise refused.
+
+Names start with the group: `gravity.*` (FREE damping and LOCK stiffness), `imp.*` (joint and Cartesian impedance gains and the extra joint damping) and `adm.*` (joint and Cartesian admittance). `adm.bias_learning` is a switch that takes the value 0 or 1 and acts at once.
+
+These calls block for the reply (three tries of 200 ms at most) and do not belong in a 1 kHz loop. C++ returns `false` with an error; Python raises `RuntimeError`. [Python example](../examples/python/08_parameters.py), [C++ example](../examples/cpp/08_parameters.cpp)
 
 ## Record and retrieve logs
 

@@ -6,7 +6,7 @@ Bindings for the existing infrabot::Robot C++ SDK (joint SI units)
 from __future__ import annotations
 import collections.abc
 import typing
-__all__: list[str] = ['ARM_MASK', 'ARM_MAX_JOINT_VELOCITY', 'CAP_ADMITTANCE', 'CAP_CONTROLLED_STOP', 'CAP_GROUPS', 'CAP_JOINT_RT', 'CAP_LOCAL_GRAVITY', 'CAP_TELEMETRY_V3', 'CartesianCommand', 'CartesianLimits', 'CartesianMoveOptions', 'ControllerLinkStats', 'FaultEvent', 'FaultKind', 'JointCommand', 'JointState', 'JointStreamOptions', 'JointStreamStats', 'LinkStats', 'MOTOR_FEEDBACK_STALE', 'McuLogOptions', 'McuLogResult', 'Mode', 'MotionPhase', 'MotionResult', 'MotionStatus', 'MotorGroup', 'MotorProfile', 'MoveOptions', 'MoveReply', 'OperationalStatus', 'REGISTER_F32', 'REGISTER_U32', 'RecordOptions', 'RecorderStats', 'Robot', 'RobotInfo', 'RobotState', 'SafetyState', 'SelfCheck', 'SerialLogOptions', 'SerialLogStats', 'StopPhase', 'StopReason', 'firmware_status', 'rollback_firmware', 'update_firmware']
+__all__: list[str] = ['ARM_MASK', 'ARM_MAX_JOINT_VELOCITY', 'CAP_ADMITTANCE', 'CAP_CONTROLLED_STOP', 'CAP_GROUPS', 'CAP_JOINT_RT', 'CAP_LOCAL_GRAVITY', 'CAP_PARAMETERS', 'CAP_TELEMETRY_V3', 'CartesianCommand', 'CartesianLimits', 'CartesianMoveOptions', 'ControllerLinkStats', 'FaultEvent', 'FaultKind', 'JointCommand', 'JointState', 'JointStreamOptions', 'JointStreamStats', 'LinkStats', 'MOTOR_FEEDBACK_STALE', 'McuLogOptions', 'McuLogResult', 'Mode', 'MotionPhase', 'MotionResult', 'MotionStatus', 'MotorGroup', 'MotorProfile', 'MoveOptions', 'MoveReply', 'OperationalStatus', 'PARAM_GROUP_ADMITTANCE', 'PARAM_GROUP_GRAVITY', 'PARAM_GROUP_IMPEDANCE', 'ParameterInfo', 'REGISTER_F32', 'REGISTER_U32', 'RecordOptions', 'RecorderStats', 'Robot', 'RobotInfo', 'RobotState', 'SafetyState', 'SelfCheck', 'SerialLogOptions', 'SerialLogStats', 'StopPhase', 'StopReason', 'firmware_status', 'rollback_firmware', 'update_firmware']
 class Mode:
     """
     Members:
@@ -856,6 +856,43 @@ class FaultEvent:
     @property
     def message(self) -> str:
         ...
+class ParameterInfo:
+    @property
+    def applied(self) -> float:
+        ...
+    @property
+    def boolean(self) -> bool:
+        ...
+    @property
+    def default_value(self) -> float:
+        ...
+    @property
+    def group(self) -> int:
+        ...
+    @property
+    def id(self) -> int:
+        ...
+    @property
+    def maximum(self) -> float:
+        ...
+    @property
+    def minimum(self) -> float:
+        ...
+    @property
+    def name(self) -> str:
+        ...
+    @property
+    def rate(self) -> float:
+        ...
+    @property
+    def requested(self) -> float:
+        ...
+    @property
+    def unit(self) -> str:
+        ...
+    @property
+    def writable(self) -> bool:
+        ...
 class RecordOptions:
     commands: bool
     label: str
@@ -1333,6 +1370,12 @@ class Robot:
         ...
     def fault_log(self) -> list[FaultEvent]:
         ...
+    @typing.overload
+    def get_parameter(self, id: typing.SupportsInt | typing.SupportsIndex) -> ParameterInfo:
+        ...
+    @typing.overload
+    def get_parameter(self, name: str) -> ParameterInfo:
+        ...
     def get_register(self, arg0: typing.SupportsInt | typing.SupportsIndex, arg1: typing.SupportsInt | typing.SupportsIndex, arg2: typing.SupportsInt | typing.SupportsIndex) -> int:
         ...
     def get_state(self, arg0: typing.SupportsInt | typing.SupportsIndex) -> None:
@@ -1348,6 +1391,8 @@ class Robot:
     def link_stats(self) -> LinkStats:
         ...
     def motion(self) -> MotionStatus:
+        ...
+    def list_parameters(self) -> list[ParameterInfo]:
         ...
     def movej(self, position: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat | typing.SupportsIndex], "FixedSize(7)"], options: MoveOptions = ...) -> MotionResult:
         ...
@@ -1413,6 +1458,12 @@ class Robot:
         ...
     def store_parameters(self, arg0: typing.SupportsInt | typing.SupportsIndex) -> None:
         ...
+    @typing.overload
+    def set_parameter(self, id: typing.SupportsInt | typing.SupportsIndex, value: typing.SupportsFloat | typing.SupportsIndex) -> ParameterInfo:
+        ...
+    @typing.overload
+    def set_parameter(self, name: str, value: typing.SupportsFloat | typing.SupportsIndex) -> ParameterInfo:
+        ...
     def submit_movej(self, position: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat | typing.SupportsIndex], "FixedSize(7)"], options: MoveOptions = ...) -> None:
         ...
     def submit_movep(self, pose: typing.Annotated[collections.abc.Sequence[typing.SupportsFloat | typing.SupportsIndex], "FixedSize(12)"], options: CartesianMoveOptions = ...) -> None:
@@ -1436,7 +1487,11 @@ CAP_CONTROLLED_STOP: int = 256
 CAP_GROUPS: int = 64
 CAP_JOINT_RT: int = 1
 CAP_LOCAL_GRAVITY: int = 2048
+CAP_PARAMETERS: int = 16384
 CAP_TELEMETRY_V3: int = 128
 MOTOR_FEEDBACK_STALE: int = 16
+PARAM_GROUP_ADMITTANCE: int = 3
+PARAM_GROUP_GRAVITY: int = 1
+PARAM_GROUP_IMPEDANCE: int = 2
 REGISTER_F32: int = 1
 REGISTER_U32: int = 0

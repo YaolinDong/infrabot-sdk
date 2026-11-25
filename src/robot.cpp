@@ -148,6 +148,12 @@ struct Robot::Impl {
     size_t reply_count = 0;
     InfrabotMaintenanceReply last_reply{};
     bool have_last_reply = false;
+    // Parameter service replies (mutex) and the name -> id list (param_mutex).
+    std::array<InfrabotParamReply, kReplyRingSize> param_replies{};
+    size_t param_reply_count = 0;
+    std::atomic<uint32_t> param_request{0};
+    std::mutex param_mutex;
+    std::vector<ParameterInfo> param_list;
     uint32_t maintenance_pending = 0;
     uint64_t maintenance_sent_us = 0;
     std::deque<FaultEvent> faults;
@@ -334,6 +340,111 @@ struct Robot::Impl {
         event(sformat("DMAR %s motor=%u status=%u(%s) rid=%u value=%u seq=%u", command_name(reply.command),
                       reply.motor_index, reply.status, reply_status_text(reply.status), reply.register_id,
                       reply.value, reply.sequence), "mcu");
+    }
+
+    // ---- parameter service (DMPR -> DMPA, from the command port) ------------------
+    static const char *param_result_text(uint8_t result) {
+        switch (result) {
+        case INFRABOT_PARAM_OK: return "ok";
+        case INFRABOT_PARAM_UNKNOWN: return "未知参数";
+        case INFRABOT_PARAM_RANGE: return "数值不是有限值或超出范围";
+        case INFRABOT_PARAM_READ_ONLY: return "只读参数";
+        case INFRABOT_PARAM_BUSY: return "另一台 PC 正在控制机械臂";
+        case INFRABOT_PARAM_UNSUPPORTED: return "固件不支持该操作";
+        case INFRABOT_PARAM_INVALID: return "请求无效";
+        default: return "未知错误";
+        }
+    }
+    static ParameterInfo parameter_info(const InfrabotParamReply &r) {
+        ParameterInfo p;
+        p.id = r.param_id;
+        p.group = r.group;
+        p.name.assign(r.name, strnlen(r.name, sizeof(r.name)));
+        p.unit.assign(r.unit, strnlen(r.unit, sizeof(r.unit)));
+        p.requested = r.requested;
+        p.applied = r.applied;
+        p.minimum = r.minimum;
+        p.maximum = r.maximum;
+        p.default_value = r.default_value;
+        p.rate = r.rate;
+        p.writable = (r.flags & INFRABOT_PARAM_FLAG_WRITABLE) != 0;
+        p.boolean = (r.flags & INFRABOT_PARAM_FLAG_BOOLEAN) != 0;
+        return p;
+    }
+    void receive_param(const InfrabotParamReply &reply) {
+        {
+            std::lock_guard<std::mutex> lock(mutex);
+            param_replies[param_reply_count++ % kReplyRingSize] = reply;
+        }
+        cv.notify_all();
+    }
+    bool find_param_reply_locked(uint32_t request_id, InfrabotParamReply &reply) const {
+        for (size_t i = 0; i < std::min(param_reply_count, kReplyRingSize); ++i)
+            if (param_replies[i].request_id == request_id) { reply = param_replies[i]; return true; }
+        return false;
+    }
+    /* One DMPR round trip. INFO, GET and SET are idempotent, so a lost datagram is simply sent again.
+     * Returns true when a reply arrived; the caller checks reply.result. */
+    bool param_call(uint8_t op, uint16_t id, float value, InfrabotParamReply &reply, std::string &error) {
+        {
+            std::lock_guard<std::mutex> lock(mutex);
+            if (!info.received || !(info.capabilities & INFRABOT_CAP_PARAMETERS)) {
+                error = "当前固件不支持参数服务（无 INFRABOT_CAP_PARAMETERS，协议 1.1），请先升级固件";
+                return false;
+            }
+        }
+        InfrabotParamRequest p{};
+        p.magic = INFRABOT_MAGIC_PARAM_REQUEST;
+        p.version = INFRABOT_PARAM_V1;
+        p.op = op;
+        p.request_id = ++param_request;
+        p.param_id = id;
+        p.value = value;
+        p.crc32 = infrabot_crc32(&p, offsetof(InfrabotParamRequest, crc32));
+        const uint32_t request_id = p.request_id;
+        for (int attempt = 0; attempt < 3; ++attempt) {
+            if (!send_to(board_command, &p, sizeof(p), error)) return false;
+            std::unique_lock<std::mutex> lock(mutex);
+            if (cv.wait_for(lock, std::chrono::milliseconds(200),
+                            [&] { return find_param_reply_locked(request_id, reply); })) return true;
+        }
+        error = "MCU 参数应答超时：检查链路、固件版本或是否有其他程序占用命令口";
+        return false;
+    }
+    bool list_parameters(std::vector<ParameterInfo> &out, std::string &error) {
+        std::vector<ParameterInfo> found;
+        InfrabotParamReply reply{};
+        for (uint16_t position = 0, count = 1; position < count; ++position) {
+            if (!param_call(INFRABOT_PARAM_OP_INFO, position, 0.f, reply, error)) return false;
+            if (reply.result != INFRABOT_PARAM_OK) {
+                error = sformat("MCU 拒绝参数列表请求（位置 %u）：%s", unsigned(position),
+                                param_result_text(reply.result));
+                return false;
+            }
+            const uint16_t advertised = reply.param_count;
+            count = advertised > 256 ? 256 : advertised;
+            found.push_back(parameter_info(reply));
+        }
+        {
+            std::lock_guard<std::mutex> lock(param_mutex);
+            param_list = found;
+        }
+        out = std::move(found);
+        return true;
+    }
+    /* Name -> id from the list read once per connection. */
+    bool parameter_id(const std::string &name, uint16_t &id, std::string &error) {
+        {
+            std::lock_guard<std::mutex> lock(param_mutex);
+            for (const auto &p : param_list)
+                if (p.name == name) { id = p.id; return true; }
+        }
+        std::vector<ParameterInfo> all;
+        if (!list_parameters(all, error)) return false;
+        for (const auto &p : all)
+            if (p.name == name) { id = p.id; return true; }
+        error = sformat("固件没有名为 %s 的参数", name.c_str());
+        return false;
     }
 
     void receive_move(const InfrabotMoveReply &reply) {
@@ -548,6 +659,14 @@ struct Robot::Impl {
                     // Only the board: a second PC or a router broadcast is not the MCU.
                     if (source.sin_addr.s_addr != board_command.sin_addr.s_addr) continue;
                     if (which == 1) {
+                        if (size == sizeof(InfrabotParamReply) && source.sin_port == board_command.sin_port) {
+                            InfrabotParamReply reply;
+                            std::memcpy(&reply, buffer.data(), sizeof(reply));
+                            if (reply.magic == INFRABOT_MAGIC_PARAM_REPLY && reply.version == INFRABOT_PARAM_V1 &&
+                                reply.crc32 == infrabot_crc32(&reply, offsetof(InfrabotParamReply, crc32)))
+                                receive_param(reply);
+                            continue;
+                        }
                         if (size == sizeof(InfrabotMoveReply) && source.sin_port == board_command.sin_port) {
                             InfrabotMoveReply reply;
                             std::memcpy(&reply, buffer.data(), sizeof(reply));
@@ -799,6 +918,11 @@ bool Robot::connect(std::string &error) {
         d.window_rx = d.window_lost = d.window_interval_max_us = 0;
         d.reply_count = 0;
         d.have_last_reply = false;
+        d.param_reply_count = 0;
+        {
+            std::lock_guard<std::mutex> names(d.param_mutex);
+            d.param_list.clear();
+        }
         d.maintenance_pending = 0;
         d.drive_state.fill(0);
         d.last_safety = SafetyState{};
@@ -1799,6 +1923,39 @@ bool Robot::last_maintenance_reply(InfrabotMaintenanceReply &reply) const {
     std::lock_guard<std::mutex> lock(impl_->mutex);
     reply = impl_->last_reply;
     return impl_->have_last_reply;
+}
+
+bool Robot::list_parameters(std::vector<ParameterInfo> &parameters, std::string &error) {
+    return impl_->list_parameters(parameters, error);
+}
+bool Robot::get_parameter(uint16_t id, ParameterInfo &parameter, std::string &error) {
+    InfrabotParamReply reply{};
+    if (!impl_->param_call(INFRABOT_PARAM_OP_GET, id, 0.f, reply, error)) return false;
+    if (reply.result != INFRABOT_PARAM_OK) {
+        error = sformat("MCU 拒绝读取参数 0x%04X：%s", unsigned(id), Impl::param_result_text(reply.result));
+        return false;
+    }
+    parameter = Impl::parameter_info(reply);
+    return true;
+}
+bool Robot::get_parameter(const std::string &name, ParameterInfo &parameter, std::string &error) {
+    uint16_t id = 0;
+    return impl_->parameter_id(name, id, error) && get_parameter(id, parameter, error);
+}
+bool Robot::set_parameter(uint16_t id, float value, ParameterInfo &result, std::string &error) {
+    InfrabotParamReply reply{};
+    if (!impl_->param_call(INFRABOT_PARAM_OP_SET, id, value, reply, error)) return false;
+    if (reply.result != INFRABOT_PARAM_OK) {
+        error = sformat("MCU 拒绝写入参数 0x%04X = %g：%s", unsigned(id), double(value),
+                        Impl::param_result_text(reply.result));
+        return false;
+    }
+    result = Impl::parameter_info(reply);
+    return true;
+}
+bool Robot::set_parameter(const std::string &name, float value, ParameterInfo &result, std::string &error) {
+    uint16_t id = 0;
+    return impl_->parameter_id(name, id, error) && set_parameter(id, value, result, error);
 }
 
 bool Robot::store_control_profile(const StreamProfile &s, uint8_t &status, std::string &error) {
