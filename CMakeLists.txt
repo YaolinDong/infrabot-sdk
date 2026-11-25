@@ -245,7 +245,8 @@ target_link_libraries(infrabot_update PRIVATE infrabot_sdk)
 
 if(INFRABOT_BUILD_EXAMPLES)
     foreach(example 01_connect_info 02_enable_hold 03_movej 04_rt_joint_stream_1khz
-                    05_gravity_compensation 06_joint_impedance 07_download_mcu_log 08_parameters)
+                    05_gravity_compensation 06_joint_impedance 07_download_mcu_log 08_parameters
+                    09_diagnostics)
         add_executable(${example} examples/cpp/${example}.cpp)
         target_link_libraries(${example} PRIVATE infrabot_sdk)
     endforeach()

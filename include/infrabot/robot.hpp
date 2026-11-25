@@ -370,6 +370,27 @@ struct ParameterInfo {
     bool boolean = false;   // the value is 0 or 1
 };
 
+/* One diagnostic snapshot (firmware with INFRABOT_CAP_DIAGNOSTICS, DMDR/DMDA). The "window" counters are
+ * the status task's last one-second window, the "total" ones count since boot. */
+struct DiagnosticsInfo {
+    uint32_t uptime_ms = 0;              // since the application started; wraps after 49 days
+    uint32_t snapshot_seconds = 0;       // status-task second of the window
+    uint32_t control_hz = 0;             // 1 kHz control ticks completed in the window
+    uint32_t control_missed = 0;
+    uint32_t control_period_max_us = 0;
+    uint32_t can_tx = 0, can_rx = 0, can_tx_errors = 0;
+    uint32_t command_rx = 0, command_invalid = 0, telemetry_tx = 0;
+    uint32_t can_error_events = 0;       // since boot
+    uint32_t control_missed_total = 0, can_tx_errors_total = 0, command_invalid_total = 0;
+    uint8_t can_tec = 0, can_rec = 0;    // CAN error counters at the end of the window
+    bool can_error_passive = false, can_bus_off = false;
+    uint32_t heap_free_bytes = 0, heap_min_free_bytes = 0;  // FreeRTOS heap, now and lowest since boot
+    uint32_t stack_free_control_bytes = 0, stack_free_status_bytes = 0, stack_free_ethernet_bytes = 0;  // least ever
+    std::array<uint8_t, 8> drive_state{};  // INFRABOT_DRIVE_* of J1..J8, now
+    uint8_t controller_status = 0;         // INFRABOT_STATUS_*, now
+    uint8_t invalid_reason = 0;            // INFRABOT_INVALID_* of the last rejected command datagram
+};
+
 /* Optional native RT Joint/MIT producer, serviced by Robot's existing C++
  * thread. Starting it never configures/enables drives or changes modes. */
 struct JointStreamOptions {
@@ -616,6 +637,10 @@ public:
     bool get_parameter(const std::string& name, ParameterInfo& parameter, std::string& error);
     bool set_parameter(uint16_t id, float value, ParameterInfo& result, std::string& error);
     bool set_parameter(const std::string& name, float value, ParameterInfo& result, std::string& error);
+    /* [Blocking, up to 600 ms] One diagnostic snapshot (firmware with INFRABOT_CAP_DIAGNOSTICS): loop timing,
+     * CAN and command counters, heap and least stack ever, drive states. Read only, open to any PC; it
+     * never takes control of the arm. */
+    bool diagnostics(DiagnosticsInfo& diagnostics, std::string& error);
 
     /* [Non-blocking registration] Called by the receive thread for every telemetry packet, after state()
      * reflects it.  Keep it short; it must not call back into a blocking

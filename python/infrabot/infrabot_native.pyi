@@ -6,7 +6,7 @@ Bindings for the existing infrabot::Robot C++ SDK (joint SI units)
 from __future__ import annotations
 import collections.abc
 import typing
-__all__: list[str] = ['ARM_MASK', 'ARM_MAX_JOINT_VELOCITY', 'CAP_ADMITTANCE', 'CAP_CONTROLLED_STOP', 'CAP_GROUPS', 'CAP_JOINT_RT', 'CAP_LOCAL_GRAVITY', 'CAP_PARAMETERS', 'CAP_TELEMETRY_V3', 'CartesianCommand', 'CartesianLimits', 'CartesianMoveOptions', 'ControllerLinkStats', 'FaultEvent', 'FaultKind', 'JointCommand', 'JointState', 'JointStreamOptions', 'JointStreamStats', 'LinkStats', 'MOTOR_FEEDBACK_STALE', 'McuLogOptions', 'McuLogResult', 'Mode', 'MotionPhase', 'MotionResult', 'MotionStatus', 'MotorGroup', 'MotorProfile', 'MoveOptions', 'MoveReply', 'OperationalStatus', 'PARAM_GROUP_ADMITTANCE', 'PARAM_GROUP_GRAVITY', 'PARAM_GROUP_IMPEDANCE', 'ParameterInfo', 'REGISTER_F32', 'REGISTER_U32', 'RecordOptions', 'RecorderStats', 'Robot', 'RobotInfo', 'RobotState', 'SafetyState', 'SelfCheck', 'SerialLogOptions', 'SerialLogStats', 'StopPhase', 'StopReason', 'firmware_status', 'rollback_firmware', 'update_firmware']
+__all__: list[str] = ['ARM_MASK', 'ARM_MAX_JOINT_VELOCITY', 'CAP_ADMITTANCE', 'CAP_CONTROLLED_STOP', 'CAP_DIAGNOSTICS', 'CAP_GROUPS', 'CAP_JOINT_RT', 'CAP_LOCAL_GRAVITY', 'CAP_PARAMETERS', 'CAP_TELEMETRY_V3', 'CartesianCommand', 'CartesianLimits', 'CartesianMoveOptions', 'ControllerLinkStats', 'DiagnosticsInfo', 'FaultEvent', 'FaultKind', 'JointCommand', 'JointState', 'JointStreamOptions', 'JointStreamStats', 'LinkStats', 'MOTOR_FEEDBACK_STALE', 'McuLogOptions', 'McuLogResult', 'Mode', 'MotionPhase', 'MotionResult', 'MotionStatus', 'MotorGroup', 'MotorProfile', 'MoveOptions', 'MoveReply', 'OperationalStatus', 'PARAM_GROUP_ADMITTANCE', 'PARAM_GROUP_GRAVITY', 'PARAM_GROUP_IMPEDANCE', 'ParameterInfo', 'REGISTER_F32', 'REGISTER_U32', 'RecordOptions', 'RecorderStats', 'Robot', 'RobotInfo', 'RobotState', 'SafetyState', 'SelfCheck', 'SerialLogOptions', 'SerialLogStats', 'StopPhase', 'StopReason', 'firmware_status', 'rollback_firmware', 'update_firmware']
 class Mode:
     """
     Members:
@@ -893,6 +893,88 @@ class ParameterInfo:
     @property
     def writable(self) -> bool:
         ...
+class DiagnosticsInfo:
+    @property
+    def can_bus_off(self) -> bool:
+        ...
+    @property
+    def can_error_events(self) -> int:
+        ...
+    @property
+    def can_error_passive(self) -> bool:
+        ...
+    @property
+    def can_rec(self) -> int:
+        ...
+    @property
+    def can_rx(self) -> int:
+        ...
+    @property
+    def can_tec(self) -> int:
+        ...
+    @property
+    def can_tx(self) -> int:
+        ...
+    @property
+    def can_tx_errors(self) -> int:
+        ...
+    @property
+    def can_tx_errors_total(self) -> int:
+        ...
+    @property
+    def command_invalid(self) -> int:
+        ...
+    @property
+    def command_invalid_total(self) -> int:
+        ...
+    @property
+    def command_rx(self) -> int:
+        ...
+    @property
+    def control_hz(self) -> int:
+        ...
+    @property
+    def control_missed(self) -> int:
+        ...
+    @property
+    def control_missed_total(self) -> int:
+        ...
+    @property
+    def control_period_max_us(self) -> int:
+        ...
+    @property
+    def controller_status(self) -> int:
+        ...
+    @property
+    def drive_state(self) -> typing.Annotated[list[int], "FixedSize(8)"]:
+        ...
+    @property
+    def heap_free_bytes(self) -> int:
+        ...
+    @property
+    def heap_min_free_bytes(self) -> int:
+        ...
+    @property
+    def invalid_reason(self) -> int:
+        ...
+    @property
+    def snapshot_seconds(self) -> int:
+        ...
+    @property
+    def stack_free_control_bytes(self) -> int:
+        ...
+    @property
+    def stack_free_ethernet_bytes(self) -> int:
+        ...
+    @property
+    def stack_free_status_bytes(self) -> int:
+        ...
+    @property
+    def telemetry_tx(self) -> int:
+        ...
+    @property
+    def uptime_ms(self) -> int:
+        ...
 class RecordOptions:
     commands: bool
     label: str
@@ -1358,6 +1440,8 @@ class Robot:
         ...
     def connected(self) -> bool:
         ...
+    def diagnostics(self) -> DiagnosticsInfo:
+        ...
     def disable(self, arg0: typing.SupportsInt | typing.SupportsIndex) -> None:
         ...
     def disconnect(self) -> None:
@@ -1484,6 +1568,7 @@ ARM_MASK: int = 127
 ARM_MAX_JOINT_VELOCITY: float = 3.140000104904175
 CAP_ADMITTANCE: int = 4096
 CAP_CONTROLLED_STOP: int = 256
+CAP_DIAGNOSTICS: int = 32768
 CAP_GROUPS: int = 64
 CAP_JOINT_RT: int = 1
 CAP_LOCAL_GRAVITY: int = 2048

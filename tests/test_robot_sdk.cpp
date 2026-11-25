@@ -144,10 +144,49 @@ static void test_parameters() {
     assert(board.param_requests == before);
 }
 
+static void test_diagnostics() {
+    FakeMcu board;
+    Robot robot("127.0.0.2", board.command_port, board.telemetry_port);
+    std::string error;
+    infrabot::DiagnosticsInfo d;
+    const auto npos = std::string::npos;
+    // Not connected: refused before anything is sent.
+    assert(!robot.diagnostics(d, error) && !error.empty());
+    assert(board.diag_requests == 0);
+    assert(robot.connect(error));
+    assert(robot.diagnostics(d, error));
+    assert(d.uptime_ms == 123456U && d.snapshot_seconds == 123U && d.control_hz == 1000U);
+    assert(d.control_missed == 1U && d.control_period_max_us == 1042U);
+    assert(d.can_tx == 8000U && d.can_rx == 7998U && d.can_tx_errors == 2U);
+    assert(d.command_rx == 1000U && d.command_invalid == 3U && d.telemetry_tx == 500U);
+    assert(d.can_error_events == 4U && d.control_missed_total == 5U && d.can_tx_errors_total == 6U &&
+           d.command_invalid_total == 7U);
+    assert(d.can_tec == 9U && d.can_rec == 10U && d.can_error_passive && !d.can_bus_off);
+    assert(d.heap_free_bytes == 20000U && d.heap_min_free_bytes == 15000U);
+    assert(d.stack_free_control_bytes == 1200U && d.stack_free_status_bytes == 800U &&
+           d.stack_free_ethernet_bytes == 600U);
+    assert(d.drive_state[0] == INFRABOT_DRIVE_ENABLED && d.drive_state[7] == INFRABOT_DRIVE_DISABLED);
+    assert(d.controller_status == INFRABOT_STATUS_IDLE_HOLD && d.invalid_reason == INFRABOT_INVALID_FORMAT);
+    // Lost datagrams are sent again; a silent board ends in a timeout.
+    board.diag_drop_replies = 2;
+    assert(robot.diagnostics(d, error) && board.diag_drop_replies == 0);
+    board.diag_drop_replies = 100;
+    assert(!robot.diagnostics(d, error) && error.find("超时") != npos);
+    board.diag_drop_replies = 0;
+    // Firmware without the query: refused at once and nothing is sent.
+    robot.disconnect();
+    board.supports_diagnostics = false;
+    const unsigned before = board.diag_requests;
+    assert(robot.connect(error));
+    assert(!robot.diagnostics(d, error) && error.find("INFRABOT_CAP_DIAGNOSTICS") != npos);
+    assert(board.diag_requests == before);
+}
+
 int main() {
     offline();
     test_info_handshake();
     test_parameters();
+    test_diagnostics();
     const auto directory = std::filesystem::temp_directory_path() / ("infrabot_sdk_test_" + std::to_string(getpid()));
     {
         FakeMcu board;

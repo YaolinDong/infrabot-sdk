@@ -36,6 +36,7 @@ examples/cpp/05_gravity_compensation.cpp
 examples/cpp/06_joint_impedance.cpp
 examples/cpp/07_download_mcu_log.cpp
 examples/cpp/08_parameters.cpp
+examples/cpp/09_diagnostics.cpp
 examples/cpp/example.hpp
 examples/python/01_connect_info.py
 examples/python/02_enable_hold.py
@@ -45,6 +46,7 @@ examples/python/05_gravity_compensation.py
 examples/python/06_joint_impedance.py
 examples/python/07_download_mcu_log.py
 examples/python/08_parameters.py
+examples/python/09_diagnostics.py
 examples/python/example_common.py
 firmware/README.md
 firmware/release.pub

@@ -63,7 +63,10 @@ extern "C" {
 #define INFRABOT_MAGIC_LOG_REPLY 0x444D4C52U    /* "DMLR" */
 #define INFRABOT_MAGIC_PARAM_REQUEST 0x444D5052U /* "DMPR" parameter service request */
 #define INFRABOT_MAGIC_PARAM_REPLY 0x444D5041U   /* "DMPA" parameter service reply */
+#define INFRABOT_MAGIC_DIAG_REQUEST 0x444D4452U  /* "DMDR" diagnostic snapshot request */
+#define INFRABOT_MAGIC_DIAG_REPLY 0x444D4441U    /* "DMDA" diagnostic snapshot reply */
 #define INFRABOT_PARAM_V1 1U
+#define INFRABOT_DIAG_V1 1U
 
 #define INFRABOT_COMMAND_V2 2U /* legacy position packet (InfrabotCommandV2) */
 #define INFRABOT_COMMAND_V3 3U /* control command / heartbeat (InfrabotCommand) */
@@ -221,6 +224,7 @@ extern "C" {
 #define INFRABOT_CAP_ADMITTANCE 0x00001000U /* local admittance, no target stream */
 #define INFRABOT_CAP_RUN_LOG 0x00002000U    /* MCU run log on INFRABOT_LOG_PORT (DMLG) */
 #define INFRABOT_CAP_PARAMETERS 0x00004000U /* parameter service (DMPR/DMPA) on the command port */
+#define INFRABOT_CAP_DIAGNOSTICS 0x00008000U /* diagnostic snapshot (DMDR/DMDA) on the command port */
 
 /* ---- Controlled stop -----------------------------------------------------------
  * On a stop condition the MCU leaves the control mode for IDLE, brakes the
@@ -764,6 +768,65 @@ typedef struct INFRABOT_PACKED {
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotParamRequest) == 24U, "DMPR size");
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotParamReply) == 80U, "DMPA size");
 INFRABOT_STATIC_ASSERT(offsetof(InfrabotParamReply, name) == 44U, "DMPA name offset");
+
+/* ---- Diagnostic snapshot (DMDR -> DMDA on INFRABOT_COMMAND_PORT) ------------
+ * Read-only health of the controller, open to any PC and never taking control
+ * of the arm.  One request in, one reply out, sent from the command port to the
+ * sender.  The per-second fields are the status task's last one-second window
+ * (snapshot_seconds tells which; 0 before the first); the totals count since
+ * boot.  Stack figures are the least free stack each task has ever had. */
+typedef struct INFRABOT_PACKED {
+  uint32_t magic;      /* INFRABOT_MAGIC_DIAG_REQUEST */
+  uint16_t version;    /* INFRABOT_DIAG_V1 */
+  uint16_t reserved;   /* 0 */
+  uint32_t request_id; /* echoed */
+  uint32_t crc32;
+} InfrabotDiagRequest;
+
+typedef struct INFRABOT_PACKED {
+  uint32_t magic;      /* INFRABOT_MAGIC_DIAG_REPLY */
+  uint16_t version;
+  uint16_t reserved0;
+  uint32_t request_id;
+  uint32_t uptime_ms;             /* since the application started; wraps after 49 days */
+  uint32_t snapshot_seconds;      /* status task second of the window below */
+  /* The last one-second window. */
+  uint32_t control_hz;            /* 1 kHz control ticks completed */
+  uint32_t control_missed;
+  uint32_t control_period_max_us;
+  uint32_t can_tx;                /* drive frames queued */
+  uint32_t can_rx;                /* frames received */
+  uint32_t can_tx_errors;         /* drive frames that could not be queued */
+  uint32_t command_rx;            /* command datagrams accepted */
+  uint32_t command_invalid;
+  uint32_t telemetry_tx;
+  /* Since boot. */
+  uint32_t can_error_events;
+  uint32_t control_missed_total;
+  uint32_t can_tx_errors_total;
+  uint32_t command_invalid_total;
+  /* CAN controller state at the end of the window. */
+  uint8_t can_tec;
+  uint8_t can_rec;
+  uint8_t can_error_passive;
+  uint8_t can_bus_off;
+  /* Memory. */
+  uint32_t heap_free_bytes;
+  uint32_t heap_min_free_bytes;   /* lowest since boot */
+  uint16_t stack_free_control_bytes;
+  uint16_t stack_free_status_bytes;
+  uint16_t stack_free_ethernet_bytes;
+  uint16_t reserved1;
+  uint8_t drive_state[8];         /* INFRABOT_DRIVE_* of J1..J8, now */
+  uint8_t controller_status;      /* INFRABOT_STATUS_*, now */
+  uint8_t invalid_reason;         /* INFRABOT_INVALID_* of the last rejected command datagram */
+  uint16_t reserved2;
+  uint32_t crc32;
+} InfrabotDiagReply;
+
+INFRABOT_STATIC_ASSERT(sizeof(InfrabotDiagRequest) == 16U, "DMDR size");
+INFRABOT_STATIC_ASSERT(sizeof(InfrabotDiagReply) == 108U, "DMDA size");
+INFRABOT_STATIC_ASSERT(offsetof(InfrabotDiagReply, drive_state) == 92U, "DMDA drive_state offset");
 
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotCommandV2) == 64U, "DMCP v2 size");
 INFRABOT_STATIC_ASSERT(sizeof(InfrabotCommand) == 68U, "DMCP v3 size");

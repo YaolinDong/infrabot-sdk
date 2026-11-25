@@ -29,6 +29,8 @@ PYBIND11_MODULE(_infrabot_test_mcu, m) {
         .def_property("param_not_owner", [](F& f){return f.param_not_owner.load();}, [](F& f,bool v){f.param_not_owner=v;})
         .def_property_readonly("param_requests", [](F& f){return f.param_requests.load();})
         .def("param_requested", [](F& f, uint16_t id){return f.param_requested(id);})
+        .def_property("supports_diagnostics", [](F& f){return f.supports_diagnostics.load();}, [](F& f,bool v){f.supports_diagnostics=v;})
+        .def_property_readonly("diag_requests", [](F& f){return f.diag_requests.load();})
         .def_property("drop_telemetry", [](F& f){return f.drop_telemetry.load();}, [](F& f,bool v){f.drop_telemetry=v;})
         .def_property("gripper_absent", [](F& f){return f.gripper_absent.load();}, [](F& f,bool v){f.gripper_absent=v;})
         .def_property("frozen_feedback_mask", [](F& f){return f.frozen_feedback_mask.load();}, [](F& f,uint8_t v){f.frozen_feedback_mask=v;})

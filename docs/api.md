@@ -37,6 +37,10 @@ Names start with the group: `gravity.*` (FREE damping and LOCK stiffness), `imp.
 
 These calls block for the reply (three tries of 200 ms at most) and do not belong in a 1 kHz loop. C++ returns `false` with an error; Python raises `RuntimeError`. [Python example](../examples/python/08_parameters.py), [C++ example](../examples/cpp/08_parameters.cpp)
 
+## Diagnostics
+
+Firmware with `INFRABOT_CAP_DIAGNOSTICS` answers `diagnostics()` with one snapshot of the controller: the last one-second window of the status task (control ticks, missed ticks, longest control period, CAN frames sent and received, CAN send errors, command datagrams accepted and rejected, telemetry packets), totals since boot, the CAN error counters and error-passive and bus-off flags, free FreeRTOS heap now and its lowest value, the least free stack ever of the control, status and Ethernet tasks, and the drive states, controller status and reason of the last rejected command. The query is read only and open to any PC; it never takes control of the arm. It blocks for the reply like the parameter calls. `infrabot/diagnostics.hpp` turns the drive, status and rejection codes into text. [Python example](../examples/python/09_diagnostics.py), [C++ example](../examples/cpp/09_diagnostics.cpp)
+
 ## Record and retrieve logs
 
 | Source | API | Data |

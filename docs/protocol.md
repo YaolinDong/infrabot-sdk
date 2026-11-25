@@ -5,7 +5,7 @@ The firmware repository owns `protocol/infrabot/protocol.h`. The [SDK copy](../i
 | UDP port | Purpose |
 | --- | --- |
 | 5000 | Telemetry registration, DMTL telemetry, maintenance/info replies and clock synchronization |
-| 5001 | DMIF info requests, DMCP commands, DMOV/DMOS motion sessions and DMPR/DMPA parameter requests |
+| 5001 | DMIF info requests, DMCP commands, DMOV/DMOS motion sessions DMPR/DMPA parameter requests and DMDR/DMDA diagnostic snapshots |
 | 5002 | Firmware update service |
 | 5003 | On-board run log download |
 
@@ -34,6 +34,7 @@ A different major or a handshake timeout fails `connect`; C++ returns `false` wi
 | `0x1000` | `ADMITTANCE` | Joint and Cartesian admittance |
 | `0x2000` | `RUN_LOG` | SDRAM text and telemetry log download |
 | `0x4000` | `PARAMETERS` | Parameter service (DMPR/DMPA), protocol 1.1 |
+| `0x8000` | `DIAGNOSTICS` | Diagnostic snapshot (DMDR/DMDA) |
 
 ## Parameter service
 
@@ -47,6 +48,10 @@ Protocol 1.1 adds one request and one reply on the command port, answered to the
 | `SAVE` | Reserved; answered `UNSUPPORTED` |
 
 A write never steps a gain: the controller slews the applied value toward the requested one at the parameter rate. Values live in RAM and return to their defaults at reboot. INFO and GET are open to every PC. SET needs the PC that controls the arm, or no controlling PC, and is otherwise answered `BUSY`. A value that is not finite or lies outside the range is answered `RANGE` and changes nothing. Firmware without `INFRABOT_CAP_PARAMETERS` does not answer, and the SDK refuses before it sends.
+
+## Diagnostic snapshot
+
+A DMDR (16 bytes) carries a request id; the board answers the sender with a DMDA (108 bytes) that echoes it. The DMDA holds the status task's last one-second window, totals since boot, the CAN error state, free heap now and lowest, the least free stack of the control, status and Ethernet tasks, the eight drive states, the controller status and the reason of the last rejected command. Its layout is `InfrabotDiagReply` in the protocol header. The request takes no ownership and is answered for every PC. A request with a wrong version, CRC or a nonzero reserved field is not answered. Firmware without `INFRABOT_CAP_DIAGNOSTICS` does not answer, and the SDK refuses before it sends.
 
 ## Verify a checkout
 

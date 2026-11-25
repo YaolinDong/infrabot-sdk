@@ -127,6 +127,16 @@ PYBIND11_MODULE(infrabot_native, m) {
     py::class_<ParameterInfo>(m,"ParameterInfo") RO(ParameterInfo,id) RO(ParameterInfo,group) RO(ParameterInfo,name) RO(ParameterInfo,unit)
         RO(ParameterInfo,requested) RO(ParameterInfo,applied) RO(ParameterInfo,minimum) RO(ParameterInfo,maximum)
         RO(ParameterInfo,default_value) RO(ParameterInfo,rate) RO(ParameterInfo,writable) RO(ParameterInfo,boolean);
+    py::class_<DiagnosticsInfo>(m,"DiagnosticsInfo") RO(DiagnosticsInfo,uptime_ms) RO(DiagnosticsInfo,snapshot_seconds)
+        RO(DiagnosticsInfo,control_hz) RO(DiagnosticsInfo,control_missed) RO(DiagnosticsInfo,control_period_max_us)
+        RO(DiagnosticsInfo,can_tx) RO(DiagnosticsInfo,can_rx) RO(DiagnosticsInfo,can_tx_errors)
+        RO(DiagnosticsInfo,command_rx) RO(DiagnosticsInfo,command_invalid) RO(DiagnosticsInfo,telemetry_tx)
+        RO(DiagnosticsInfo,can_error_events) RO(DiagnosticsInfo,control_missed_total) RO(DiagnosticsInfo,can_tx_errors_total)
+        RO(DiagnosticsInfo,command_invalid_total) RO(DiagnosticsInfo,can_tec) RO(DiagnosticsInfo,can_rec)
+        RO(DiagnosticsInfo,can_error_passive) RO(DiagnosticsInfo,can_bus_off) RO(DiagnosticsInfo,heap_free_bytes)
+        RO(DiagnosticsInfo,heap_min_free_bytes) RO(DiagnosticsInfo,stack_free_control_bytes) RO(DiagnosticsInfo,stack_free_status_bytes)
+        RO(DiagnosticsInfo,stack_free_ethernet_bytes) RO(DiagnosticsInfo,drive_state) RO(DiagnosticsInfo,controller_status)
+        RO(DiagnosticsInfo,invalid_reason);
 #undef RO
 #undef RW
     py::class_<Robot>(m,"Robot")
@@ -190,6 +200,7 @@ PYBIND11_MODULE(infrabot_native, m) {
         .def("get_parameter",[](Robot& r,const std::string& name){std::string e;ParameterInfo p;require(r.get_parameter(name,p,e),e);return p;},py::arg("name"),Unlock())
         .def("set_parameter",[](Robot& r,uint16_t id,float value){std::string e;ParameterInfo p;require(r.set_parameter(id,value,p,e),e);return p;},py::arg("id"),py::arg("value"),Unlock())
         .def("set_parameter",[](Robot& r,const std::string& name,float value){std::string e;ParameterInfo p;require(r.set_parameter(name,value,p,e),e);return p;},py::arg("name"),py::arg("value"),Unlock())
+        .def("diagnostics",[](Robot& r){std::string e;DiagnosticsInfo d;require(r.diagnostics(d,e),e);return d;},Unlock())
         .def_static("forward",&Robot::forward,Unlock());
     m.attr("ARM_MASK") = INFRABOT_ARM_MASK;
     m.attr("CAP_JOINT_RT") = INFRABOT_CAP_JOINT_RT;
@@ -200,6 +211,7 @@ PYBIND11_MODULE(infrabot_native, m) {
     m.attr("CAP_ADMITTANCE")=py::int_(INFRABOT_CAP_ADMITTANCE);
     m.attr("CAP_LOCAL_GRAVITY") = INFRABOT_CAP_LOCAL_GRAVITY;
     m.attr("CAP_PARAMETERS") = INFRABOT_CAP_PARAMETERS;
+    m.attr("CAP_DIAGNOSTICS") = INFRABOT_CAP_DIAGNOSTICS;
     m.attr("PARAM_GROUP_GRAVITY") = INFRABOT_PARAM_GROUP_GRAVITY;
     m.attr("PARAM_GROUP_IMPEDANCE") = INFRABOT_PARAM_GROUP_IMPEDANCE;
     m.attr("PARAM_GROUP_ADMITTANCE") = INFRABOT_PARAM_GROUP_ADMITTANCE;

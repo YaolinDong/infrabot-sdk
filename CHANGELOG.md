@@ -4,6 +4,7 @@
 
 - Parameter service (protocol 1.1): `list_parameters`, `get_parameter` and `set_parameter` in C++ and Python read and write the gravity, impedance and admittance settings that were only reachable from the touchscreen. Firmware without `INFRABOT_CAP_PARAMETERS` is refused before anything is sent.
 - Example `08_parameters` in C++ and Python.
+- Diagnostic snapshot: `diagnostics()` in C++ and Python reads loop timing, CAN and command counters, heap, least free task stacks and drive states (`INFRABOT_CAP_DIAGNOSTICS`, read only, open to any PC). Example `09_diagnostics`.
 - The protocol header is the firmware 1.1 header.
 
 ## 0.1.4 — 2026-11-26

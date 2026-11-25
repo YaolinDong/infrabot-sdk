@@ -154,6 +154,10 @@ struct Robot::Impl {
     std::atomic<uint32_t> param_request{0};
     std::mutex param_mutex;
     std::vector<ParameterInfo> param_list;
+    // Diagnostic snapshot replies (mutex).
+    std::array<InfrabotDiagReply, kReplyRingSize> diag_replies{};
+    size_t diag_reply_count = 0;
+    std::atomic<uint32_t> diag_request{0};
     uint32_t maintenance_pending = 0;
     uint64_t maintenance_sent_us = 0;
     std::deque<FaultEvent> faults;
@@ -447,6 +451,77 @@ struct Robot::Impl {
         return false;
     }
 
+    // ---- diagnostic snapshot (DMDR -> DMDA, from the command port) ---------------
+    void receive_diag(const InfrabotDiagReply &reply) {
+        {
+            std::lock_guard<std::mutex> lock(mutex);
+            diag_replies[diag_reply_count++ % kReplyRingSize] = reply;
+        }
+        cv.notify_all();
+    }
+    bool find_diag_reply_locked(uint32_t request_id, InfrabotDiagReply &reply) const {
+        for (size_t i = 0; i < std::min(diag_reply_count, kReplyRingSize); ++i)
+            if (diag_replies[i].request_id == request_id) { reply = diag_replies[i]; return true; }
+        return false;
+    }
+    /* Read only, so a lost datagram is simply sent again. */
+    bool diagnostics(DiagnosticsInfo &out, std::string &error) {
+        {
+            std::lock_guard<std::mutex> lock(mutex);
+            if (!info.received || !(info.capabilities & INFRABOT_CAP_DIAGNOSTICS)) {
+                error = "当前固件不支持诊断查询（无 INFRABOT_CAP_DIAGNOSTICS），请先升级固件";
+                return false;
+            }
+        }
+        InfrabotDiagRequest q{};
+        q.magic = INFRABOT_MAGIC_DIAG_REQUEST;
+        q.version = INFRABOT_DIAG_V1;
+        q.request_id = ++diag_request;
+        q.crc32 = infrabot_crc32(&q, offsetof(InfrabotDiagRequest, crc32));
+        InfrabotDiagReply r{};
+        bool received = false;
+        for (int attempt = 0; attempt < 3 && !received; ++attempt) {
+            if (!send_to(board_command, &q, sizeof(q), error)) return false;
+            std::unique_lock<std::mutex> lock(mutex);
+            received = cv.wait_for(lock, std::chrono::milliseconds(200),
+                                   [&] { return find_diag_reply_locked(q.request_id, r); });
+        }
+        if (!received) {
+            error = "MCU 诊断应答超时：检查链路、固件版本或是否有其他程序占用命令口";
+            return false;
+        }
+        DiagnosticsInfo d;
+        d.uptime_ms = r.uptime_ms;
+        d.snapshot_seconds = r.snapshot_seconds;
+        d.control_hz = r.control_hz;
+        d.control_missed = r.control_missed;
+        d.control_period_max_us = r.control_period_max_us;
+        d.can_tx = r.can_tx;
+        d.can_rx = r.can_rx;
+        d.can_tx_errors = r.can_tx_errors;
+        d.command_rx = r.command_rx;
+        d.command_invalid = r.command_invalid;
+        d.telemetry_tx = r.telemetry_tx;
+        d.can_error_events = r.can_error_events;
+        d.control_missed_total = r.control_missed_total;
+        d.can_tx_errors_total = r.can_tx_errors_total;
+        d.command_invalid_total = r.command_invalid_total;
+        d.can_tec = r.can_tec;
+        d.can_rec = r.can_rec;
+        d.can_error_passive = r.can_error_passive != 0;
+        d.can_bus_off = r.can_bus_off != 0;
+        d.heap_free_bytes = r.heap_free_bytes;
+        d.heap_min_free_bytes = r.heap_min_free_bytes;
+        d.stack_free_control_bytes = r.stack_free_control_bytes;
+        d.stack_free_status_bytes = r.stack_free_status_bytes;
+        d.stack_free_ethernet_bytes = r.stack_free_ethernet_bytes;
+        std::memcpy(d.drive_state.data(), r.drive_state, d.drive_state.size());
+        d.controller_status = r.controller_status;
+        d.invalid_reason = r.invalid_reason;
+        out = d;
+        return true;
+    }
+
     void receive_move(const InfrabotMoveReply &reply) {
         std::string change;
         {
@@ -665,6 +740,14 @@ struct Robot::Impl {
                             if (reply.magic == INFRABOT_MAGIC_PARAM_REPLY && reply.version == INFRABOT_PARAM_V1 &&
                                 reply.crc32 == infrabot_crc32(&reply, offsetof(InfrabotParamReply, crc32)))
                                 receive_param(reply);
+                            continue;
+                        }
+                        if (size == sizeof(InfrabotDiagReply) && source.sin_port == board_command.sin_port) {
+                            InfrabotDiagReply reply;
+                            std::memcpy(&reply, buffer.data(), sizeof(reply));
+                            if (reply.magic == INFRABOT_MAGIC_DIAG_REPLY && reply.version == INFRABOT_DIAG_V1 &&
+                                reply.crc32 == infrabot_crc32(&reply, offsetof(InfrabotDiagReply, crc32)))
+                                receive_diag(reply);
                             continue;
                         }
                         if (size == sizeof(InfrabotMoveReply) && source.sin_port == board_command.sin_port) {
@@ -919,6 +1002,7 @@ bool Robot::connect(std::string &error) {
         d.reply_count = 0;
         d.have_last_reply = false;
         d.param_reply_count = 0;
+        d.diag_reply_count = 0;
         {
             std::lock_guard<std::mutex> names(d.param_mutex);
             d.param_list.clear();
@@ -1956,6 +2040,9 @@ bool Robot::set_parameter(uint16_t id, float value, ParameterInfo &result, std::
 bool Robot::set_parameter(const std::string &name, float value, ParameterInfo &result, std::string &error) {
     uint16_t id = 0;
     return impl_->parameter_id(name, id, error) && set_parameter(id, value, result, error);
+}
+bool Robot::diagnostics(DiagnosticsInfo &diagnostics, std::string &error) {
+    return impl_->diagnostics(diagnostics, error);
 }
 
 bool Robot::store_control_profile(const StreamProfile &s, uint8_t &status, std::string &error) {

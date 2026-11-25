@@ -320,6 +320,26 @@ class RobotBindingTests(unittest.TestCase):
             self.robot.list_parameters()
         self.assertEqual(self.board.param_requests, sent)
 
+    def test_diagnostics(self):
+        self.assertTrue(self.robot.info().capabilities & n.CAP_DIAGNOSTICS)
+        d = self.robot.diagnostics()
+        self.assertEqual((d.uptime_ms, d.control_hz, d.control_period_max_us), (123456, 1000, 1042))
+        self.assertEqual((d.can_tec, d.can_rec, d.can_error_passive, d.can_bus_off), (9, 10, True, False))
+        self.assertEqual((d.heap_free_bytes, d.heap_min_free_bytes), (20000, 15000))
+        self.assertEqual(d.stack_free_ethernet_bytes, 600)
+        self.assertEqual(len(d.drive_state), 8)
+        # Read only: a PC that does not control the arm still gets the snapshot.
+        self.board.param_not_owner = True
+        self.assertEqual(self.robot.diagnostics().command_invalid_total, 7)
+        self.board.param_not_owner = False
+        self.robot.disconnect()
+        self.board.supports_diagnostics = False
+        self.robot.connect()
+        sent = self.board.diag_requests
+        with self.assertRaisesRegex(RuntimeError, "INFRABOT_CAP_DIAGNOSTICS"):
+            self.robot.diagnostics()
+        self.assertEqual(self.board.diag_requests, sent)
+
 
 if __name__ == "__main__":
     unittest.main()

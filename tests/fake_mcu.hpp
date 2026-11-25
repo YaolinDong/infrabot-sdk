@@ -108,6 +108,9 @@ public:
     // Parameter service (DMPR/DMPA): supported by default; replies can be withheld or refused for ownership.
     std::atomic<bool> supports_parameters{true}, param_not_owner{false};
     std::atomic<unsigned> param_requests{0}, param_drop_replies{0};
+    // Diagnostic snapshot (DMDR/DMDA): supported by default; replies can be withheld.
+    std::atomic<bool> supports_diagnostics{true};
+    std::atomic<unsigned> diag_requests{0}, diag_drop_replies{0};
     float param_requested(uint16_t id) {
         std::lock_guard<std::mutex> lock(param_mutex);
         for (const auto &p : params) if (p.id == id) return p.requested;
@@ -225,11 +228,37 @@ private:
         assert(sent == static_cast<ssize_t>(sizeof(r)));
         (void)sent;
     }
+    void handle_diag(const uint8_t *bytes, const sockaddr_in &peer) {
+        InfrabotDiagRequest q{}; std::memcpy(&q, bytes, sizeof(q));
+        if (q.version != INFRABOT_DIAG_V1 || q.reserved != 0 ||
+            q.crc32 != infrabot_crc32(&q, offsetof(InfrabotDiagRequest, crc32))) return;
+        ++diag_requests;
+        if (!supports_diagnostics) return;
+        if (const unsigned drop = diag_drop_replies) { diag_drop_replies = drop - 1U; return; }
+        InfrabotDiagReply r{};
+        r.magic = INFRABOT_MAGIC_DIAG_REPLY; r.version = INFRABOT_DIAG_V1; r.request_id = q.request_id;
+        r.uptime_ms = 123456U; r.snapshot_seconds = 123U;
+        r.control_hz = 1000U; r.control_missed = 1U; r.control_period_max_us = 1042U;
+        r.can_tx = 8000U; r.can_rx = 7998U; r.can_tx_errors = 2U;
+        r.command_rx = 1000U; r.command_invalid = 3U; r.telemetry_tx = 500U;
+        r.can_error_events = 4U; r.control_missed_total = 5U; r.can_tx_errors_total = 6U; r.command_invalid_total = 7U;
+        r.can_tec = 9U; r.can_rec = 10U; r.can_error_passive = 1U; r.can_bus_off = 0U;
+        r.heap_free_bytes = 20000U; r.heap_min_free_bytes = 15000U;
+        r.stack_free_control_bytes = 1200U; r.stack_free_status_bytes = 800U; r.stack_free_ethernet_bytes = 600U;
+        for (uint8_t i = 0; i < 8U; ++i) r.drive_state[i] = static_cast<uint8_t>(i < 7U ? INFRABOT_DRIVE_ENABLED : INFRABOT_DRIVE_DISABLED);
+        r.controller_status = INFRABOT_STATUS_IDLE_HOLD; r.invalid_reason = INFRABOT_INVALID_FORMAT;
+        r.crc32 = infrabot_crc32(&r, offsetof(InfrabotDiagReply, crc32));
+        const ssize_t sent = sendto(command_fd, &r, sizeof(r), 0, reinterpret_cast<const sockaddr *>(&peer), sizeof(peer));
+        assert(sent == static_cast<ssize_t>(sizeof(r)));
+        (void)sent;
+    }
     void command(const uint8_t *bytes, size_t size, const sockaddr_in &peer) {
         uint32_t magic = 0;
         std::memcpy(&magic, bytes, sizeof(magic));
         if (size == sizeof(InfrabotParamRequest) && magic == INFRABOT_MAGIC_PARAM_REQUEST) {
             handle_param(bytes, peer);
+        } else if (size == sizeof(InfrabotDiagRequest) && magic == INFRABOT_MAGIC_DIAG_REQUEST) {
+            handle_diag(bytes, peer);
         } else if (size == sizeof(InfrabotInfoRequest) && magic == INFRABOT_MAGIC_INFO_REQUEST) {
             InfrabotInfoRequest q{}; std::memcpy(&q, bytes, size);
             assert(q.crc32 == infrabot_crc32(&q, sizeof(q) - 4));
@@ -253,7 +282,8 @@ private:
                              (controlled_stop ? INFRABOT_CAP_CONTROLLED_STOP : 0U) |
                              (controlled_stop && resume_supported ? INFRABOT_CAP_RESUME : 0U) |
                              (supports_gravity ? INFRABOT_CAP_LOCAL_GRAVITY : 0U) | (supports_admittance?INFRABOT_CAP_ADMITTANCE:0U) |
-                             (supports_parameters ? INFRABOT_CAP_PARAMETERS : 0U);
+                             (supports_parameters ? INFRABOT_CAP_PARAMETERS : 0U) |
+                             (supports_diagnostics ? INFRABOT_CAP_DIAGNOSTICS : 0U);
             r.crc32 = infrabot_crc32(&r, sizeof(r) - 4);
             size_t length = sizeof(r);
             if (q.version == INFRABOT_INFO_V2) {
