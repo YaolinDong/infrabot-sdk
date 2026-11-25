@@ -24,6 +24,7 @@ cmake/infrabot_sdkConfig.cmake.in
 config/control_template.tsv
 config/infrabot.tsv
 docs/api.md
+docs/examples.md
 docs/firmware-update.md
 docs/protocol.md
 docs/realtime.md
@@ -37,6 +38,14 @@ examples/cpp/06_joint_impedance.cpp
 examples/cpp/07_download_mcu_log.cpp
 examples/cpp/08_parameters.cpp
 examples/cpp/09_diagnostics.cpp
+examples/cpp/10_monitor.cpp
+examples/cpp/11_movej_offset.cpp
+examples/cpp/12_movep_offset.cpp
+examples/cpp/13_rt_cartesian_stream.cpp
+examples/cpp/14_compliance_modes.cpp
+examples/cpp/15_stop_resume.cpp
+examples/cpp/16_gripper.cpp
+examples/cpp/17_record.cpp
 examples/cpp/example.hpp
 examples/python/01_connect_info.py
 examples/python/02_enable_hold.py
@@ -47,6 +56,14 @@ examples/python/06_joint_impedance.py
 examples/python/07_download_mcu_log.py
 examples/python/08_parameters.py
 examples/python/09_diagnostics.py
+examples/python/10_monitor.py
+examples/python/11_movej_offset.py
+examples/python/12_movep_offset.py
+examples/python/13_rt_cartesian_stream.py
+examples/python/14_compliance_modes.py
+examples/python/15_stop_resume.py
+examples/python/16_gripper.py
+examples/python/17_record.py
 examples/python/example_common.py
 firmware/README.md
 firmware/release.pub

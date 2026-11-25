@@ -99,6 +99,6 @@ Runtime diagnostics and error messages may be in Chinese.
 
 SDK 0.1.4 speaks protocol 1.0. V2 discovery reports firmware, board and model. A V1-only controller is treated as protocol 1.0 with unknown firmware. A different major or an unanswered handshake fails before the heartbeat starts. Use capability bits for optional features.
 
-[Protocol and capabilities](docs/protocol.md) · [Firmware updates](docs/firmware-update.md) · [C++ examples](examples/cpp) · [Python examples](examples/python) · [Build and test](CONTRIBUTING.md)
+[Protocol and capabilities](docs/protocol.md) · [Firmware updates](docs/firmware-update.md) · [Examples](docs/examples.md) · [C++ examples](examples/cpp) · [Python examples](examples/python) · [Build and test](CONTRIBUTING.md)
 
 [Apache-2.0](LICENSE) · [Third-party notices](THIRD_PARTY.md) · [Changelog](CHANGELOG.md) · [Security reporting](SECURITY.md)

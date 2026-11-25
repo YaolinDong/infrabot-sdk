@@ -5,9 +5,11 @@
 - Parameter service (protocol 1.1): `list_parameters`, `get_parameter` and `set_parameter` in C++ and Python read and write the gravity, impedance and admittance settings that were only reachable from the touchscreen. Firmware without `INFRABOT_CAP_PARAMETERS` is refused before anything is sent.
 - Example `08_parameters` in C++ and Python.
 - Diagnostic snapshot: `diagnostics()` in C++ and Python reads loop timing, CAN and command counters, heap, least free task stacks and drive states (`INFRABOT_CAP_DIAGNOSTICS`, read only, open to any PC). Example `09_diagnostics`.
+- Examples 10–17 in C++ and Python: monitor, joint and Cartesian offset moves, RT Cartesian stream, every local compliance mode, controlled stop and resume, gripper, recording. `docs/examples.md` lists them all.
 - `switch_mode` waits up to 1 s for the MCU to hand over control when another program on this PC stopped sending less than 0.5 s ago, instead of failing with "请先全部失能", and for the 0.5 s in which a stopped local mode answers BUSY. A controller that keeps sending is reported as such.
 - The hold move that opens an NRT session accepts 0.05 rad (0.05 m) of distance, so a stiffness-only (MIT) arm sagging below its command no longer times out on entering `NrtJoint` or `NrtCartesian`; it still has to be still.
 - A refused admittance mode says that every joint needs 0.03 rad of margin to its limit (J2 and J4 start at 0).
+- Read-only examples no longer send heartbeats. The loopback test runs every Python example and every C++ example program.
 - The protocol header is the firmware 1.1 header.
 
 ## 0.1.4 — 2026-11-26

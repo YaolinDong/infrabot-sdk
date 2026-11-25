@@ -96,6 +96,7 @@ if(INFRABOT_BUILD_PYTHON)
                  ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_examples.py)
         set_tests_properties(robot_python_loopback python_examples_loopback PROPERTIES
             ENVIRONMENT "PYTHONPATH=${python_root}:$<TARGET_FILE_DIR:_infrabot_test_mcu>" TIMEOUT 30)
+        set_tests_properties(python_examples_loopback PROPERTIES TIMEOUT 240)
     endif()
 endif()
 
@@ -246,10 +247,16 @@ target_link_libraries(infrabot_update PRIVATE infrabot_sdk)
 if(INFRABOT_BUILD_EXAMPLES)
     foreach(example 01_connect_info 02_enable_hold 03_movej 04_rt_joint_stream_1khz
                     05_gravity_compensation 06_joint_impedance 07_download_mcu_log 08_parameters
-                    09_diagnostics)
+                    09_diagnostics 10_monitor 11_movej_offset 12_movep_offset
+                    13_rt_cartesian_stream 14_compliance_modes 15_stop_resume 16_gripper 17_record)
         add_executable(${example} examples/cpp/${example}.cpp)
         target_link_libraries(${example} PRIVATE infrabot_sdk)
     endforeach()
+    if(TEST python_examples_loopback)
+        # Also run the C++ programs on the loopback board.
+        set_property(TEST python_examples_loopback APPEND PROPERTY
+            ENVIRONMENT "INFRABOT_EXAMPLE_BIN=${CMAKE_CURRENT_BINARY_DIR}")
+    endif()
 endif()
 
 install(TARGETS infrabot_sdk infrabot_ik_native EXPORT infrabot_sdkTargets

@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 /* Copyright (c) 2026 Yaolin Dong */
 // Prints one diagnostic snapshot: loop timing, CAN and command counters, memory, drive states.
-// Usage: 09_diagnostics [IP]. Read only: any PC may ask, even while another one controls the arm.
+// Usage: 09_diagnostics [IP]. Read only; it also works from a second PC while another controls the arm.
 // The arm is not enabled and does not move.
 #include "example.hpp"
 #include "infrabot/diagnostics.hpp"

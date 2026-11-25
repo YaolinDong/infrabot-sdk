@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Yaolin Dong
-# Prints one diagnostic snapshot: loop timing, CAN and command counters, memory, drive states. Read only:
-# any PC may ask, even while another one controls the arm. The arm is not enabled and does not move.
+# Prints one diagnostic snapshot: loop timing, CAN and command counters, memory, drive states. Read only;
+# it also works from a second PC while another controls the arm. The arm is not enabled and does not move.
 import argparse
 
 from example_common import connected
