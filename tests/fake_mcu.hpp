@@ -37,8 +37,15 @@ inline uint64_t now_us() {
 class FakeMcu {
 public:
     FakeMcu() {
-        command_fd = open_socket(command_port);
-        telemetry_fd = open_socket(telemetry_port);
+        // Only the telemetry socket shares its port (the SDK binds INADDR_ANY
+        // on it).  Two SO_REUSEADDR sockets bound to port 0 can be given the
+        // same port, which made a CI run talk to itself.
+        command_fd = open_socket(command_port, false);
+        telemetry_fd = open_socket(telemetry_port, true);
+        while (telemetry_port == command_port) {
+            close(telemetry_fd);
+            telemetry_fd = open_socket(telemetry_port, true);
+        }
         for (auto &position : positions) position = 150;
         positions[7] = 300;
         for (auto &state : drive_state) state = INFRABOT_DRIVE_DISABLED;
@@ -137,11 +144,11 @@ public:
     std::atomic<unsigned> owner_reject_replies{0};
 
 private:
-    static int open_socket(int &port) {
+    static int open_socket(int &port, bool shared) {
         int fd = socket(AF_INET, SOCK_DGRAM | SOCK_NONBLOCK, 0);
         assert(fd >= 0);
         int reuse = 1;
-        assert(setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse)) == 0);
+        if (shared) assert(setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse)) == 0);
         sockaddr_in address{};
         address.sin_family = AF_INET;
         assert(inet_pton(AF_INET, "127.0.0.2", &address.sin_addr) == 1);
