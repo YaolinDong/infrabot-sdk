@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.4 — unreleased
+## 0.1.4 — 2026-11-26
 
 - `flash-net --download` without a version finds the latest release again. GitHub now redirects a release download on to a storage host whose URL does not name the release, so the version is read from every redirect, not only the last one.
 
