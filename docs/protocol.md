@@ -11,7 +11,7 @@ The firmware repository owns `protocol/infrabot/protocol.h`. The [SDK copy](../i
 
 ## Discovery and compatibility
 
-SDK 0.1.4 implements protocol 1.0. A 16-byte DMIF query is sent from the host command socket. The MCU sends DMIO from its telemetry port back to that socket. The SDK validates source endpoint, request sequence, length and CRC before starting the heartbeat. V2 (218 bytes) reports the protocol major/minor, firmware build string, board and arm model. `RobotInfo.protocol_version` identifies the DMIO envelope; `protocol_major` and `protocol_minor` identify the overall protocol.
+SDK 0.2.0 implements protocol 1.1, which adds the parameter service and the diagnostic snapshot to 1.0. A 16-byte DMIF query is sent from the host command socket. The MCU sends DMIO from its telemetry port back to that socket. The SDK validates source endpoint, request sequence, length and CRC before starting the heartbeat. V2 (218 bytes) reports the protocol major/minor, firmware build string, board and arm model. `RobotInfo.protocol_version` identifies the DMIO envelope; `protocol_major` and `protocol_minor` identify the overall protocol.
 
 The SDK first queries V2 twice with a 25 ms wait per attempt, then allows 450 ms for V1. A V1-only MCU counts those two unsupported V2 requests as invalid packets and drops them; neither executes a motor command. Its 154-byte V1 reply is interpreted as protocol 1.0 and its firmware string as `unknown`. An old SDK can continue to request V1 directly from current firmware.
 
