@@ -31,6 +31,11 @@ def main():
                 self.send_header('Location', '/releases/download/v0.1.1/infrabot_firmware.ifw')
                 self.end_headers()
             elif self.path == '/releases/download/v0.1.1/infrabot_firmware.ifw':
+                # Like GitHub: on to a storage host whose URL does not name the release.
+                self.send_response(302)
+                self.send_header('Location', '/assets/12345?filename=infrabot_firmware.ifw&sig=x')
+                self.end_headers()
+            elif self.path.startswith('/assets/12345?'):
                 self.send_response(200)
                 self.send_header('Content-Length', str(len(good)))
                 self.end_headers()
@@ -81,7 +86,7 @@ def main():
     finally:
         server.shutdown()
         tmp.cleanup()
-    print('Release download: latest redirect, cache, tampered package, missing release and version checks passed.')
+    print('Release download: latest through two redirects, cache, tampered package, missing release and version checks passed.')
 
 
 if __name__ == '__main__':

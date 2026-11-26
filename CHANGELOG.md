@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4 — unreleased
+
+- `flash-net --download` without a version finds the latest release again. GitHub now redirects a release download on to a storage host whose URL does not name the release, so the version is read from every redirect, not only the last one.
+
 ## 0.1.3 — 2026-11-24
 
 - The updater reports `The board already runs this firmware; nothing was sent.` instead of a transfer and a confirmation when the board already runs an image from the package. `update_firmware` returns whether it installed an image (Python: `bool`).

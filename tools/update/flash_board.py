@@ -11,6 +11,7 @@ import subprocess
 import sys
 import tempfile
 import urllib.error
+import urllib.parse
 import urllib.request
 from netboot_swd import default_package
 
@@ -72,6 +73,16 @@ def release_url(version,base=RELEASES):
     return f'{base}/latest/download/{ASSET}' if version=='latest' else f'{base}/download/{version}/{ASSET}'
 
 
+class _Redirects(urllib.request.HTTPRedirectHandler):
+    """Records every redirect: GitHub sends latest/download to download/vX.Y.Z and that one on to a
+    storage host whose URL no longer names the release."""
+    def __init__(self):
+        self.seen=[]
+    def redirect_request(self,req,fp,code,msg,headers,newurl):
+        self.seen.append(newurl)
+        return super().redirect_request(req,fp,code,msg,headers,newurl)
+
+
 def download_release(version,key,base=RELEASES,cache=None):
     """Fetch a signed release IFW into firmware/cache/<version>/ and verify it before use."""
     if version!='latest' and not TAG.fullmatch(version):
@@ -85,9 +96,10 @@ def download_release(version,key,base=RELEASES,cache=None):
             print(f'使用已下载的 {version}：{cached}',flush=True)
             return cached
     print(f'下载固件：{url}',flush=True)
+    redirects=_Redirects()
     try:
-        with urllib.request.urlopen(url,timeout=60) as reply:
-            final=reply.geturl()
+        with urllib.request.build_opener(redirects).open(url,timeout=60) as reply:
+            hops=[*redirects.seen,reply.geturl()]
             data=reply.read(LIMIT+1)
     except urllib.error.HTTPError as exc:
         raise ValueError(f'下载失败：HTTP {exc.code}（{url}）；确认该版本已发布且仓库公开') from None
@@ -95,8 +107,9 @@ def download_release(version,key,base=RELEASES,cache=None):
         raise ValueError(f'下载失败：{getattr(exc,"reason",exc)}（{url}）；可设置 https_proxy 或用 --url 指定镜像') from None
     if len(data)>LIMIT:raise ValueError(f'下载文件超过 {LIMIT>>20} MiB，不是固件包：{url}')
     if version=='latest':
-        tag=next((part for part in final.split('/') if TAG.fullmatch(part)),None)
-        if not tag:raise ValueError(f'无法从下载地址确定版本号：{final}')
+        tag=next((part for hop in hops for part in urllib.parse.urlsplit(hop).path.split('/')
+                  if TAG.fullmatch(part)),None)
+        if not tag:raise ValueError(f'无法从下载地址确定版本号：{hops[-1]}')
         version=tag
     target=cache/version/ASSET
     target.parent.mkdir(parents=True,exist_ok=True)
