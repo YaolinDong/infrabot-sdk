@@ -50,8 +50,12 @@ jobs:
             -DINFRABOT_BUILD_GUI=OFF -DINFRABOT_BUILD_PYTHON=OFF
           cmake --build build-package --parallel 2
           cd build-package
-          cpack -G TGZ -B "$GITHUB_WORKSPACE/dist" \
+          # CPack stages its work in _CPack_Packages next to the output, so only
+          # the package itself is copied out for the release.
+          cpack -G TGZ -B dist \
             -D CPACK_PACKAGE_FILE_NAME=infrabot-sdk-${{ needs.version.outputs.version }}-linux-x86_64
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          cp dist/*.tar.gz "$GITHUB_WORKSPACE/dist/"
       - uses: actions/upload-artifact@v4
         with:
           name: tarball
@@ -78,13 +82,15 @@ jobs:
             -DINFRABOT_BUILD_GUI=OFF -DINFRABOT_BUILD_PYTHON=OFF
           cmake --build build-package --parallel 2
           cd build-package
-          cpack -G DEB -B "$GITHUB_WORKSPACE/dist" -D CPACK_PACKAGING_INSTALL_PREFIX=/usr
-          cd "$GITHUB_WORKSPACE/dist"
-          # One package per Ubuntu release, as libfranka does.
-          for f in infrabot-sdk_*_amd64.deb; do
-            mv "$f" "${f%.deb}-${{ matrix.codename }}.deb"
+          cpack -G DEB -B dist -D CPACK_PACKAGING_INSTALL_PREFIX=/usr
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          # One package per Ubuntu release, as libfranka does; _CPack_Packages
+          # stays in the build directory.
+          for f in dist/*.deb; do
+            name=$(basename "$f" .deb)
+            cp "$f" "$GITHUB_WORKSPACE/dist/${name}-${{ matrix.codename }}.deb"
           done
-          ls -l
+          ls -l "$GITHUB_WORKSPACE/dist"
       - uses: actions/upload-artifact@v4
         with:
           name: deb-${{ matrix.codename }}
