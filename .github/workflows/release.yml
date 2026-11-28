@@ -84,11 +84,13 @@ jobs:
           cd build-package
           cpack -G DEB -B dist -D CPACK_PACKAGING_INSTALL_PREFIX=/usr
           mkdir -p "$GITHUB_WORKSPACE/dist"
-          # One package per Ubuntu release, as libfranka does; _CPack_Packages
-          # stays in the build directory.
+          # One package per Ubuntu release, as libfranka does: name_version_codename_arch.
+          # _CPack_Packages stays in the build directory.
           for f in dist/*.deb; do
-            name=$(basename "$f" .deb)
-            cp "$f" "$GITHUB_WORKSPACE/dist/${name}-${{ matrix.codename }}.deb"
+            base=$(basename "$f" .deb)
+            name=${base%_*}
+            arch=${base##*_}
+            cp "$f" "$GITHUB_WORKSPACE/dist/${name}_${{ matrix.codename }}_${arch}.deb"
           done
           ls -l "$GITHUB_WORKSPACE/dist"
       - uses: actions/upload-artifact@v4
@@ -143,6 +145,9 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
+          # PyPI takes the wheels and the source package only; the tarball and
+          # the .deb are GitHub Release assets.
+          pattern: "{wheels,sdist}"
           path: dist
           merge-multiple: true
       - uses: pypa/gh-action-pypi-publish@release/v1
