@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.1 — unreleased
+## 0.2.1 — 2026-11-28
 
 - API reference built by Doxygen from the source: four sites per release, English and Chinese, each with the C++ API and the Python API, and every page switches between the two languages and the two APIs (`docs/reference/doxygen_site.py`, CMake target `api_doxygen`). Every public C++ name is documented, and an undocumented one fails the build.
 - Every entry of the reference explains what the call is for and how to use it, and the Examples tab shows the programs of `examples/` in full, the `.cpp` ones in the C++ sites and the `.py` ones in the Python sites.
