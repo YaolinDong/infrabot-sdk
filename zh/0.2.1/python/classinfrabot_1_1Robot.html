@@ -1,0 +1,2323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: infrabot.Robot类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">Python 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><a href="../cpp/classinfrabot_1_1Robot.html">C++</a><span class="on">Python</span></span><span class="seg"><a href="../../../en/0.2.1/python/classinfrabot_1_1Robot.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classinfrabot_1_1Robot.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="classinfrabot_1_1Robot-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">infrabot.Robot类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>一个机械臂控制器的客户端。  
+ <a href="classinfrabot_1_1Robot.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a62fdc27cdf63c83cf08fd7c7a7be42ff" id="r_a62fdc27cdf63c83cf08fd7c7a7be42ff"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a62fdc27cdf63c83cf08fd7c7a7be42ff">__init__</a> (self, str address='192.168.0.50', int command_port=5001, int telemetry_port=5000)</td></tr>
+<tr class="memdesc:a62fdc27cdf63c83cf08fd7c7a7be42ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 为地址 <code>address</code> 处的控制器创建客户端。  <br /></td></tr>
+<tr class="separator:a62fdc27cdf63c83cf08fd7c7a7be42ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">连接</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>建立和关闭连接，读取控制器上报的信息。 </p>
+</td></tr>
+<tr class="memitem:ad14a898f03d596b1b5cd4a9f6236540e" id="r_ad14a898f03d596b1b5cd4a9f6236540e"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ad14a898f03d596b1b5cd4a9f6236540e">connect</a> (self)</td></tr>
+<tr class="memdesc:ad14a898f03d596b1b5cd4a9f6236540e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，最长 0.5 s] 协商协议，然后开始发送心跳。  <br /></td></tr>
+<tr class="separator:ad14a898f03d596b1b5cd4a9f6236540e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4455f033ec948935af82f39a9e73c560" id="r_a4455f033ec948935af82f39a9e73c560"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a4455f033ec948935af82f39a9e73c560">disconnect</a> (self)</td></tr>
+<tr class="memdesc:a4455f033ec948935af82f39a9e73c560"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 关闭套接字，不发送任何数据。  <br /></td></tr>
+<tr class="separator:a4455f033ec948935af82f39a9e73c560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af43addd3c518f41a896c08d25ef3a4c9" id="r_af43addd3c518f41a896c08d25ef3a4c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#af43addd3c518f41a896c08d25ef3a4c9">connected</a> (self)</td></tr>
+<tr class="memdesc:af43addd3c518f41a896c08d25ef3a4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 套接字已打开。  <br /></td></tr>
+<tr class="separator:af43addd3c518f41a896c08d25ef3a4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba122d7f92145e7b88965d17e44f6e3" id="r_a4ba122d7f92145e7b88965d17e44f6e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1RobotInfo.html">RobotInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a4ba122d7f92145e7b88965d17e44f6e3">info</a> (self)</td></tr>
+<tr class="memdesc:a4ba122d7f92145e7b88965d17e44f6e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 握手得到的身份、限值和能力（RobotInfo）。  <br /></td></tr>
+<tr class="separator:a4ba122d7f92145e7b88965d17e44f6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1343bac0190330335c96841b4704feb8" id="r_a1343bac0190330335c96841b4704feb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1RobotState.html">RobotState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a1343bac0190330335c96841b4704feb8">state</a> (self)</td></tr>
+<tr class="memdesc:a1343bac0190330335c96841b4704feb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[RT] 最新遥测的副本（RobotState）。  <br /></td></tr>
+<tr class="separator:a1343bac0190330335c96841b4704feb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1dca03c52a5a0fac57342a95d4a4806" id="r_ab1dca03c52a5a0fac57342a95d4a4806"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1LinkStats.html">LinkStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ab1dca03c52a5a0fac57342a95d4a4806">link_stats</a> (self)</td></tr>
+<tr class="memdesc:ab1dca03c52a5a0fac57342a95d4a4806"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 链路质量（LinkStats）。  <br /></td></tr>
+<tr class="separator:ab1dca03c52a5a0fac57342a95d4a4806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05ec87264922cdbf356cd834b4f0a599" id="r_a05ec87264922cdbf356cd834b4f0a599"><td class="memItemLeft" align="right" valign="top">list[<a class="el" href="classinfrabot_1_1FaultEvent.html">FaultEvent</a>]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a05ec87264922cdbf356cd834b4f0a599">fault_log</a> (self)</td></tr>
+<tr class="memdesc:a05ec87264922cdbf356cd834b4f0a599"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 故障、停止和自检记录，从旧到新，最多 200 条（FaultEvent 列表）。  <br /></td></tr>
+<tr class="separator:a05ec87264922cdbf356cd834b4f0a599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b13450f0a4afd2b7046d921c27e435" id="r_aa8b13450f0a4afd2b7046d921c27e435"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#aa8b13450f0a4afd2b7046d921c27e435">set_heartbeat</a> (self, bool enabled)</td></tr>
+<tr class="memdesc:aa8b13450f0a4afd2b7046d921c27e435"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 打开或关闭心跳；默认打开。  <br /></td></tr>
+<tr class="separator:aa8b13450f0a4afd2b7046d921c27e435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">设置（IDLE，所有电机失能）</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>在 <code>connect()</code> 之后、使能电机之前做一次。 </p>
+</td></tr>
+<tr class="memitem:a2a89f6f1e197cc545c3304deb6059861" id="r_a2a89f6f1e197cc545c3304deb6059861"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a2a89f6f1e197cc545c3304deb6059861">set_motor_profile</a> (self, <a class="el" href="classinfrabot_1_1MotorProfile.html">MotorProfile</a> profile)</td></tr>
+<tr class="memdesc:a2a89f6f1e197cc545c3304deb6059861"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，3 s] 在 IDLE 下、所有电机失能时选择 J1–J7 的电机模式（MotorProfile）。  <br /></td></tr>
+<tr class="separator:a2a89f6f1e197cc545c3304deb6059861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4814c410db511e1ed3fd97fe19aa622b" id="r_a4814c410db511e1ed3fd97fe19aa622b"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a4814c410db511e1ed3fd97fe19aa622b">set_zero</a> (self, bool enable_after=False)</td></tr>
+<tr class="memdesc:a4814c410db511e1ed3fd97fe19aa622b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，2 s] 把每个电机的当前角度保存为零点；所有电机都必须处于失能状态。  <br /></td></tr>
+<tr class="separator:a4814c410db511e1ed3fd97fe19aa622b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">使能与失能</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>使能和失能电机，停止与恢复，清除故障。 </p>
+</td></tr>
+<tr class="memitem:a0922d4da666275b48cc3cc266e3bc1b0" id="r_a0922d4da666275b48cc3cc266e3bc1b0"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a0922d4da666275b48cc3cc266e3bc1b0">servo_on</a> (self, <a class="el" href="classinfrabot_1_1MotorGroup.html">MotorGroup</a> group=<a class="el" href="classinfrabot_1_1MotorGroup.html#a445a647804266c9749feab44679a13a9">MotorGroup.All</a>)</td></tr>
+<tr class="memdesc:a0922d4da666275b48cc3cc266e3bc1b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，3 s] 在 IDLE 下使能一个电机组（默认 MotorGroup.All），并等待遥测显示已使能。  <br /></td></tr>
+<tr class="separator:a0922d4da666275b48cc3cc266e3bc1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc9e2ef95f54ff56b707419c3833d51a" id="r_adc9e2ef95f54ff56b707419c3833d51a"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#adc9e2ef95f54ff56b707419c3833d51a">servo_off</a> (self, <a class="el" href="classinfrabot_1_1MotorGroup.html">MotorGroup</a> group=<a class="el" href="classinfrabot_1_1MotorGroup.html#a445a647804266c9749feab44679a13a9">MotorGroup.All</a>, bool wait=True)</td></tr>
+<tr class="memdesc:adc9e2ef95f54ff56b707419c3833d51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，2 s] 在任意模式下立即失能一个电机组（默认全部）。  <br /></td></tr>
+<tr class="separator:adc9e2ef95f54ff56b707419c3833d51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1a6cbb91218cf41eee06ada2f01fca" id="r_aaf1a6cbb91218cf41eee06ada2f01fca"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#aaf1a6cbb91218cf41eee06ada2f01fca">stop</a> (self, bool wait=True)</td></tr>
+<tr class="memdesc:aaf1a6cbb91218cf41eee06ada2f01fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，2 s] 在任意模式下受控停止：控制器把机械臂制动到静止，并在 IDLE 下保持使能。  <br /></td></tr>
+<tr class="separator:aaf1a6cbb91218cf41eee06ada2f01fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28cfbf244c1302cfa27dcfa0773465cf" id="r_a28cfbf244c1302cfa27dcfa0773465cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1Mode.html">Mode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a28cfbf244c1302cfa27dcfa0773465cf">resume</a> (self)</td></tr>
+<tr class="memdesc:a28cfbf244c1302cfa27dcfa0773465cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，3 s] 从机械臂停下的位置重新进入被受控停止中断的模式，并返回该 Mode。  <br /></td></tr>
+<tr class="separator:a28cfbf244c1302cfa27dcfa0773465cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fad38990ff812acc40c2b0217724a48" id="r_a8fad38990ff812acc40c2b0217724a48"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a8fad38990ff812acc40c2b0217724a48">clear_fault</a> (self, int timeout_ms=1000)</td></tr>
+<tr class="memdesc:a8fad38990ff812acc40c2b0217724a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，timeout_ms] 清除报告故障的失能电机，并等待直到没有电机报告故障。  <br /></td></tr>
+<tr class="separator:a8fad38990ff812acc40c2b0217724a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">控制模式</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>选择由谁驱动机械臂：PC（RT）、SDK 的运动（NRT），或者控制器自己（本地模式）。 </p>
+</td></tr>
+<tr class="memitem:a18f8a33124aa40d7066ad00ae99c57b1" id="r_a18f8a33124aa40d7066ad00ae99c57b1"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a18f8a33124aa40d7066ad00ae99c57b1">switch_mode</a> (self, <a class="el" href="classinfrabot_1_1Mode.html">Mode</a> mode)</td></tr>
+<tr class="memdesc:a18f8a33124aa40d7066ad00ae99c57b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，2 s] 切换控制模式。  <br /></td></tr>
+<tr class="separator:a18f8a33124aa40d7066ad00ae99c57b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073655b5240a7ffee2e27f0ca809aaeb" id="r_a073655b5240a7ffee2e27f0ca809aaeb"><td class="memItemLeft" align="right" valign="top">list[float](8)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a073655b5240a7ffee2e27f0ca809aaeb">hold_command</a> (self)</td></tr>
+<tr class="memdesc:a073655b5240a7ffee2e27f0ca809aaeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 进入模式时读取的保持指令（关节坐标系，rad，8 个值）。  <br /></td></tr>
+<tr class="separator:a073655b5240a7ffee2e27f0ca809aaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bda79da1d1d2b81dee3e0161b7c30ee" id="r_a5bda79da1d1d2b81dee3e0161b7c30ee"><td class="memItemLeft" align="right" valign="top">list[float](8)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a5bda79da1d1d2b81dee3e0161b7c30ee">read_hold_command</a> (self)</td></tr>
+<tr class="memdesc:a5bda79da1d1d2b81dee3e0161b7c30ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，0.5 s] 立即读取已使能电机的保持指令。  <br /></td></tr>
+<tr class="separator:a5bda79da1d1d2b81dee3e0161b7c30ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">RT 模式（RT_JOINT、RT_CARTESIAN）</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>PC 每个周期发送一个目标，通常每毫秒一次；中断 100 ms 控制器就会让机械臂停止。 </p>
+</td></tr>
+<tr class="memitem:a4a7ca0db6c11cea65bfa5ab95e3982ad" id="r_a4a7ca0db6c11cea65bfa5ab95e3982ad"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a4a7ca0db6c11cea65bfa5ab95e3982ad">servej</a> (self, <a class="el" href="classinfrabot_1_1JointCommand.html">JointCommand</a> command)</td></tr>
+<tr class="memdesc:a4a7ca0db6c11cea65bfa5ab95e3982ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">[RT] 发送一条 RT_JOINT 指令（JointCommand）。  <br /></td></tr>
+<tr class="separator:a4a7ca0db6c11cea65bfa5ab95e3982ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57c1dc7f0b371fba3dffc732f90f6b89" id="r_a57c1dc7f0b371fba3dffc732f90f6b89"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a57c1dc7f0b371fba3dffc732f90f6b89">servep</a> (self, <a class="el" href="classinfrabot_1_1CartesianCommand.html">CartesianCommand</a> command)</td></tr>
+<tr class="memdesc:a57c1dc7f0b371fba3dffc732f90f6b89"><td class="mdescLeft">&#160;</td><td class="mdescRight">[RT] 发送一条 RT_CARTESIAN 指令（CartesianCommand）。  <br /></td></tr>
+<tr class="separator:a57c1dc7f0b371fba3dffc732f90f6b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54db14d3e8f682178f18e9463b56ccb8" id="r_a54db14d3e8f682178f18e9463b56ccb8"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a54db14d3e8f682178f18e9463b56ccb8">start_joint_stream</a> (self, <a class="el" href="classinfrabot_1_1JointCommand.html">JointCommand</a> initial, <a class="el" href="classinfrabot_1_1JointStreamOptions.html">JointStreamOptions</a> options=<a class="el" href="classinfrabot_1_1JointStreamOptions.html">JointStreamOptions</a>())</td></tr>
+<tr class="memdesc:a54db14d3e8f682178f18e9463b56ccb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 从 <code>initial</code> 开始运行原生 1 kHz RT_JOINT 生产者；之后调用 servej() 会替换其指令。  <br /></td></tr>
+<tr class="separator:a54db14d3e8f682178f18e9463b56ccb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad942ea76b8284c3fc2fb7d180a56e040" id="r_ad942ea76b8284c3fc2fb7d180a56e040"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ad942ea76b8284c3fc2fb7d180a56e040">stop_joint_stream</a> (self)</td></tr>
+<tr class="memdesc:ad942ea76b8284c3fc2fb7d180a56e040"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 结束原生生产者，不发送任何数据。  <br /></td></tr>
+<tr class="separator:ad942ea76b8284c3fc2fb7d180a56e040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e6713b4c27f7dd390e831b2b2396ec7" id="r_a8e6713b4c27f7dd390e831b2b2396ec7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1JointStreamStats.html">JointStreamStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a8e6713b4c27f7dd390e831b2b2396ec7">joint_stream_stats</a> (self)</td></tr>
+<tr class="memdesc:a8e6713b4c27f7dd390e831b2b2396ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 原生生产者的状态（JointStreamStats）。  <br /></td></tr>
+<tr class="separator:a8e6713b4c27f7dd390e831b2b2396ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">NRT 模式（NRT_JOINT、NRT_CARTESIAN）</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>控制器一次规划并执行一个运动；PC 只给出目标。 </p>
+</td></tr>
+<tr class="memitem:a0b3aa37ccc3e904d7ef0b1352fb638ea" id="r_a0b3aa37ccc3e904d7ef0b1352fb638ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1MotionResult.html">MotionResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a0b3aa37ccc3e904d7ef0b1352fb638ea">movej</a> (self, list[float](7) position, <a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a> options=<a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a>())</td></tr>
+<tr class="memdesc:a0b3aa37ccc3e904d7ef0b1352fb638ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 在 NRT_JOINT 下把 J1–J7 移动到 <code>position</code>（rad），等待到达、失败或超过 options.timeout_ms + 3 s。  <br /></td></tr>
+<tr class="separator:a0b3aa37ccc3e904d7ef0b1352fb638ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f478a170e3463bf5b3a9d1a67b7bb5d" id="r_a7f478a170e3463bf5b3a9d1a67b7bb5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1MotionResult.html">MotionResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a7f478a170e3463bf5b3a9d1a67b7bb5d">movep</a> (self, list[float](12) pose, <a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a> options=<a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a>())</td></tr>
+<tr class="memdesc:a7f478a170e3463bf5b3a9d1a67b7bb5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 在 NRT_CARTESIAN 下沿直线把工具移动到 <code>pose</code>。  <br /></td></tr>
+<tr class="separator:a7f478a170e3463bf5b3a9d1a67b7bb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944a4fd7da16b1427f83856504bb7a3f" id="r_a944a4fd7da16b1427f83856504bb7a3f"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a944a4fd7da16b1427f83856504bb7a3f">submit_movej</a> (self, list[float](7) position, <a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a> options=<a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a>())</td></tr>
+<tr class="memdesc:a944a4fd7da16b1427f83856504bb7a3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 开始一次关节运动并立即返回；之后用 motion() 或 wait_motion() 跟踪。  <br /></td></tr>
+<tr class="separator:a944a4fd7da16b1427f83856504bb7a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d634a8ba3b1ef9e8ea26786f57fd5a3" id="r_a9d634a8ba3b1ef9e8ea26786f57fd5a3"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a9d634a8ba3b1ef9e8ea26786f57fd5a3">submit_movep</a> (self, list[float](12) pose, <a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a> options=<a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a>())</td></tr>
+<tr class="memdesc:a9d634a8ba3b1ef9e8ea26786f57fd5a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 开始一次笛卡尔运动并立即返回。  <br /></td></tr>
+<tr class="separator:a9d634a8ba3b1ef9e8ea26786f57fd5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d93184cf5a4ec6ff254caffc653644" id="r_a80d93184cf5a4ec6ff254caffc653644"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1MotionStatus.html">MotionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a80d93184cf5a4ec6ff254caffc653644">motion</a> (self)</td></tr>
+<tr class="memdesc:a80d93184cf5a4ec6ff254caffc653644"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] movej/movep 会话的状态（MotionStatus）。  <br /></td></tr>
+<tr class="separator:a80d93184cf5a4ec6ff254caffc653644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef1f91b6897fb4ebc2e4ff11ae7613c" id="r_afef1f91b6897fb4ebc2e4ff11ae7613c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1MotionResult.html">MotionResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#afef1f91b6897fb4ebc2e4ff11ae7613c">wait_motion</a> (self, int timeout_ms)</td></tr>
+<tr class="memdesc:afef1f91b6897fb4ebc2e4ff11ae7613c"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，timeout_ms] 等待最新的一次运动到达，返回其 MotionResult；运动失败时抛出异常。  <br /></td></tr>
+<tr class="separator:afef1f91b6897fb4ebc2e4ff11ae7613c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c3033996f3c6ee2794a68ef3a0cd42c" id="r_a4c3033996f3c6ee2794a68ef3a0cd42c"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a4c3033996f3c6ee2794a68ef3a0cd42c">cancel_motion</a> (self)</td></tr>
+<tr class="memdesc:a4c3033996f3c6ee2794a68ef3a0cd42c"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 以受控停止结束会话中的运动；机械臂在 IDLE 下保持。  <br /></td></tr>
+<tr class="separator:a4c3033996f3c6ee2794a68ef3a0cd42c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee0f02c841aa382fb5501378bbfff5d" id="r_a7ee0f02c841aa382fb5501378bbfff5d"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a7ee0f02c841aa382fb5501378bbfff5d">set_default_move_options</a> (self, <a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a> options)</td></tr>
+<tr class="memdesc:a7ee0f02c841aa382fb5501378bbfff5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 进入 NRT_JOINT 会话时保持运动所用的选项。  <br /></td></tr>
+<tr class="separator:a7ee0f02c841aa382fb5501378bbfff5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea36b97faa1ebe8fcabc5796981be4f9" id="r_aea36b97faa1ebe8fcabc5796981be4f9"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#aea36b97faa1ebe8fcabc5796981be4f9">set_default_cartesian_options</a> (self, <a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a> options)</td></tr>
+<tr class="memdesc:aea36b97faa1ebe8fcabc5796981be4f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 进入 NRT_CARTESIAN 会话时保持运动所用的选项。  <br /></td></tr>
+<tr class="separator:aea36b97faa1ebe8fcabc5796981be4f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">夹爪（J8）</h2></td></tr>
+<tr class="memitem:ac4c2d10370c71621ddcc6131bea22eac" id="r_ac4c2d10370c71621ddcc6131bea22eac"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ac4c2d10370c71621ddcc6131bea22eac">gripper</a> (self, float position_rad, float speed_rad_s, float force_ratio)</td></tr>
+<tr class="memdesc:ac4c2d10370c71621ddcc6131bea22eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1 s] gripper(position_rad, speed_rad_s, force_ratio) 把夹爪移动到 0–5.94 rad。  <br /></td></tr>
+<tr class="separator:ac4c2d10370c71621ddcc6131bea22eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">录制与日志</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>三个来源：当前会话（<code>start_recording()</code>）、控制器的串口（<code>start_serial_log()</code>），以及板子自己的内存（<code>download_mcu_log()</code>）。 </p>
+</td></tr>
+<tr class="memitem:a768b5ebf2a57837884236bb9abe0d3b6" id="r_a768b5ebf2a57837884236bb9abe0d3b6"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a768b5ebf2a57837884236bb9abe0d3b6">start_recording</a> (self, str directory, <a class="el" href="classinfrabot_1_1RecordOptions.html">RecordOptions</a> options=<a class="el" href="classinfrabot_1_1RecordOptions.html">RecordOptions</a>())</td></tr>
+<tr class="memdesc:a768b5ebf2a57837884236bb9abe0d3b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，创建文件] 把每个遥测包（1 kHz）、发出的每条指令和事件以 CSV 记录到 directory/&lt;time&gt;[-label]/ 下。  <br /></td></tr>
+<tr class="separator:a768b5ebf2a57837884236bb9abe0d3b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa20d37729d8e2eb9b5689176015a0c58" id="r_aa20d37729d8e2eb9b5689176015a0c58"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#aa20d37729d8e2eb9b5689176015a0c58">stop_recording</a> (self)</td></tr>
+<tr class="memdesc:aa20d37729d8e2eb9b5689176015a0c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 结束写入线程并关闭文件。  <br /></td></tr>
+<tr class="separator:aa20d37729d8e2eb9b5689176015a0c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fa848c550e2f189641a6719efaadb60" id="r_a6fa848c550e2f189641a6719efaadb60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1RecorderStats.html">RecorderStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a6fa848c550e2f189641a6719efaadb60">recording</a> (self)</td></tr>
+<tr class="memdesc:a6fa848c550e2f189641a6719efaadb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 录制的进度（RecorderStats）。  <br /></td></tr>
+<tr class="separator:a6fa848c550e2f189641a6719efaadb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3b1234b9b083270c8da89169a9e400" id="r_aca3b1234b9b083270c8da89169a9e400"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#aca3b1234b9b083270c8da89169a9e400">record_event</a> (self, str text)</td></tr>
+<tr class="memdesc:aca3b1234b9b083270c8da89169a9e400"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 在 events.csv 中添加一个标记。  <br /></td></tr>
+<tr class="separator:aca3b1234b9b083270c8da89169a9e400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c2b49c25f526f6a05ffdcfb17e153f" id="r_a05c2b49c25f526f6a05ffdcfb17e153f"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a05c2b49c25f526f6a05ffdcfb17e153f">start_serial_log</a> (self, <a class="el" href="classinfrabot_1_1SerialLogOptions.html">SerialLogOptions</a> options=<a class="el" href="classinfrabot_1_1SerialLogOptions.html">SerialLogOptions</a>())</td></tr>
+<tr class="memdesc:a05c2b49c25f526f6a05ffdcfb17e153f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，打开串口和文件] 保存控制器的串口调试输出，并返回文件路径。  <br /></td></tr>
+<tr class="separator:a05c2b49c25f526f6a05ffdcfb17e153f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a331506e4950af5e633eff20bcf8d9346" id="r_a331506e4950af5e633eff20bcf8d9346"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a331506e4950af5e633eff20bcf8d9346">stop_serial_log</a> (self)</td></tr>
+<tr class="memdesc:a331506e4950af5e633eff20bcf8d9346"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 等待串口线程结束。  <br /></td></tr>
+<tr class="separator:a331506e4950af5e633eff20bcf8d9346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8233ae5340e17888a8577cbe50c59e2" id="r_ab8233ae5340e17888a8577cbe50c59e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1SerialLogStats.html">SerialLogStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ab8233ae5340e17888a8577cbe50c59e2">serial_log</a> (self)</td></tr>
+<tr class="memdesc:ab8233ae5340e17888a8577cbe50c59e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] 串口日志的进度（SerialLogStats）。  <br /></td></tr>
+<tr class="separator:ab8233ae5340e17888a8577cbe50c59e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab91de6a6cdd761051812366228782542" id="r_ab91de6a6cdd761051812366228782542"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1McuLogResult.html">McuLogResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ab91de6a6cdd761051812366228782542">download_mcu_log</a> (self, <a class="el" href="classinfrabot_1_1McuLogOptions.html">McuLogOptions</a> options=<a class="el" href="classinfrabot_1_1McuLogOptions.html">McuLogOptions</a>())</td></tr>
+<tr class="memdesc:ab91de6a6cdd761051812366228782542"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，数秒] 把控制器的运行日志下载到两个新文件，并返回 McuLogResult。  <br /></td></tr>
+<tr class="separator:ab91de6a6cdd761051812366228782542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11196d2b9df69b738cc7c704efec515f" id="r_a11196d2b9df69b738cc7c704efec515f"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a11196d2b9df69b738cc7c704efec515f">log_directory</a> ()</td></tr>
+<tr class="memdesc:a11196d2b9df69b738cc7c704efec515f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] SDK 的默认日志目录：$INFRABOT_LOG_DIR，否则 $XDG_STATE_HOME/infrabot/log，否则 ~/.local/state/infrabot/log。  <br /></td></tr>
+<tr class="separator:a11196d2b9df69b738cc7c704efec515f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">单电机维护</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>用于调试，在 IDLE 下进行，多数要求电机失能。数值单位为 rad、rad/s、N·m，比例为 0–1。每次调用都会等待控制器确认：[Blocking，1.5 s]；不要在 1 kHz 循环中调用。<code>motor</code> 为 0–7，注明处也可以是 kAllMotors。普通程序请改用按组的调用（servo_on()、stop()、clear_fault()）。 </p>
+</td></tr>
+<tr class="memitem:a336b2716d9dec9d33ff346b464cf6731" id="r_a336b2716d9dec9d33ff346b464cf6731"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a336b2716d9dec9d33ff346b464cf6731">enable</a> (self, int motor)</td></tr>
+<tr class="memdesc:a336b2716d9dec9d33ff346b464cf6731"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：直接使能一个电机。  <br /></td></tr>
+<tr class="separator:a336b2716d9dec9d33ff346b464cf6731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37cd22da528ab111f2ac79c612630989" id="r_a37cd22da528ab111f2ac79c612630989"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a37cd22da528ab111f2ac79c612630989">disable</a> (self, int motor)</td></tr>
+<tr class="memdesc:a37cd22da528ab111f2ac79c612630989"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：失能一个电机。  <br /></td></tr>
+<tr class="separator:a37cd22da528ab111f2ac79c612630989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b36c86629c3b1e1e7823bc7ae52a5e3" id="r_a3b36c86629c3b1e1e7823bc7ae52a5e3"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a3b36c86629c3b1e1e7823bc7ae52a5e3">clear_error</a> (self, int motor)</td></tr>
+<tr class="memdesc:a3b36c86629c3b1e1e7823bc7ae52a5e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：清除一个电机的故障。  <br /></td></tr>
+<tr class="separator:a3b36c86629c3b1e1e7823bc7ae52a5e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a822bc6fad2a6a504f38fa168b06afebd" id="r_a822bc6fad2a6a504f38fa168b06afebd"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a822bc6fad2a6a504f38fa168b06afebd">set_zero_position</a> (self, int motor)</td></tr>
+<tr class="memdesc:a822bc6fad2a6a504f38fa168b06afebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：把一个电机的当前角度保存为零点。  <br /></td></tr>
+<tr class="separator:a822bc6fad2a6a504f38fa168b06afebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0ec6a8bfdfe82294292250c7dd0f177" id="r_ac0ec6a8bfdfe82294292250c7dd0f177"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ac0ec6a8bfdfe82294292250c7dd0f177">ensure_mode</a> (self, int motor, int mode)</td></tr>
+<tr class="memdesc:ac0ec6a8bfdfe82294292250c7dd0f177"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：必要时把一个电机切换到某个驱动模式（1–4）。  <br /></td></tr>
+<tr class="separator:ac0ec6a8bfdfe82294292250c7dd0f177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a1319bb0b801045deb7ea05613cd926" id="r_a8a1319bb0b801045deb7ea05613cd926"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a8a1319bb0b801045deb7ea05613cd926">send_mit</a> (self, int motor, float position_rad, float velocity_rad_s, float kp, float kd, float torque_nm)</td></tr>
+<tr class="memdesc:a8a1319bb0b801045deb7ea05613cd926"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：send_mit(motor, position, velocity, kp, kd, torque) 发送一帧 MIT 指令。  <br /></td></tr>
+<tr class="separator:a8a1319bb0b801045deb7ea05613cd926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ec76886d61d2c5e64e57146f1b908a3" id="r_a2ec76886d61d2c5e64e57146f1b908a3"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a2ec76886d61d2c5e64e57146f1b908a3">send_pos_vel</a> (self, int motor, float position_rad, float velocity_limit_rad_s)</td></tr>
+<tr class="memdesc:a2ec76886d61d2c5e64e57146f1b908a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：send_pos_vel(motor, position, velocity_limit) 发送一帧位置速度指令。  <br /></td></tr>
+<tr class="separator:a2ec76886d61d2c5e64e57146f1b908a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcd18066349d5e17192e60ed903c5d1e" id="r_abcd18066349d5e17192e60ed903c5d1e"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#abcd18066349d5e17192e60ed903c5d1e">send_vel</a> (self, int motor, float velocity_rad_s)</td></tr>
+<tr class="memdesc:abcd18066349d5e17192e60ed903c5d1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：send_vel(motor, velocity) 发送一帧速度指令。  <br /></td></tr>
+<tr class="separator:abcd18066349d5e17192e60ed903c5d1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4930ec64da8f67142b3aefb8d666f53" id="r_ab4930ec64da8f67142b3aefb8d666f53"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ab4930ec64da8f67142b3aefb8d666f53">send_force_pos</a> (self, int motor, float position_rad, float velocity_limit_rad_s, float torque_ratio)</td></tr>
+<tr class="memdesc:ab4930ec64da8f67142b3aefb8d666f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：send_force_pos(motor, position, velocity_limit, torque_ratio) 发送一帧力位指令。  <br /></td></tr>
+<tr class="separator:ab4930ec64da8f67142b3aefb8d666f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b47815dec5f4bf9aed6a290b525581f" id="r_a2b47815dec5f4bf9aed6a290b525581f"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a2b47815dec5f4bf9aed6a290b525581f">request_feedback</a> (self, int motor)</td></tr>
+<tr class="memdesc:a2b47815dec5f4bf9aed6a290b525581f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：请求电机 <code>motor</code>（0–7）回送一帧反馈。  <br /></td></tr>
+<tr class="separator:a2b47815dec5f4bf9aed6a290b525581f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05369f86292c9a0372a562401809bcbe" id="r_a05369f86292c9a0372a562401809bcbe"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a05369f86292c9a0372a562401809bcbe">get_state</a> (self, int motor)</td></tr>
+<tr class="memdesc:a05369f86292c9a0372a562401809bcbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：检查一个电机的反馈是否新鲜。  <br /></td></tr>
+<tr class="separator:a05369f86292c9a0372a562401809bcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13f018c6c0b2076285ce173deaef745f" id="r_a13f018c6c0b2076285ce173deaef745f"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a13f018c6c0b2076285ce173deaef745f">set_can_timeout_ms</a> (self, int motor, int timeout_ms)</td></tr>
+<tr class="memdesc:a13f018c6c0b2076285ce173deaef745f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：设置一个电机的 CAN 超时。  <br /></td></tr>
+<tr class="separator:a13f018c6c0b2076285ce173deaef745f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb8ad594a89d42914bfc8800e6e26fab" id="r_acb8ad594a89d42914bfc8800e6e26fab"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#acb8ad594a89d42914bfc8800e6e26fab">store_parameters</a> (self, int motor)</td></tr>
+<tr class="memdesc:acb8ad594a89d42914bfc8800e6e26fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：把一个电机的寄存器保存到其闪存。  <br /></td></tr>
+<tr class="separator:acb8ad594a89d42914bfc8800e6e26fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac36211054badf382c95bfb6f8899e651" id="r_ac36211054badf382c95bfb6f8899e651"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ac36211054badf382c95bfb6f8899e651">get_register</a> (self, int motor, int register_id, int value_type)</td></tr>
+<tr class="memdesc:ac36211054badf382c95bfb6f8899e651"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：get_register(motor, register_id, value_type) 返回寄存器的原始位。  <br /></td></tr>
+<tr class="separator:ac36211054badf382c95bfb6f8899e651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec042b648cb4969d30eece49bc4421f" id="r_a1ec042b648cb4969d30eece49bc4421f"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a1ec042b648cb4969d30eece49bc4421f">write_register</a> (self, int motor, int register_id, int value, int value_type)</td></tr>
+<tr class="memdesc:a1ec042b648cb4969d30eece49bc4421f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，1.5 s] 维护：write_register(motor, register_id, value, value_type) 在允许范围内写一个寄存器并读回。  <br /></td></tr>
+<tr class="separator:a1ec042b648cb4969d30eece49bc4421f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">控制器参数</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>[Blocking，每个参数约 10 ms] 支持 INFRABOT_CAP_PARAMETERS 的固件（协议 1.1）：触摸屏滑条调节的重力补偿、阻抗和导纳设置。每个参数自带说明（名称、单位、范围、默认值、变化速率），所以 SDK 里不需要内置参数表。set_parameter() 保存请求值，控制器让生效值逐渐过渡过去，写入不会让增益突变。数值只在 RAM 中，重启后恢复默认。任何 PC 都能读取；写入需要是控制机械臂的那台 PC，或当前没有 PC 在控制。 </p>
+</td></tr>
+<tr class="memitem:a111118fdad5177717979913fa86ca4d0" id="r_a111118fdad5177717979913fa86ca4d0"><td class="memItemLeft" align="right" valign="top">list[<a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a>]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a111118fdad5177717979913fa86ca4d0">list_parameters</a> (self)</td></tr>
+<tr class="memdesc:a111118fdad5177717979913fa86ca4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，每个参数约 10 ms] 列出所有控制器参数（ParameterInfo 列表）。  <br /></td></tr>
+<tr class="separator:a111118fdad5177717979913fa86ca4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3102a85251d98ce3480742e77a38be0" id="r_ab3102a85251d98ce3480742e77a38be0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#ab3102a85251d98ce3480742e77a38be0">get_parameter</a> (self, int id)</td></tr>
+<tr class="memdesc:ab3102a85251d98ce3480742e77a38be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 按 id（group &lt;&lt; 8 | index）读取一个参数。  <br /></td></tr>
+<tr class="separator:ab3102a85251d98ce3480742e77a38be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09782ebd14922325afa66e2d69b5ed82" id="r_a09782ebd14922325afa66e2d69b5ed82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a09782ebd14922325afa66e2d69b5ed82">get_parameter</a> (self, str name)</td></tr>
+<tr class="memdesc:a09782ebd14922325afa66e2d69b5ed82"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 按名称读取一个参数，例如 "imp.joint_k"。  <br /></td></tr>
+<tr class="separator:a09782ebd14922325afa66e2d69b5ed82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ed21fb82be89c3da5d69de88825821a" id="r_a3ed21fb82be89c3da5d69de88825821a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a3ed21fb82be89c3da5d69de88825821a">set_parameter</a> (self, int id, float value)</td></tr>
+<tr class="memdesc:a3ed21fb82be89c3da5d69de88825821a"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 按 id 为参数请求新值，并返回写入后的 ParameterInfo。  <br /></td></tr>
+<tr class="separator:a3ed21fb82be89c3da5d69de88825821a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b3520e09fa59a57cfb340b288886e4" id="r_aa1b3520e09fa59a57cfb340b288886e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#aa1b3520e09fa59a57cfb340b288886e4">set_parameter</a> (self, str name, float value)</td></tr>
+<tr class="memdesc:aa1b3520e09fa59a57cfb340b288886e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking] 按名称为参数请求新值，并返回写入后的 ParameterInfo。  <br /></td></tr>
+<tr class="separator:aa1b3520e09fa59a57cfb340b288886e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">诊断</h2></td></tr>
+<tr class="memitem:a54a2052bb7b1ecf3158b7e3bc883ee44" id="r_a54a2052bb7b1ecf3158b7e3bc883ee44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfrabot_1_1DiagnosticsInfo.html">DiagnosticsInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a54a2052bb7b1ecf3158b7e3bc883ee44">diagnostics</a> (self)</td></tr>
+<tr class="memdesc:a54a2052bb7b1ecf3158b7e3bc883ee44"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Blocking，最长 600 ms] 一份诊断快照（DiagnosticsInfo）。  <br /></td></tr>
+<tr class="separator:a54a2052bb7b1ecf3158b7e3bc883ee44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">运动学</h2></td></tr>
+<tr class="memitem:a7176c8f8e1747b5ad497a2878de35fe3" id="r_a7176c8f8e1747b5ad497a2878de35fe3"><td class="memItemLeft" align="right" valign="top">list[float](12)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfrabot_1_1Robot.html#a7176c8f8e1747b5ad497a2878de35fe3">forward</a> (list[float](7) joints)</td></tr>
+<tr class="memdesc:a7176c8f8e1747b5ad497a2878de35fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[Non-blocking] H7C 机械臂的正运动学：由 J1–J7（rad）得到工具位姿（12 个值）。  <br /></td></tr>
+<tr class="separator:a7176c8f8e1747b5ad497a2878de35fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>一个机械臂控制器的客户端。 </p>
+<p>Robot(address="192.168.0.50", command_port=5001, telemetry_port=5000) 创建客户端；connect() 打开套接字。它运行一个接收线程和一个 1 kHz 服务线程（心跳、NRT 会话、原生关节流）。调用期间释放 GIL。调用失败时抛出 RuntimeError，附带中文原因。 </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a62fdc27cdf63c83cf08fd7c7a7be42ff" name="a62fdc27cdf63c83cf08fd7c7a7be42ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62fdc27cdf63c83cf08fd7c7a7be42ff">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str &#160;</td>
+          <td class="paramname"><em>address</em> = <code>'192.168.0.50'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &#160;</td>
+          <td class="paramname"><em>command_port</em> = <code>5001</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &#160;</td>
+          <td class="paramname"><em>telemetry_port</em> = <code>5000</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 为地址 <code>address</code> 处的控制器创建客户端。 </p>
+<p>connect() 打开套接字。 </p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a4c3033996f3c6ee2794a68ef3a0cd42c" name="a4c3033996f3c6ee2794a68ef3a0cd42c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c3033996f3c6ee2794a68ef3a0cd42c">&#9670;&#160;</a></span>cancel_motion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.cancel_motion </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 以受控停止结束会话中的运动；机械臂在 IDLE 下保持。 </p>
+
+</div>
+</div>
+<a id="a3b36c86629c3b1e1e7823bc7ae52a5e3" name="a3b36c86629c3b1e1e7823bc7ae52a5e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b36c86629c3b1e1e7823bc7ae52a5e3">&#9670;&#160;</a></span>clear_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.clear_error </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：清除一个电机的故障。 </p>
+
+</div>
+</div>
+<a id="a8fad38990ff812acc40c2b0217724a48" name="a8fad38990ff812acc40c2b0217724a48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fad38990ff812acc40c2b0217724a48">&#9670;&#160;</a></span>clear_fault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.clear_fault </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &#160;</td>
+          <td class="paramname"><em>timeout_ms</em> = <code>1000</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，timeout_ms] 清除报告故障的失能电机，并等待直到没有电机报告故障。 </p>
+<p>已使能的故障电机需要先 servo_off()。 </p>
+
+</div>
+</div>
+<a id="ad14a898f03d596b1b5cd4a9f6236540e" name="ad14a898f03d596b1b5cd4a9f6236540e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14a898f03d596b1b5cd4a9f6236540e">&#9670;&#160;</a></span>connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.connect </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，最长 0.5 s] 协商协议，然后开始发送心跳。 </p>
+<p>协议主版本不同或没有有效应答时抛出异常。电机反馈是否实时，请检查 state().telemetry_age_ms。 </p>
+
+</div>
+</div>
+<a id="af43addd3c518f41a896c08d25ef3a4c9" name="af43addd3c518f41a896c08d25ef3a4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af43addd3c518f41a896c08d25ef3a4c9">&#9670;&#160;</a></span>connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool infrabot.Robot.connected </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 套接字已打开。 </p>
+
+</div>
+</div>
+<a id="a54a2052bb7b1ecf3158b7e3bc883ee44" name="a54a2052bb7b1ecf3158b7e3bc883ee44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a2052bb7b1ecf3158b7e3bc883ee44">&#9670;&#160;</a></span>diagnostics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1DiagnosticsInfo.html">DiagnosticsInfo</a> infrabot.Robot.diagnostics </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，最长 600 ms] 一份诊断快照（DiagnosticsInfo）。 </p>
+<p>固件 0.2.0（CAP_DIAGNOSTICS）；只读，任何 PC 都可调用。 </p>
+
+</div>
+</div>
+<a id="a37cd22da528ab111f2ac79c612630989" name="a37cd22da528ab111f2ac79c612630989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37cd22da528ab111f2ac79c612630989">&#9670;&#160;</a></span>disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.disable </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：失能一个电机。 </p>
+
+</div>
+</div>
+<a id="a4455f033ec948935af82f39a9e73c560" name="a4455f033ec948935af82f39a9e73c560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4455f033ec948935af82f39a9e73c560">&#9670;&#160;</a></span>disconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.disconnect </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 关闭套接字，不发送任何数据。 </p>
+<p>已使能的机械臂在 100 ms 后发现 PC 离线，受控停止并保持。需要立即停止时，先调用 stop()。 </p>
+
+</div>
+</div>
+<a id="ab91de6a6cdd761051812366228782542" name="ab91de6a6cdd761051812366228782542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab91de6a6cdd761051812366228782542">&#9670;&#160;</a></span>download_mcu_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1McuLogResult.html">McuLogResult</a> infrabot.Robot.download_mcu_log </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1McuLogOptions.html">McuLogOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1McuLogOptions.html">McuLogOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，数秒] 把控制器的运行日志下载到两个新文件，并返回 McuLogResult。 </p>
+<p>不需要 connect()。RT 指令流运行时板子会拒绝。 </p>
+
+</div>
+</div>
+<a id="a336b2716d9dec9d33ff346b464cf6731" name="a336b2716d9dec9d33ff346b464cf6731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a336b2716d9dec9d33ff346b464cf6731">&#9670;&#160;</a></span>enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.enable </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：直接使能一个电机。 </p>
+
+</div>
+</div>
+<a id="ac0ec6a8bfdfe82294292250c7dd0f177" name="ac0ec6a8bfdfe82294292250c7dd0f177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0ec6a8bfdfe82294292250c7dd0f177">&#9670;&#160;</a></span>ensure_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.ensure_mode </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：必要时把一个电机切换到某个驱动模式（1–4）。 </p>
+
+</div>
+</div>
+<a id="a05ec87264922cdbf356cd834b4f0a599" name="a05ec87264922cdbf356cd834b4f0a599"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ec87264922cdbf356cd834b4f0a599">&#9670;&#160;</a></span>fault_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> list[<a class="el" href="classinfrabot_1_1FaultEvent.html">FaultEvent</a>] infrabot.Robot.fault_log </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 故障、停止和自检记录，从旧到新，最多 200 条（FaultEvent 列表）。 </p>
+
+</div>
+</div>
+<a id="a7176c8f8e1747b5ad497a2878de35fe3" name="a7176c8f8e1747b5ad497a2878de35fe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7176c8f8e1747b5ad497a2878de35fe3">&#9670;&#160;</a></span>forward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> list[float](12) infrabot.Robot.forward </td>
+          <td>(</td>
+          <td class="paramtype">list[float](7)&#160;</td>
+          <td class="paramname"><em>joints</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] H7C 机械臂的正运动学：由 J1–J7（rad）得到工具位姿（12 个值）。 </p>
+
+</div>
+</div>
+<a id="ab3102a85251d98ce3480742e77a38be0" name="ab3102a85251d98ce3480742e77a38be0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3102a85251d98ce3480742e77a38be0">&#9670;&#160;</a></span>get_parameter() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a> infrabot.Robot.get_parameter </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 按 id（group &lt;&lt; 8 | index）读取一个参数。 </p>
+
+</div>
+</div>
+<a id="a09782ebd14922325afa66e2d69b5ed82" name="a09782ebd14922325afa66e2d69b5ed82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09782ebd14922325afa66e2d69b5ed82">&#9670;&#160;</a></span>get_parameter() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a> infrabot.Robot.get_parameter </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 按名称读取一个参数，例如 "imp.joint_k"。 </p>
+
+</div>
+</div>
+<a id="ac36211054badf382c95bfb6f8899e651" name="ac36211054badf382c95bfb6f8899e651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac36211054badf382c95bfb6f8899e651">&#9670;&#160;</a></span>get_register()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int infrabot.Robot.get_register </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>register_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value_type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：get_register(motor, register_id, value_type) 返回寄存器的原始位。 </p>
+<p>value_type 为 REGISTER_U32 或 REGISTER_F32，必须与该寄存器一致。 </p>
+
+</div>
+</div>
+<a id="a05369f86292c9a0372a562401809bcbe" name="a05369f86292c9a0372a562401809bcbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05369f86292c9a0372a562401809bcbe">&#9670;&#160;</a></span>get_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.get_state </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：检查一个电机的反馈是否新鲜。 </p>
+
+</div>
+</div>
+<a id="ac4c2d10370c71621ddcc6131bea22eac" name="ac4c2d10370c71621ddcc6131bea22eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4c2d10370c71621ddcc6131bea22eac">&#9670;&#160;</a></span>gripper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.gripper </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>position_rad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>speed_rad_s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>force_ratio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1 s] gripper(position_rad, speed_rad_s, force_ratio) 把夹爪移动到 0–5.94 rad。 </p>
+<p>force_ratio 是电流上限占电机最大值的比例（0–1）。夹爪组失能时调用失败。 </p>
+
+</div>
+</div>
+<a id="a073655b5240a7ffee2e27f0ca809aaeb" name="a073655b5240a7ffee2e27f0ca809aaeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a073655b5240a7ffee2e27f0ca809aaeb">&#9670;&#160;</a></span>hold_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> list[float](8) infrabot.Robot.hold_command </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 进入模式时读取的保持指令（关节坐标系，rad，8 个值）。 </p>
+<p>RT 指令流应从这里开始。 </p>
+
+</div>
+</div>
+<a id="a4ba122d7f92145e7b88965d17e44f6e3" name="a4ba122d7f92145e7b88965d17e44f6e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba122d7f92145e7b88965d17e44f6e3">&#9670;&#160;</a></span>info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1RobotInfo.html">RobotInfo</a> infrabot.Robot.info </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 握手得到的身份、限值和能力（RobotInfo）。 </p>
+
+</div>
+</div>
+<a id="a8e6713b4c27f7dd390e831b2b2396ec7" name="a8e6713b4c27f7dd390e831b2b2396ec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e6713b4c27f7dd390e831b2b2396ec7">&#9670;&#160;</a></span>joint_stream_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1JointStreamStats.html">JointStreamStats</a> infrabot.Robot.joint_stream_stats </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 原生生产者的状态（JointStreamStats）。 </p>
+
+</div>
+</div>
+<a id="ab1dca03c52a5a0fac57342a95d4a4806" name="ab1dca03c52a5a0fac57342a95d4a4806"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1dca03c52a5a0fac57342a95d4a4806">&#9670;&#160;</a></span>link_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1LinkStats.html">LinkStats</a> infrabot.Robot.link_stats </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 链路质量（LinkStats）。 </p>
+
+</div>
+</div>
+<a id="a111118fdad5177717979913fa86ca4d0" name="a111118fdad5177717979913fa86ca4d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a111118fdad5177717979913fa86ca4d0">&#9670;&#160;</a></span>list_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> list[<a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a>] infrabot.Robot.list_parameters </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，每个参数约 10 ms] 列出所有控制器参数（ParameterInfo 列表）。 </p>
+<p>固件 0.2.0（CAP_PARAMETERS）。 </p>
+
+</div>
+</div>
+<a id="a11196d2b9df69b738cc7c704efec515f" name="a11196d2b9df69b738cc7c704efec515f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11196d2b9df69b738cc7c704efec515f">&#9670;&#160;</a></span>log_directory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> str infrabot.Robot.log_directory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] SDK 的默认日志目录：$INFRABOT_LOG_DIR，否则 $XDG_STATE_HOME/infrabot/log，否则 ~/.local/state/infrabot/log。 </p>
+
+</div>
+</div>
+<a id="a80d93184cf5a4ec6ff254caffc653644" name="a80d93184cf5a4ec6ff254caffc653644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80d93184cf5a4ec6ff254caffc653644">&#9670;&#160;</a></span>motion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1MotionStatus.html">MotionStatus</a> infrabot.Robot.motion </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] movej/movep 会话的状态（MotionStatus）。 </p>
+
+</div>
+</div>
+<a id="a0b3aa37ccc3e904d7ef0b1352fb638ea" name="a0b3aa37ccc3e904d7ef0b1352fb638ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b3aa37ccc3e904d7ef0b1352fb638ea">&#9670;&#160;</a></span>movej()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1MotionResult.html">MotionResult</a> infrabot.Robot.movej </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">list[float](7)&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 在 NRT_JOINT 下把 J1–J7 移动到 <code>position</code>（rad），等待到达、失败或超过 options.timeout_ms + 3 s。 </p>
+<p>返回 MotionResult，到达时其 result 为 0。 </p>
+
+</div>
+</div>
+<a id="a7f478a170e3463bf5b3a9d1a67b7bb5d" name="a7f478a170e3463bf5b3a9d1a67b7bb5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f478a170e3463bf5b3a9d1a67b7bb5d">&#9670;&#160;</a></span>movep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1MotionResult.html">MotionResult</a> infrabot.Robot.movep </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">list[float](12)&#160;</td>
+          <td class="paramname"><em>pose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 在 NRT_CARTESIAN 下沿直线把工具移动到 <code>pose</code>。 </p>
+<p>返回 MotionResult，到达时其 result 为 0。 </p>
+
+</div>
+</div>
+<a id="a5bda79da1d1d2b81dee3e0161b7c30ee" name="a5bda79da1d1d2b81dee3e0161b7c30ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bda79da1d1d2b81dee3e0161b7c30ee">&#9670;&#160;</a></span>read_hold_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> list[float](8) infrabot.Robot.read_hold_command </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，0.5 s] 立即读取已使能电机的保持指令。 </p>
+
+</div>
+</div>
+<a id="aca3b1234b9b083270c8da89169a9e400" name="aca3b1234b9b083270c8da89169a9e400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca3b1234b9b083270c8da89169a9e400">&#9670;&#160;</a></span>record_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.record_event </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 在 events.csv 中添加一个标记。 </p>
+
+</div>
+</div>
+<a id="a6fa848c550e2f189641a6719efaadb60" name="a6fa848c550e2f189641a6719efaadb60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fa848c550e2f189641a6719efaadb60">&#9670;&#160;</a></span>recording()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1RecorderStats.html">RecorderStats</a> infrabot.Robot.recording </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 录制的进度（RecorderStats）。 </p>
+
+</div>
+</div>
+<a id="a2b47815dec5f4bf9aed6a290b525581f" name="a2b47815dec5f4bf9aed6a290b525581f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b47815dec5f4bf9aed6a290b525581f">&#9670;&#160;</a></span>request_feedback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.request_feedback </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：请求电机 <code>motor</code>（0–7）回送一帧反馈。 </p>
+
+</div>
+</div>
+<a id="a28cfbf244c1302cfa27dcfa0773465cf" name="a28cfbf244c1302cfa27dcfa0773465cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28cfbf244c1302cfa27dcfa0773465cf">&#9670;&#160;</a></span>resume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1Mode.html">Mode</a> infrabot.Robot.resume </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，3 s] 从机械臂停下的位置重新进入被受控停止中断的模式，并返回该 Mode。 </p>
+<p>在 IDLE 下发生的停止只做确认。机械臂有电机失能或故障时拒绝执行。 </p>
+
+</div>
+</div>
+<a id="ab4930ec64da8f67142b3aefb8d666f53" name="ab4930ec64da8f67142b3aefb8d666f53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4930ec64da8f67142b3aefb8d666f53">&#9670;&#160;</a></span>send_force_pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.send_force_pos </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>position_rad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>velocity_limit_rad_s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>torque_ratio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：send_force_pos(motor, position, velocity_limit, torque_ratio) 发送一帧力位指令。 </p>
+
+</div>
+</div>
+<a id="a8a1319bb0b801045deb7ea05613cd926" name="a8a1319bb0b801045deb7ea05613cd926"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a1319bb0b801045deb7ea05613cd926">&#9670;&#160;</a></span>send_mit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.send_mit </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>position_rad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>velocity_rad_s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>kd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>torque_nm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：send_mit(motor, position, velocity, kp, kd, torque) 发送一帧 MIT 指令。 </p>
+
+</div>
+</div>
+<a id="a2ec76886d61d2c5e64e57146f1b908a3" name="a2ec76886d61d2c5e64e57146f1b908a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ec76886d61d2c5e64e57146f1b908a3">&#9670;&#160;</a></span>send_pos_vel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.send_pos_vel </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>position_rad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>velocity_limit_rad_s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：send_pos_vel(motor, position, velocity_limit) 发送一帧位置速度指令。 </p>
+
+</div>
+</div>
+<a id="abcd18066349d5e17192e60ed903c5d1e" name="abcd18066349d5e17192e60ed903c5d1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcd18066349d5e17192e60ed903c5d1e">&#9670;&#160;</a></span>send_vel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.send_vel </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>velocity_rad_s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：send_vel(motor, velocity) 发送一帧速度指令。 </p>
+
+</div>
+</div>
+<a id="ab8233ae5340e17888a8577cbe50c59e2" name="ab8233ae5340e17888a8577cbe50c59e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8233ae5340e17888a8577cbe50c59e2">&#9670;&#160;</a></span>serial_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1SerialLogStats.html">SerialLogStats</a> infrabot.Robot.serial_log </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 串口日志的进度（SerialLogStats）。 </p>
+
+</div>
+</div>
+<a id="a4a7ca0db6c11cea65bfa5ab95e3982ad" name="a4a7ca0db6c11cea65bfa5ab95e3982ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a7ca0db6c11cea65bfa5ab95e3982ad">&#9670;&#160;</a></span>servej()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.servej </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1JointCommand.html">JointCommand</a>&#160;</td>
+          <td class="paramname"><em>command</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[RT] 发送一条 RT_JOINT 指令（JointCommand）。 </p>
+<p>原生关节流运行时，改为把指令交给它。 </p>
+
+</div>
+</div>
+<a id="a57c1dc7f0b371fba3dffc732f90f6b89" name="a57c1dc7f0b371fba3dffc732f90f6b89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57c1dc7f0b371fba3dffc732f90f6b89">&#9670;&#160;</a></span>servep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.servep </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1CartesianCommand.html">CartesianCommand</a>&#160;</td>
+          <td class="paramname"><em>command</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[RT] 发送一条 RT_CARTESIAN 指令（CartesianCommand）。 </p>
+
+</div>
+</div>
+<a id="adc9e2ef95f54ff56b707419c3833d51a" name="adc9e2ef95f54ff56b707419c3833d51a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9e2ef95f54ff56b707419c3833d51a">&#9670;&#160;</a></span>servo_off()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.servo_off </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1MotorGroup.html">MotorGroup</a> &#160;</td>
+          <td class="paramname"><em>group</em> = <code><a class="el" href="classinfrabot_1_1MotorGroup.html#a445a647804266c9749feab44679a13a9">MotorGroup.All</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &#160;</td>
+          <td class="paramname"><em>wait</em> = <code>True</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，2 s] 在任意模式下立即失能一个电机组（默认全部）。 </p>
+<p>不做受控停止：机械臂会下落。wait=False 时请求发送两次后立即返回。 </p>
+
+</div>
+</div>
+<a id="a0922d4da666275b48cc3cc266e3bc1b0" name="a0922d4da666275b48cc3cc266e3bc1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0922d4da666275b48cc3cc266e3bc1b0">&#9670;&#160;</a></span>servo_on()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.servo_on </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1MotorGroup.html">MotorGroup</a> &#160;</td>
+          <td class="paramname"><em>group</em> = <code><a class="el" href="classinfrabot_1_1MotorGroup.html#a445a647804266c9749feab44679a13a9">MotorGroup.All</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，3 s] 在 IDLE 下使能一个电机组（默认 MotorGroup.All），并等待遥测显示已使能。 </p>
+<p>超时则重新失能该组。 </p>
+
+</div>
+</div>
+<a id="a13f018c6c0b2076285ce173deaef745f" name="a13f018c6c0b2076285ce173deaef745f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13f018c6c0b2076285ce173deaef745f">&#9670;&#160;</a></span>set_can_timeout_ms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.set_can_timeout_ms </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout_ms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：设置一个电机的 CAN 超时。 </p>
+
+</div>
+</div>
+<a id="aea36b97faa1ebe8fcabc5796981be4f9" name="aea36b97faa1ebe8fcabc5796981be4f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea36b97faa1ebe8fcabc5796981be4f9">&#9670;&#160;</a></span>set_default_cartesian_options()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.set_default_cartesian_options </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 进入 NRT_CARTESIAN 会话时保持运动所用的选项。 </p>
+
+</div>
+</div>
+<a id="a7ee0f02c841aa382fb5501378bbfff5d" name="a7ee0f02c841aa382fb5501378bbfff5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee0f02c841aa382fb5501378bbfff5d">&#9670;&#160;</a></span>set_default_move_options()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.set_default_move_options </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 进入 NRT_JOINT 会话时保持运动所用的选项。 </p>
+
+</div>
+</div>
+<a id="aa8b13450f0a4afd2b7046d921c27e435" name="aa8b13450f0a4afd2b7046d921c27e435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8b13450f0a4afd2b7046d921c27e435">&#9670;&#160;</a></span>set_heartbeat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.set_heartbeat </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 打开或关闭心跳；默认打开。 </p>
+<p>关闭时本进程只做观察，由另一个程序控制机械臂。 </p>
+
+</div>
+</div>
+<a id="a2a89f6f1e197cc545c3304deb6059861" name="a2a89f6f1e197cc545c3304deb6059861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a89f6f1e197cc545c3304deb6059861">&#9670;&#160;</a></span>set_motor_profile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.set_motor_profile </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1MotorProfile.html">MotorProfile</a>&#160;</td>
+          <td class="paramname"><em>profile</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，3 s] 在 IDLE 下、所有电机失能时选择 J1–J7 的电机模式（MotorProfile）。 </p>
+<p>随后控制器检查每个电机的参数，不匹配时拒绝使能；错误信息会指出是哪个电机、哪个寄存器。 </p>
+
+</div>
+</div>
+<a id="a3ed21fb82be89c3da5d69de88825821a" name="a3ed21fb82be89c3da5d69de88825821a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ed21fb82be89c3da5d69de88825821a">&#9670;&#160;</a></span>set_parameter() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a> infrabot.Robot.set_parameter </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 按 id 为参数请求新值，并返回写入后的 ParameterInfo。 </p>
+<p>控制器让生效值逐渐过渡到新值。只写入 RAM；需要是控制机械臂的那台 PC，或当前没有 PC 在控制。 </p>
+
+</div>
+</div>
+<a id="aa1b3520e09fa59a57cfb340b288886e4" name="aa1b3520e09fa59a57cfb340b288886e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1b3520e09fa59a57cfb340b288886e4">&#9670;&#160;</a></span>set_parameter() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1ParameterInfo.html">ParameterInfo</a> infrabot.Robot.set_parameter </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 按名称为参数请求新值，并返回写入后的 ParameterInfo。 </p>
+<p>见按 id 的重载。 </p>
+
+</div>
+</div>
+<a id="a4814c410db511e1ed3fd97fe19aa622b" name="a4814c410db511e1ed3fd97fe19aa622b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4814c410db511e1ed3fd97fe19aa622b">&#9670;&#160;</a></span>set_zero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.set_zero </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &#160;</td>
+          <td class="paramname"><em>enable_after</em> = <code>False</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，2 s] 把每个电机的当前角度保存为零点；所有电机都必须处于失能状态。 </p>
+<p>enable_after=True 时完成后使能两个电机组。 </p>
+
+</div>
+</div>
+<a id="a822bc6fad2a6a504f38fa168b06afebd" name="a822bc6fad2a6a504f38fa168b06afebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a822bc6fad2a6a504f38fa168b06afebd">&#9670;&#160;</a></span>set_zero_position()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.set_zero_position </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：把一个电机的当前角度保存为零点。 </p>
+
+</div>
+</div>
+<a id="a54db14d3e8f682178f18e9463b56ccb8" name="a54db14d3e8f682178f18e9463b56ccb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54db14d3e8f682178f18e9463b56ccb8">&#9670;&#160;</a></span>start_joint_stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.start_joint_stream </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1JointCommand.html">JointCommand</a>&#160;</td>
+          <td class="paramname"><em>initial</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1JointStreamOptions.html">JointStreamOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1JointStreamOptions.html">JointStreamOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 从 <code>initial</code> 开始运行原生 1 kHz RT_JOINT 生产者；之后调用 servej() 会替换其指令。 </p>
+<p>需要处于 RT_JOINT、MIT 模式且反馈新鲜。生产者超时、反馈过期或控制器故障时会请求受控停止。 </p>
+
+</div>
+</div>
+<a id="a768b5ebf2a57837884236bb9abe0d3b6" name="a768b5ebf2a57837884236bb9abe0d3b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a768b5ebf2a57837884236bb9abe0d3b6">&#9670;&#160;</a></span>start_recording()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.start_recording </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str&#160;</td>
+          <td class="paramname"><em>directory</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1RecordOptions.html">RecordOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1RecordOptions.html">RecordOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，创建文件] 把每个遥测包（1 kHz）、发出的每条指令和事件以 CSV 记录到 directory/&lt;time&gt;[-label]/ 下。 </p>
+<p>由后台线程写入。 </p>
+
+</div>
+</div>
+<a id="a05c2b49c25f526f6a05ffdcfb17e153f" name="a05c2b49c25f526f6a05ffdcfb17e153f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c2b49c25f526f6a05ffdcfb17e153f">&#9670;&#160;</a></span>start_serial_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> str infrabot.Robot.start_serial_log </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1SerialLogOptions.html">SerialLogOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1SerialLogOptions.html">SerialLogOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，打开串口和文件] 保存控制器的串口调试输出，并返回文件路径。 </p>
+<p>串口被其他程序占用时调用失败。 </p>
+
+</div>
+</div>
+<a id="a1343bac0190330335c96841b4704feb8" name="a1343bac0190330335c96841b4704feb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1343bac0190330335c96841b4704feb8">&#9670;&#160;</a></span>state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1RobotState.html">RobotState</a> infrabot.Robot.state </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[RT] 最新遥测的副本（RobotState）。 </p>
+
+</div>
+</div>
+<a id="aaf1a6cbb91218cf41eee06ada2f01fca" name="aaf1a6cbb91218cf41eee06ada2f01fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf1a6cbb91218cf41eee06ada2f01fca">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.stop </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &#160;</td>
+          <td class="paramname"><em>wait</em> = <code>True</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，2 s] 在任意模式下受控停止：控制器把机械臂制动到静止，并在 IDLE 下保持使能。 </p>
+<p>wait=False 时发送请求后立即返回。resume() 继续被中断的模式。 </p>
+
+</div>
+</div>
+<a id="ad942ea76b8284c3fc2fb7d180a56e040" name="ad942ea76b8284c3fc2fb7d180a56e040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad942ea76b8284c3fc2fb7d180a56e040">&#9670;&#160;</a></span>stop_joint_stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.stop_joint_stream </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 结束原生生产者，不发送任何数据。 </p>
+<p>要停止机械臂请用 stop()。 </p>
+
+</div>
+</div>
+<a id="aa20d37729d8e2eb9b5689176015a0c58" name="aa20d37729d8e2eb9b5689176015a0c58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa20d37729d8e2eb9b5689176015a0c58">&#9670;&#160;</a></span>stop_recording()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.stop_recording </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 结束写入线程并关闭文件。 </p>
+
+</div>
+</div>
+<a id="a331506e4950af5e633eff20bcf8d9346" name="a331506e4950af5e633eff20bcf8d9346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a331506e4950af5e633eff20bcf8d9346">&#9670;&#160;</a></span>stop_serial_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.stop_serial_log </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking] 等待串口线程结束。 </p>
+
+</div>
+</div>
+<a id="acb8ad594a89d42914bfc8800e6e26fab" name="acb8ad594a89d42914bfc8800e6e26fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb8ad594a89d42914bfc8800e6e26fab">&#9670;&#160;</a></span>store_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.store_parameters </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：把一个电机的寄存器保存到其闪存。 </p>
+
+</div>
+</div>
+<a id="a944a4fd7da16b1427f83856504bb7a3f" name="a944a4fd7da16b1427f83856504bb7a3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a944a4fd7da16b1427f83856504bb7a3f">&#9670;&#160;</a></span>submit_movej()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.submit_movej </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">list[float](7)&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1MoveOptions.html">MoveOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 开始一次关节运动并立即返回；之后用 motion() 或 wait_motion() 跟踪。 </p>
+<p>上一次运动必须已经结束。 </p>
+
+</div>
+</div>
+<a id="a9d634a8ba3b1ef9e8ea26786f57fd5a3" name="a9d634a8ba3b1ef9e8ea26786f57fd5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d634a8ba3b1ef9e8ea26786f57fd5a3">&#9670;&#160;</a></span>submit_movep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.submit_movep </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">list[float](12)&#160;</td>
+          <td class="paramname"><em>pose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a> &#160;</td>
+          <td class="paramname"><em>options</em> = <code><a class="el" href="classinfrabot_1_1CartesianMoveOptions.html">CartesianMoveOptions</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Non-blocking] 开始一次笛卡尔运动并立即返回。 </p>
+<p>见 submit_movej()。 </p>
+
+</div>
+</div>
+<a id="a18f8a33124aa40d7066ad00ae99c57b1" name="a18f8a33124aa40d7066ad00ae99c57b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f8a33124aa40d7066ad00ae99c57b1">&#9670;&#160;</a></span>switch_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.switch_mode </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classinfrabot_1_1Mode.html">Mode</a>&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，2 s] 切换控制模式。 </p>
+<p>IDLE 以外的模式要从 IDLE 进入，且机械臂已使能并静止。RT 模式：之后从 hold_command() 开始以 servej()/servep() 发送指令流。NRT 模式：SDK 启动 movej/movep 会话。控制器仍在交接控制权时，最多重试 1 s。 </p>
+
+</div>
+</div>
+<a id="afef1f91b6897fb4ebc2e4ff11ae7613c" name="afef1f91b6897fb4ebc2e4ff11ae7613c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afef1f91b6897fb4ebc2e4ff11ae7613c">&#9670;&#160;</a></span>wait_motion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classinfrabot_1_1MotionResult.html">MotionResult</a> infrabot.Robot.wait_motion </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout_ms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，timeout_ms] 等待最新的一次运动到达，返回其 MotionResult；运动失败时抛出异常。 </p>
+
+</div>
+</div>
+<a id="a1ec042b648cb4969d30eece49bc4421f" name="a1ec042b648cb4969d30eece49bc4421f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ec042b648cb4969d30eece49bc4421f">&#9670;&#160;</a></span>write_register()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None infrabot.Robot.write_register </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>motor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>register_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value_type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[Blocking，1.5 s] 维护：write_register(motor, register_id, value, value_type) 在允许范围内写一个寄存器并读回。 </p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="infrabot_8py.html">infrabot.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceinfrabot.html">infrabot</a></li><li class="navelem"><a class="el" href="classinfrabot_1_1Robot.html">Robot</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

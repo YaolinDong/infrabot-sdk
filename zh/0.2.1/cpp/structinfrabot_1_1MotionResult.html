@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: infrabot::MotionResult结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/classinfrabot_1_1MotionResult.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/structinfrabot_1_1MotionResult.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structinfrabot_1_1MotionResult.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="structinfrabot_1_1MotionResult-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">infrabot::MotionResult结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>movej()、movep() 或 wait_motion() 的结果。</p>
+
+<p><code>#include &lt;<a class="el" href="robot_8hpp_source.html">infrabot/robot.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a41e8f123eb37067b7bce14249c884a44" id="r_a41e8f123eb37067b7bce14249c884a44"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#a41e8f123eb37067b7bce14249c884a44">result</a> = 0</td></tr>
+<tr class="memdesc:a41e8f123eb37067b7bce14249c884a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">INFRABOT_MOVE_*：0 表示已到位。</td></tr>
+<tr class="separator:a41e8f123eb37067b7bce14249c884a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9c6bc9ba52ec0c63ab7b13441326ea5" id="r_ac9c6bc9ba52ec0c63ab7b13441326ea5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#ac9c6bc9ba52ec0c63ab7b13441326ea5">state</a> = 0</td></tr>
+<tr class="memdesc:ac9c6bc9ba52ec0c63ab7b13441326ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">INFRABOT_MOVE_STATE_*。</td></tr>
+<tr class="separator:ac9c6bc9ba52ec0c63ab7b13441326ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1feb37e7bed4f7a58fbec11756ab77" id="r_a1e1feb37e7bed4f7a58fbec11756ab77"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#a1e1feb37e7bed4f7a58fbec11756ab77">motion_id</a> = 0</td></tr>
+<tr class="memdesc:a1e1feb37e7bed4f7a58fbec11756ab77"><td class="mdescLeft">&#160;</td><td class="mdescRight">本结果对应的运动。</td></tr>
+<tr class="separator:a1e1feb37e7bed4f7a58fbec11756ab77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a63ee19f149a8e7bd1815d60fb3b42" id="r_a77a63ee19f149a8e7bd1815d60fb3b42"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#a77a63ee19f149a8e7bd1815d60fb3b42">arrived_mask</a> = 0</td></tr>
+<tr class="memdesc:a77a63ee19f149a8e7bd1815d60fb3b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">在容差内的关节（第 i 位 = J(i+1)）。</td></tr>
+<tr class="separator:a77a63ee19f149a8e7bd1815d60fb3b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea2ba71a9cdeea6b9a96eeedb80de82e" id="r_aea2ba71a9cdeea6b9a96eeedb80de82e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#aea2ba71a9cdeea6b9a96eeedb80de82e">fresh_mask</a> = 0</td></tr>
+<tr class="memdesc:aea2ba71a9cdeea6b9a96eeedb80de82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">反馈新鲜的关节。</td></tr>
+<tr class="separator:aea2ba71a9cdeea6b9a96eeedb80de82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad15da756bf4b4894b80e2d8239850250" id="r_ad15da756bf4b4894b80e2d8239850250"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#ad15da756bf4b4894b80e2d8239850250">max_error_rad</a> = 0</td></tr>
+<tr class="memdesc:ad15da756bf4b4894b80e2d8239850250"><td class="mdescLeft">&#160;</td><td class="mdescRight">最大剩余误差：关节运动单位为 rad，笛卡尔运动单位为 m 或 rad。</td></tr>
+<tr class="separator:ad15da756bf4b4894b80e2d8239850250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2199a7aae167e91b34da19363a98acc" id="r_ac2199a7aae167e91b34da19363a98acc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#ac2199a7aae167e91b34da19363a98acc">reason</a> = 0</td></tr>
+<tr class="memdesc:ac2199a7aae167e91b34da19363a98acc"><td class="mdescLeft">&#160;</td><td class="mdescRight">运动结束的 INFRABOT_MOVE_* 原因；含义可用 <code>move_reason_text()</code> 查询。</td></tr>
+<tr class="separator:ac2199a7aae167e91b34da19363a98acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3fe9ca4cfd9776c3f37646e32af369d" id="r_ab3fe9ca4cfd9776c3f37646e32af369d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MotionResult.html#ab3fe9ca4cfd9776c3f37646e32af369d">message</a></td></tr>
+<tr class="memdesc:ab3fe9ca4cfd9776c3f37646e32af369d"><td class="mdescLeft">&#160;</td><td class="mdescRight">失败原因（中文）；到位时为空。</td></tr>
+<tr class="separator:ab3fe9ca4cfd9776c3f37646e32af369d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>movej()、movep() 或 wait_motion() 的结果。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="11_movej_offset_8cpp-example.html#_a0">11_movej_offset.cpp</a> , 以及 <a class="el" href="12_movep_offset_8cpp-example.html#_a0">12_movep_offset.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00295">295</a> 行定义.</p>
+</div><h2 class="groupheader">类成员变量说明</h2>
+<a id="a77a63ee19f149a8e7bd1815d60fb3b42" name="a77a63ee19f149a8e7bd1815d60fb3b42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a63ee19f149a8e7bd1815d60fb3b42">&#9670;&#160;</a></span>arrived_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::MotionResult::arrived_mask = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在容差内的关节（第 i 位 = J(i+1)）。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00299">299</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aea2ba71a9cdeea6b9a96eeedb80de82e" name="aea2ba71a9cdeea6b9a96eeedb80de82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea2ba71a9cdeea6b9a96eeedb80de82e">&#9670;&#160;</a></span>fresh_mask</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::MotionResult::fresh_mask = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>反馈新鲜的关节。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00300">300</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad15da756bf4b4894b80e2d8239850250" name="ad15da756bf4b4894b80e2d8239850250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad15da756bf4b4894b80e2d8239850250">&#9670;&#160;</a></span>max_error_rad</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float infrabot::MotionResult::max_error_rad = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>最大剩余误差：关节运动单位为 rad，笛卡尔运动单位为 m 或 rad。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00301">301</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab3fe9ca4cfd9776c3f37646e32af369d" name="ab3fe9ca4cfd9776c3f37646e32af369d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3fe9ca4cfd9776c3f37646e32af369d">&#9670;&#160;</a></span>message</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string infrabot::MotionResult::message</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>失败原因（中文）；到位时为空。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="11_movej_offset_8cpp-example.html#a2">11_movej_offset.cpp</a> , 以及 <a class="el" href="12_movep_offset_8cpp-example.html#a2">12_movep_offset.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00303">303</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1e1feb37e7bed4f7a58fbec11756ab77" name="a1e1feb37e7bed4f7a58fbec11756ab77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e1feb37e7bed4f7a58fbec11756ab77">&#9670;&#160;</a></span>motion_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::MotionResult::motion_id = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>本结果对应的运动。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00298">298</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac2199a7aae167e91b34da19363a98acc" name="ac2199a7aae167e91b34da19363a98acc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2199a7aae167e91b34da19363a98acc">&#9670;&#160;</a></span>reason</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::MotionResult::reason = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>运动结束的 INFRABOT_MOVE_* 原因；含义可用 <code>move_reason_text()</code> 查询。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00302">302</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41e8f123eb37067b7bce14249c884a44" name="a41e8f123eb37067b7bce14249c884a44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41e8f123eb37067b7bce14249c884a44">&#9670;&#160;</a></span>result</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::MotionResult::result = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>INFRABOT_MOVE_*：0 表示已到位。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="11_movej_offset_8cpp-example.html#a1">11_movej_offset.cpp</a> , 以及 <a class="el" href="12_movep_offset_8cpp-example.html#a1">12_movep_offset.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00296">296</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac9c6bc9ba52ec0c63ab7b13441326ea5" name="ac9c6bc9ba52ec0c63ab7b13441326ea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9c6bc9ba52ec0c63ab7b13441326ea5">&#9670;&#160;</a></span>state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::MotionResult::state = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>INFRABOT_MOVE_STATE_*。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00297">297</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>include/infrabot/<a class="el" href="robot_8hpp_source.html">robot.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceinfrabot.html">infrabot</a></li><li class="navelem"><a class="el" href="structinfrabot_1_1MotionResult.html">MotionResult</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

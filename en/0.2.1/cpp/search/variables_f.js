@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['path_0',['path',['../structinfrabot_1_1SerialLogStats.html#a8baa9985efc29473ab8b688e280de4ea',1,'infrabot::SerialLogStats']]],
+  ['phase_1',['phase',['../structinfrabot_1_1MotionStatus.html#a065bca326dfc29d2a51a1bdd6e7ad500',1,'infrabot::MotionStatus']]],
+  ['port_2',['port',['../structinfrabot_1_1SerialLogOptions.html#a0920236a26ce0327602644ae1e23e772',1,'infrabot::SerialLogOptions::port'],['../structinfrabot_1_1McuLogOptions.html#a1a60a77f97d09b4347bb091baba4079f',1,'infrabot::McuLogOptions::port']]],
+  ['port_5fopen_3',['port_open',['../structinfrabot_1_1SerialLogStats.html#ad2e1fd00a308ac14c96c9b8b13e4eaad',1,'infrabot::SerialLogStats']]],
+  ['pose_4',['pose',['../structinfrabot_1_1CartesianCommand.html#aa1eb9970e2ad72903b1dc68ffc4cbdbe',1,'infrabot::CartesianCommand']]],
+  ['position_5',['position',['../structinfrabot_1_1JointState.html#a186cdbed1619425b4d818885aa16dfc2',1,'infrabot::JointState::position'],['../structinfrabot_1_1JointCommand.html#a6d7f3e79c5d064ed28c1f45c3352b925',1,'infrabot::JointCommand::position']]],
+  ['position_5fmax_6',['position_max',['../structinfrabot_1_1RobotInfo.html#a2ce050fe239addecd49d64000c40f865',1,'infrabot::RobotInfo']]],
+  ['position_5fmin_7',['position_min',['../structinfrabot_1_1RobotInfo.html#a785b1398e6a1cf4a6b80e953f8552848',1,'infrabot::RobotInfo']]],
+  ['position_5fmrad_8',['position_mrad',['../structinfrabot_1_1MaintenanceRequest.html#a98eecedd731a3a3a9be0ecff6966c92d',1,'infrabot::MaintenanceRequest']]],
+  ['position_5ftolerance_9',['position_tolerance',['../structinfrabot_1_1MoveOptions.html#a2ceff582af52f313250a50f5f31b7c6e',1,'infrabot::MoveOptions::position_tolerance'],['../structinfrabot_1_1CartesianMoveOptions.html#a4b1fd1c0969c09c8d5c15892beedcc83',1,'infrabot::CartesianMoveOptions::position_tolerance']]],
+  ['product_10',['product',['../structinfrabot_1_1RobotInfo.html#a69e95cf5502f042c0007a5581fa962bc',1,'infrabot::RobotInfo']]],
+  ['profile_11',['profile',['../structinfrabot_1_1RobotState.html#a2a5a76ae7b6a5c6052ca775d20e1ffde',1,'infrabot::RobotState']]],
+  ['profile_5fready_12',['profile_ready',['../structinfrabot_1_1RobotInfo.html#a7f80f6b54ae254aaa08d67e96b50ebdf',1,'infrabot::RobotInfo::profile_ready'],['../structinfrabot_1_1RobotState.html#a31e17db43b028f2467fd48c878828619',1,'infrabot::RobotState::profile_ready']]],
+  ['progress_13',['progress',['../structinfrabot_1_1McuLogOptions.html#acf9f885e4476de0eca8da7fc9d353eef',1,'infrabot::McuLogOptions']]],
+  ['protocol_5fmajor_14',['protocol_major',['../structinfrabot_1_1RobotInfo.html#a8cc5cdcb611f3ba6fc36a80f6bf75590',1,'infrabot::RobotInfo']]],
+  ['protocol_5fminor_15',['protocol_minor',['../structinfrabot_1_1RobotInfo.html#abdcf8d1a3dc5b37b500c58d917737e21',1,'infrabot::RobotInfo']]],
+  ['protocol_5fversion_16',['protocol_version',['../structinfrabot_1_1RobotInfo.html#ae03d6669793c51b2b41680481b63deb1',1,'infrabot::RobotInfo']]]
+];

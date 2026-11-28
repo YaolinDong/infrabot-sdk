@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: 10_monitor.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/index.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/10_monitor_8cpp-example.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('10_monitor_8cpp-example.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">10_monitor.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<p><code>--seconds</code></p>
+<div class="fragment"><div class="line"><span class="comment">/* SPDX-License-Identifier: Apache-2.0 */</span></div>
+<div class="line"><span class="comment">/* Copyright (c) 2026 Yaolin Dong */</span></div>
+<div class="line"><span class="comment">// Read only: prints the controller state, every joint and the link quality for a few seconds, then the</span></div>
+<div class="line"><span class="comment">// fault log. Usage: 10_monitor [IP [SECONDS]]. No heartbeat is sent and nothing is enabled.</span></div>
+<div class="line"><span class="preprocessor">#include &quot;example.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="diagnostics_8hpp.html">infrabot/diagnostics.hpp</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">double</span> seconds = argc &gt; 2 ? std::stod(argv[2]) : 1.0;</div>
+<div class="line">    <span class="keywordflow">return</span> example::connected(argc, argv, <span class="keyword">false</span>, [&amp;](<a id="_a0" name="_a0"></a><a class="code hl_class" href="classinfrabot_1_1Robot.html">infrabot::Robot</a>&amp; robot, std::string&amp;) {</div>
+<div class="line">        <span class="comment">// The first telemetry packet follows the handshake.</span></div>
+<div class="line">        <span class="keyword">const</span> <span class="keyword">auto</span> first = std::chrono::steady_clock::now() + std::chrono::milliseconds(500);</div>
+<div class="line">        <span class="keywordflow">while</span> (robot.<a id="a1" name="a1"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a2572c257b11b525378c37aa6d2e3de1a">state</a>().<a id="a2" name="a2"></a><a class="code hl_variable" href="structinfrabot_1_1RobotState.html#a95e85e60a9dbc114e07cadec8edc25ab">telemetry_age_ms</a> &gt; 100) {</div>
+<div class="line">            <span class="keywordflow">if</span> (std::chrono::steady_clock::now() &gt;= first) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No telemetry&quot;</span>);</div>
+<div class="line">            std::this_thread::sleep_for(std::chrono::milliseconds(5));</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keyword">const</span> <span class="keyword">auto</span> end = std::chrono::steady_clock::now() + std::chrono::duration&lt;double&gt;(seconds);</div>
+<div class="line">        <span class="keywordflow">for</span> (;;) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keyword">auto</span> s = robot.<a class="code hl_function" href="classinfrabot_1_1Robot.html#a2572c257b11b525378c37aa6d2e3de1a">state</a>();</div>
+<div class="line">            std::printf(<span class="stringliteral">&quot;%s mode=%s enabled=0x%02X telemetry age %u ms\n&quot;</span>,</div>
+<div class="line">                        <a id="a3" name="a3"></a><a class="code hl_function" href="namespaceinfrabot.html#aadfaf51c2fd5518fbb0f0b11d0b3dfeb">infrabot::controller_status_text</a>(s.controller_state), <a id="a4" name="a4"></a><a class="code hl_function" href="namespaceinfrabot.html#a93ed8032743750c07b296c1fcb5ca83b">infrabot::mode_text</a>(s.mode),</div>
+<div class="line">                        s.enabled_mask, s.telemetry_age_ms);</div>
+<div class="line">            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 8; ++i)</div>
+<div class="line">                std::printf(<span class="stringliteral">&quot;  J%zu q=%+.3f rad dq=%+.3f rad/s tau=%+.2f Nm %s %u C\n&quot;</span>, i + 1,</div>
+<div class="line">                            s.joints.position[i], s.joints.velocity[i], s.joints.torque[i],</div>
+<div class="line">                            <a id="a5" name="a5"></a><a class="code hl_function" href="namespaceinfrabot.html#a2140c128d971f6224dfc4fba50594715">infrabot::drive_state_info</a>(s.joints.drive_state[i]).<a id="a6" name="a6"></a><a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#ac2ef6b93753575009c603792dfe996e8">name</a>, s.joints.temperature[i]);</div>
+<div class="line">            <span class="keywordflow">if</span> (std::chrono::steady_clock::now() &gt;= end) <span class="keywordflow">break</span>;</div>
+<div class="line">            std::this_thread::sleep_for(std::chrono::milliseconds(500));</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keyword">const</span> <span class="keyword">auto</span> link = robot.<a id="a7" name="a7"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a14a98ffc144a2c48be44603a767640bb">link_stats</a>();</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;link: %u packets/s, lost %u, longest gap %u us\n&quot;</span>, link.rx_last_second,</div>
+<div class="line">                    link.lost_last_second, link.rx_interval_max_us);</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; event : robot.<a id="a8" name="a8"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#afd57699578314bb5e0a9dd89fb4c47ac">fault_log</a>()) std::printf(<span class="stringliteral">&quot;fault: %s\n&quot;</span>, event.message.c_str());</div>
+<div class="line">    });</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html"><div class="ttname"><a href="classinfrabot_1_1Robot.html">infrabot::Robot</a></div><div class="ttdoc">The client for one arm controller.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00499">robot.hpp:499</a></div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a14a98ffc144a2c48be44603a767640bb"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a14a98ffc144a2c48be44603a767640bb">infrabot::Robot::link_stats</a></div><div class="ttdeci">LinkStats link_stats() const</div><div class="ttdoc">[Non-blocking] Link quality: datagrams sent and received, telemetry loss and gaps.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a2572c257b11b525378c37aa6d2e3de1a"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a2572c257b11b525378c37aa6d2e3de1a">infrabot::Robot::state</a></div><div class="ttdeci">RobotState state() const</div><div class="ttdoc">[RT] A copy of the newest telemetry: joints, mode, enabled drives, faults and stops.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_afd57699578314bb5e0a9dd89fb4c47ac"><div class="ttname"><a href="classinfrabot_1_1Robot.html#afd57699578314bb5e0a9dd89fb4c47ac">infrabot::Robot::fault_log</a></div><div class="ttdeci">std::vector&lt; FaultEvent &gt; fault_log() const</div><div class="ttdoc">[Non-blocking] Faults, stops, self-checks and link warnings, oldest first, at most 200.</div></div>
+<div class="ttc" id="adiagnostics_8hpp_html"><div class="ttname"><a href="diagnostics_8hpp.html">diagnostics.hpp</a></div><div class="ttdoc">Human-readable meaning of the codes in infrabot/protocol.h.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a2140c128d971f6224dfc4fba50594715"><div class="ttname"><a href="namespaceinfrabot.html#a2140c128d971f6224dfc4fba50594715">infrabot::drive_state_info</a></div><div class="ttdeci">const DriveStateInfo &amp; drive_state_info(uint8_t state)</div><div class="ttdoc">Every Damiao status code (INFRABOT_DRIVE_*); unknown codes get a generic entry.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a93ed8032743750c07b296c1fcb5ca83b"><div class="ttname"><a href="namespaceinfrabot.html#a93ed8032743750c07b296c1fcb5ca83b">infrabot::mode_text</a></div><div class="ttdeci">const char * mode_text(Mode mode)</div><div class="ttdoc">Mode for display: &quot;RT Joint&quot;, &quot;RT 笛卡尔&quot;, &quot;movej（NRT Joint）&quot;, ...</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_aadfaf51c2fd5518fbb0f0b11d0b3dfeb"><div class="ttname"><a href="namespaceinfrabot.html#aadfaf51c2fd5518fbb0f0b11d0b3dfeb">infrabot::controller_status_text</a></div><div class="ttdeci">const char * controller_status_text(uint8_t status)</div><div class="ttdoc">INFRABOT_STATUS_*, in Chinese.</div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_ac2ef6b93753575009c603792dfe996e8"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#ac2ef6b93753575009c603792dfe996e8">infrabot::DriveStateInfo::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">Short name, e.g. &quot;过压&quot;.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00025">diagnostics.hpp:25</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1RobotState_html_a95e85e60a9dbc114e07cadec8edc25ab"><div class="ttname"><a href="structinfrabot_1_1RobotState.html#a95e85e60a9dbc114e07cadec8edc25ab">infrabot::RobotState::telemetry_age_ms</a></div><div class="ttdeci">uint32_t telemetry_age_ms</div><div class="ttdoc">Age of the newest telemetry, ms; UINT32_MAX before the first.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00200">robot.hpp:200</a></div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

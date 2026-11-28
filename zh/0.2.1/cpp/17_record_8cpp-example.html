@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: 17_record.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/index.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/17_record_8cpp-example.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('17_record_8cpp-example.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">17_record.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<p><code>--directory</code>, <code>--seconds</code></p>
+<div class="fragment"><div class="line"><span class="comment">/* SPDX-License-Identifier: Apache-2.0 */</span></div>
+<div class="line"><span class="comment">/* Copyright (c) 2026 Yaolin Dong */</span></div>
+<div class="line"><span class="comment">// Read only: records the 1 kHz telemetry, the commands sent and the events as CSV for a few seconds.</span></div>
+<div class="line"><span class="comment">// Nothing is enabled. Usage: 17_record [IP [DIRECTORY SECONDS]]; default: the SDK log directory, 1 s.</span></div>
+<div class="line"><span class="preprocessor">#include &quot;example.hpp&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
+<div class="line">    <span class="keyword">const</span> std::string directory = argc &gt; 3 ? argv[2] : <a id="a0" name="a0"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a154e6580851a3a286e7b0bea747bb4db">infrabot::Robot::log_directory</a>();</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">double</span> seconds = argc &gt; 3 ? std::stod(argv[3]) : 1.0;</div>
+<div class="line">    <span class="keywordflow">return</span> example::connected(argc, argv, <span class="keyword">false</span>, [&amp;](<a id="_a1" name="_a1"></a><a class="code hl_class" href="classinfrabot_1_1Robot.html">infrabot::Robot</a>&amp; robot, std::string&amp; error) {</div>
+<div class="line">        <a id="_a2" name="_a2"></a><a class="code hl_struct" href="structinfrabot_1_1RecordOptions.html">infrabot::RecordOptions</a> options;</div>
+<div class="line">        options.<a id="a3" name="a3"></a><a class="code hl_variable" href="structinfrabot_1_1RecordOptions.html#ad2301d224a6f7b121ac591ab8150b30f">label</a> = <span class="stringliteral">&quot;example&quot;</span>;</div>
+<div class="line">        example::check(robot.<a id="a4" name="a4"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a9966eb4bbabc9e238c8c9a73e0b6f8ae">start_recording</a>(directory, error, options), error);</div>
+<div class="line">        robot.<a id="a5" name="a5"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a77a13c48be244fe6b154f2ecd997e000">record_event</a>(<span class="stringliteral">&quot;example marker&quot;</span>);</div>
+<div class="line">        std::this_thread::sleep_for(std::chrono::duration&lt;double&gt;(seconds));</div>
+<div class="line">        robot.<a id="a6" name="a6"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#acb229f681bf5fd5b8f276cbb8dee4c3b">stop_recording</a>();</div>
+<div class="line">        <span class="keyword">const</span> <span class="keyword">auto</span> stats = robot.<a id="a7" name="a7"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a6397ce4805adff19125de56bb26a03a2">recording</a>();</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;%s: %llu telemetry rows, %llu events, %llu dropped\n&quot;</span>, stats.directory.c_str(),</div>
+<div class="line">                    <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>(stats.telemetry_rows),</div>
+<div class="line">                    <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>(stats.events), <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>(stats.dropped));</div>
+<div class="line">        <span class="keywordflow">if</span> (stats.telemetry_rows == 0) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;no telemetry was recorded&quot;</span>);</div>
+<div class="line">    });</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html"><div class="ttname"><a href="classinfrabot_1_1Robot.html">infrabot::Robot</a></div><div class="ttdoc">The client for one arm controller.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00499">robot.hpp:499</a></div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a154e6580851a3a286e7b0bea747bb4db"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a154e6580851a3a286e7b0bea747bb4db">infrabot::Robot::log_directory</a></div><div class="ttdeci">static std::string log_directory()</div><div class="ttdoc">[Non-blocking] Default SDK log directory.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a6397ce4805adff19125de56bb26a03a2"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a6397ce4805adff19125de56bb26a03a2">infrabot::Robot::recording</a></div><div class="ttdeci">RecorderStats recording() const</div><div class="ttdoc">[Non-blocking] Progress of the recording.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a77a13c48be244fe6b154f2ecd997e000"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a77a13c48be244fe6b154f2ecd997e000">infrabot::Robot::record_event</a></div><div class="ttdeci">void record_event(const std::string &amp;text)</div><div class="ttdoc">[Non-blocking] Adds a marker to events.csv.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a9966eb4bbabc9e238c8c9a73e0b6f8ae"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a9966eb4bbabc9e238c8c9a73e0b6f8ae">infrabot::Robot::start_recording</a></div><div class="ttdeci">bool start_recording(const std::string &amp;directory, std::string &amp;error, const RecordOptions &amp;options=RecordOptions{})</div><div class="ttdoc">[Blocking, file setup] Records telemetry, commands and events as CSV.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_acb229f681bf5fd5b8f276cbb8dee4c3b"><div class="ttname"><a href="classinfrabot_1_1Robot.html#acb229f681bf5fd5b8f276cbb8dee4c3b">infrabot::Robot::stop_recording</a></div><div class="ttdeci">void stop_recording()</div><div class="ttdoc">[Blocking] Finishes the writer and closes the files.</div></div>
+<div class="ttc" id="astructinfrabot_1_1RecordOptions_html"><div class="ttname"><a href="structinfrabot_1_1RecordOptions.html">infrabot::RecordOptions</a></div><div class="ttdoc">Options of Robot::start_recording().</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00347">robot.hpp:347</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1RecordOptions_html_ad2301d224a6f7b121ac591ab8150b30f"><div class="ttname"><a href="structinfrabot_1_1RecordOptions.html#ad2301d224a6f7b121ac591ab8150b30f">infrabot::RecordOptions::label</a></div><div class="ttdeci">std::string label</div><div class="ttdoc">Appended to the directory name.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00348">robot.hpp:348</a></div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

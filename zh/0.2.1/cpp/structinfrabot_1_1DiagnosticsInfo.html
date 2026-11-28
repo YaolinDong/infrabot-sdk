@@ -1,0 +1,749 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: infrabot::DiagnosticsInfo结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/classinfrabot_1_1DiagnosticsInfo.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/structinfrabot_1_1DiagnosticsInfo.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structinfrabot_1_1DiagnosticsInfo.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="structinfrabot_1_1DiagnosticsInfo-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">infrabot::DiagnosticsInfo结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>一份诊断快照（需要带 INFRABOT_CAP_DIAGNOSTICS 的固件）。</p>
+
+<p><code>#include &lt;<a class="el" href="robot_8hpp_source.html">infrabot/robot.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a4b93613b7b8d71b5e4a06aeaed3ce172" id="r_a4b93613b7b8d71b5e4a06aeaed3ce172"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a4b93613b7b8d71b5e4a06aeaed3ce172">uptime_ms</a> = 0</td></tr>
+<tr class="memdesc:a4b93613b7b8d71b5e4a06aeaed3ce172"><td class="mdescLeft">&#160;</td><td class="mdescRight">自应用程序启动起；49 天后回绕。</td></tr>
+<tr class="separator:a4b93613b7b8d71b5e4a06aeaed3ce172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0240db738b2cd3e9ed00c7a9f477e8a" id="r_ab0240db738b2cd3e9ed00c7a9f477e8a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#ab0240db738b2cd3e9ed00c7a9f477e8a">snapshot_seconds</a> = 0</td></tr>
+<tr class="memdesc:ab0240db738b2cd3e9ed00c7a9f477e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">该统计窗口对应的状态任务秒数。</td></tr>
+<tr class="separator:ab0240db738b2cd3e9ed00c7a9f477e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae816c593865c86eba51dfa5d2aef6f34" id="r_ae816c593865c86eba51dfa5d2aef6f34"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#ae816c593865c86eba51dfa5d2aef6f34">control_hz</a> = 0</td></tr>
+<tr class="memdesc:ae816c593865c86eba51dfa5d2aef6f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内完成的控制周期数（正常为 1000）。</td></tr>
+<tr class="separator:ae816c593865c86eba51dfa5d2aef6f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b54baf1c7f46f964c600b2550f2790b" id="r_a6b54baf1c7f46f964c600b2550f2790b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a6b54baf1c7f46f964c600b2550f2790b">control_missed</a> = 0</td></tr>
+<tr class="memdesc:a6b54baf1c7f46f964c600b2550f2790b"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内丢失的控制周期数。</td></tr>
+<tr class="separator:a6b54baf1c7f46f964c600b2550f2790b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f923975141958e6ff19a82ce307beae" id="r_a6f923975141958e6ff19a82ce307beae"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a6f923975141958e6ff19a82ce307beae">control_period_max_us</a> = 0</td></tr>
+<tr class="memdesc:a6f923975141958e6ff19a82ce307beae"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内最长的控制周期，单位 µs。</td></tr>
+<tr class="separator:a6f923975141958e6ff19a82ce307beae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8879965a74a57abcfce0e067a83dee4a" id="r_a8879965a74a57abcfce0e067a83dee4a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a8879965a74a57abcfce0e067a83dee4a">can_tx</a> = 0</td></tr>
+<tr class="memdesc:a8879965a74a57abcfce0e067a83dee4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内排队发送的电机帧数。</td></tr>
+<tr class="separator:a8879965a74a57abcfce0e067a83dee4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c4affab41dc71f2632b5516464711e" id="r_a84c4affab41dc71f2632b5516464711e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a84c4affab41dc71f2632b5516464711e">can_rx</a> = 0</td></tr>
+<tr class="memdesc:a84c4affab41dc71f2632b5516464711e"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内收到的 CAN 帧数。</td></tr>
+<tr class="separator:a84c4affab41dc71f2632b5516464711e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a660b7682a5e642be32326ae903c86c" id="r_a6a660b7682a5e642be32326ae903c86c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a6a660b7682a5e642be32326ae903c86c">can_tx_errors</a> = 0</td></tr>
+<tr class="memdesc:a6a660b7682a5e642be32326ae903c86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内未能排队的电机帧数。</td></tr>
+<tr class="separator:a6a660b7682a5e642be32326ae903c86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a902d3746e0860ba3dbb26d5e0e8a6757" id="r_a902d3746e0860ba3dbb26d5e0e8a6757"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a902d3746e0860ba3dbb26d5e0e8a6757">command_rx</a> = 0</td></tr>
+<tr class="memdesc:a902d3746e0860ba3dbb26d5e0e8a6757"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内接受的指令数据报数。</td></tr>
+<tr class="separator:a902d3746e0860ba3dbb26d5e0e8a6757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a026f68d286aa750ba4727895b547c8a1" id="r_a026f68d286aa750ba4727895b547c8a1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a026f68d286aa750ba4727895b547c8a1">command_invalid</a> = 0</td></tr>
+<tr class="memdesc:a026f68d286aa750ba4727895b547c8a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内拒绝的指令数据报数。</td></tr>
+<tr class="separator:a026f68d286aa750ba4727895b547c8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa424a1f628a7c61983c63af4f8500f06" id="r_aa424a1f628a7c61983c63af4f8500f06"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#aa424a1f628a7c61983c63af4f8500f06">telemetry_tx</a> = 0</td></tr>
+<tr class="memdesc:aa424a1f628a7c61983c63af4f8500f06"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口内发送的遥测包数。</td></tr>
+<tr class="separator:aa424a1f628a7c61983c63af4f8500f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c780dabff89216091b2268d666305c" id="r_ad9c780dabff89216091b2268d666305c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#ad9c780dabff89216091b2268d666305c">can_error_events</a> = 0</td></tr>
+<tr class="memdesc:ad9c780dabff89216091b2268d666305c"><td class="mdescLeft">&#160;</td><td class="mdescRight">上电以来的 CAN 错误事件数。</td></tr>
+<tr class="separator:ad9c780dabff89216091b2268d666305c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c4ed73b14133b9ac1971d22c3d9c5a8" id="r_a7c4ed73b14133b9ac1971d22c3d9c5a8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a7c4ed73b14133b9ac1971d22c3d9c5a8">control_missed_total</a> = 0</td></tr>
+<tr class="memdesc:a7c4ed73b14133b9ac1971d22c3d9c5a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">上电以来丢失的控制周期数。</td></tr>
+<tr class="separator:a7c4ed73b14133b9ac1971d22c3d9c5a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42d57b84407430f08a24889cf1ae23b8" id="r_a42d57b84407430f08a24889cf1ae23b8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a42d57b84407430f08a24889cf1ae23b8">can_tx_errors_total</a> = 0</td></tr>
+<tr class="memdesc:a42d57b84407430f08a24889cf1ae23b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">上电以来未能排队的电机帧数。</td></tr>
+<tr class="separator:a42d57b84407430f08a24889cf1ae23b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc2e49087ecfee6bab56129c03ea663b" id="r_acc2e49087ecfee6bab56129c03ea663b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#acc2e49087ecfee6bab56129c03ea663b">command_invalid_total</a> = 0</td></tr>
+<tr class="memdesc:acc2e49087ecfee6bab56129c03ea663b"><td class="mdescLeft">&#160;</td><td class="mdescRight">上电以来拒绝的指令数据报数。</td></tr>
+<tr class="separator:acc2e49087ecfee6bab56129c03ea663b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af707ac5bf9962b902c814023243001fd" id="r_af707ac5bf9962b902c814023243001fd"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#af707ac5bf9962b902c814023243001fd">can_tec</a> = 0</td></tr>
+<tr class="memdesc:af707ac5bf9962b902c814023243001fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口结束时的 CAN 发送错误计数。</td></tr>
+<tr class="separator:af707ac5bf9962b902c814023243001fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7e66d18ad550cf915acddb0181e42c4" id="r_af7e66d18ad550cf915acddb0181e42c4"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#af7e66d18ad550cf915acddb0181e42c4">can_rec</a> = 0</td></tr>
+<tr class="memdesc:af7e66d18ad550cf915acddb0181e42c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">窗口结束时的 CAN 接收错误计数。</td></tr>
+<tr class="separator:af7e66d18ad550cf915acddb0181e42c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb831ee4e2a0deadc4683a3f99bb11a4" id="r_afb831ee4e2a0deadc4683a3f99bb11a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#afb831ee4e2a0deadc4683a3f99bb11a4">can_error_passive</a> = false</td></tr>
+<tr class="memdesc:afb831ee4e2a0deadc4683a3f99bb11a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">CAN 控制器处于错误被动状态。</td></tr>
+<tr class="separator:afb831ee4e2a0deadc4683a3f99bb11a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4db78bfd89241e56d2686bff0bc5429" id="r_ad4db78bfd89241e56d2686bff0bc5429"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#ad4db78bfd89241e56d2686bff0bc5429">can_bus_off</a> = false</td></tr>
+<tr class="memdesc:ad4db78bfd89241e56d2686bff0bc5429"><td class="mdescLeft">&#160;</td><td class="mdescRight">CAN 控制器处于总线关闭状态。</td></tr>
+<tr class="separator:ad4db78bfd89241e56d2686bff0bc5429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10381d4345c8642906fd663db40c7b98" id="r_a10381d4345c8642906fd663db40c7b98"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a10381d4345c8642906fd663db40c7b98">heap_free_bytes</a> = 0</td></tr>
+<tr class="memdesc:a10381d4345c8642906fd663db40c7b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">FreeRTOS 堆当前剩余。</td></tr>
+<tr class="separator:a10381d4345c8642906fd663db40c7b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7940f44f56ee1be4351955c6b96d10a1" id="r_a7940f44f56ee1be4351955c6b96d10a1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a7940f44f56ee1be4351955c6b96d10a1">heap_min_free_bytes</a> = 0</td></tr>
+<tr class="memdesc:a7940f44f56ee1be4351955c6b96d10a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">上电以来 FreeRTOS 堆的最低剩余。</td></tr>
+<tr class="separator:a7940f44f56ee1be4351955c6b96d10a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60dd6b98af10418f0f99389652c2e2d0" id="r_a60dd6b98af10418f0f99389652c2e2d0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a60dd6b98af10418f0f99389652c2e2d0">stack_free_control_bytes</a> = 0</td></tr>
+<tr class="memdesc:a60dd6b98af10418f0f99389652c2e2d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">控制任务历史最少剩余栈。</td></tr>
+<tr class="separator:a60dd6b98af10418f0f99389652c2e2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52216e941b9aabd254e75b04a2c0ecfe" id="r_a52216e941b9aabd254e75b04a2c0ecfe"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a52216e941b9aabd254e75b04a2c0ecfe">stack_free_status_bytes</a> = 0</td></tr>
+<tr class="memdesc:a52216e941b9aabd254e75b04a2c0ecfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">状态任务历史最少剩余栈。</td></tr>
+<tr class="separator:a52216e941b9aabd254e75b04a2c0ecfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff6b7bc44fbc0ce7a74073b9beb4346" id="r_a2ff6b7bc44fbc0ce7a74073b9beb4346"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a2ff6b7bc44fbc0ce7a74073b9beb4346">stack_free_ethernet_bytes</a> = 0</td></tr>
+<tr class="memdesc:a2ff6b7bc44fbc0ce7a74073b9beb4346"><td class="mdescLeft">&#160;</td><td class="mdescRight">以太网任务历史最少剩余栈。</td></tr>
+<tr class="separator:a2ff6b7bc44fbc0ce7a74073b9beb4346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a147069e58d67424dd14c884d471b8792" id="r_a147069e58d67424dd14c884d471b8792"><td class="memItemLeft" align="right" valign="top">std::array&lt; uint8_t, 8 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a147069e58d67424dd14c884d471b8792">drive_state</a> {}</td></tr>
+<tr class="memdesc:a147069e58d67424dd14c884d471b8792"><td class="mdescLeft">&#160;</td><td class="mdescRight">J1–J8 当前的 INFRABOT_DRIVE_*。</td></tr>
+<tr class="separator:a147069e58d67424dd14c884d471b8792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed086f480d66590e75ff22d790d37ed0" id="r_aed086f480d66590e75ff22d790d37ed0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#aed086f480d66590e75ff22d790d37ed0">controller_status</a> = 0</td></tr>
+<tr class="memdesc:aed086f480d66590e75ff22d790d37ed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">当前的 INFRABOT_STATUS_*。</td></tr>
+<tr class="separator:aed086f480d66590e75ff22d790d37ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1799ff3e8462f0b066cf6c5defa94773" id="r_a1799ff3e8462f0b066cf6c5defa94773"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html#a1799ff3e8462f0b066cf6c5defa94773">invalid_reason</a> = 0</td></tr>
+<tr class="memdesc:a1799ff3e8462f0b066cf6c5defa94773"><td class="mdescLeft">&#160;</td><td class="mdescRight">最近一次被拒绝的指令数据报的 INFRABOT_INVALID_*。</td></tr>
+<tr class="separator:a1799ff3e8462f0b066cf6c5defa94773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>一份诊断快照（需要带 INFRABOT_CAP_DIAGNOSTICS 的固件）。</p>
+<p>窗口计数覆盖控制器最近一秒的状态统计窗口；<code>_total</code> 计数从上电起累计。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#_a1">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00436">436</a> 行定义.</p>
+</div><h2 class="groupheader">类成员变量说明</h2>
+<a id="ad4db78bfd89241e56d2686bff0bc5429" name="ad4db78bfd89241e56d2686bff0bc5429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4db78bfd89241e56d2686bff0bc5429">&#9670;&#160;</a></span>can_bus_off</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool infrabot::DiagnosticsInfo::can_bus_off = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CAN 控制器处于总线关闭状态。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a24">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00455">455</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad9c780dabff89216091b2268d666305c" name="ad9c780dabff89216091b2268d666305c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c780dabff89216091b2268d666305c">&#9670;&#160;</a></span>can_error_events</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::can_error_events = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>上电以来的 CAN 错误事件数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a17">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00448">448</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afb831ee4e2a0deadc4683a3f99bb11a4" name="afb831ee4e2a0deadc4683a3f99bb11a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb831ee4e2a0deadc4683a3f99bb11a4">&#9670;&#160;</a></span>can_error_passive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool infrabot::DiagnosticsInfo::can_error_passive = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CAN 控制器处于错误被动状态。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a23">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00454">454</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af7e66d18ad550cf915acddb0181e42c4" name="af7e66d18ad550cf915acddb0181e42c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e66d18ad550cf915acddb0181e42c4">&#9670;&#160;</a></span>can_rec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::DiagnosticsInfo::can_rec = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口结束时的 CAN 接收错误计数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a22">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00453">453</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a84c4affab41dc71f2632b5516464711e" name="a84c4affab41dc71f2632b5516464711e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c4affab41dc71f2632b5516464711e">&#9670;&#160;</a></span>can_rx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::can_rx = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内收到的 CAN 帧数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a10">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00443">443</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af707ac5bf9962b902c814023243001fd" name="af707ac5bf9962b902c814023243001fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af707ac5bf9962b902c814023243001fd">&#9670;&#160;</a></span>can_tec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::DiagnosticsInfo::can_tec = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口结束时的 CAN 发送错误计数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a21">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00452">452</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8879965a74a57abcfce0e067a83dee4a" name="a8879965a74a57abcfce0e067a83dee4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8879965a74a57abcfce0e067a83dee4a">&#9670;&#160;</a></span>can_tx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::can_tx = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内排队发送的电机帧数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a9">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00442">442</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6a660b7682a5e642be32326ae903c86c" name="a6a660b7682a5e642be32326ae903c86c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a660b7682a5e642be32326ae903c86c">&#9670;&#160;</a></span>can_tx_errors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::can_tx_errors = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内未能排队的电机帧数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a11">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00444">444</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a42d57b84407430f08a24889cf1ae23b8" name="a42d57b84407430f08a24889cf1ae23b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42d57b84407430f08a24889cf1ae23b8">&#9670;&#160;</a></span>can_tx_errors_total</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::can_tx_errors_total = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>上电以来未能排队的电机帧数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a16">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00450">450</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a026f68d286aa750ba4727895b547c8a1" name="a026f68d286aa750ba4727895b547c8a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a026f68d286aa750ba4727895b547c8a1">&#9670;&#160;</a></span>command_invalid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::command_invalid = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内拒绝的指令数据报数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a13">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00446">446</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acc2e49087ecfee6bab56129c03ea663b" name="acc2e49087ecfee6bab56129c03ea663b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc2e49087ecfee6bab56129c03ea663b">&#9670;&#160;</a></span>command_invalid_total</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::command_invalid_total = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>上电以来拒绝的指令数据报数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a18">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00451">451</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a902d3746e0860ba3dbb26d5e0e8a6757" name="a902d3746e0860ba3dbb26d5e0e8a6757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a902d3746e0860ba3dbb26d5e0e8a6757">&#9670;&#160;</a></span>command_rx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::command_rx = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内接受的指令数据报数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a12">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00445">445</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae816c593865c86eba51dfa5d2aef6f34" name="ae816c593865c86eba51dfa5d2aef6f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae816c593865c86eba51dfa5d2aef6f34">&#9670;&#160;</a></span>control_hz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::control_hz = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内完成的控制周期数（正常为 1000）。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a6">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00439">439</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6b54baf1c7f46f964c600b2550f2790b" name="a6b54baf1c7f46f964c600b2550f2790b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b54baf1c7f46f964c600b2550f2790b">&#9670;&#160;</a></span>control_missed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::control_missed = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内丢失的控制周期数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a7">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00440">440</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7c4ed73b14133b9ac1971d22c3d9c5a8" name="a7c4ed73b14133b9ac1971d22c3d9c5a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c4ed73b14133b9ac1971d22c3d9c5a8">&#9670;&#160;</a></span>control_missed_total</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::control_missed_total = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>上电以来丢失的控制周期数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a15">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00449">449</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6f923975141958e6ff19a82ce307beae" name="a6f923975141958e6ff19a82ce307beae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f923975141958e6ff19a82ce307beae">&#9670;&#160;</a></span>control_period_max_us</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::control_period_max_us = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内最长的控制周期，单位 µs。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a8">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00441">441</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aed086f480d66590e75ff22d790d37ed0" name="aed086f480d66590e75ff22d790d37ed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed086f480d66590e75ff22d790d37ed0">&#9670;&#160;</a></span>controller_status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::DiagnosticsInfo::controller_status = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>当前的 INFRABOT_STATUS_*。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a5">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00462">462</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a147069e58d67424dd14c884d471b8792" name="a147069e58d67424dd14c884d471b8792"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a147069e58d67424dd14c884d471b8792">&#9670;&#160;</a></span>drive_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;uint8_t, 8&gt; infrabot::DiagnosticsInfo::drive_state {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>J1–J8 当前的 INFRABOT_DRIVE_*。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a30">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00461">461</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a10381d4345c8642906fd663db40c7b98" name="a10381d4345c8642906fd663db40c7b98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10381d4345c8642906fd663db40c7b98">&#9670;&#160;</a></span>heap_free_bytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::heap_free_bytes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>FreeRTOS 堆当前剩余。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a25">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00456">456</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7940f44f56ee1be4351955c6b96d10a1" name="a7940f44f56ee1be4351955c6b96d10a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7940f44f56ee1be4351955c6b96d10a1">&#9670;&#160;</a></span>heap_min_free_bytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::heap_min_free_bytes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>上电以来 FreeRTOS 堆的最低剩余。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a26">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00457">457</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1799ff3e8462f0b066cf6c5defa94773" name="a1799ff3e8462f0b066cf6c5defa94773"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1799ff3e8462f0b066cf6c5defa94773">&#9670;&#160;</a></span>invalid_reason</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::DiagnosticsInfo::invalid_reason = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>最近一次被拒绝的指令数据报的 INFRABOT_INVALID_*。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a20">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00463">463</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab0240db738b2cd3e9ed00c7a9f477e8a" name="ab0240db738b2cd3e9ed00c7a9f477e8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0240db738b2cd3e9ed00c7a9f477e8a">&#9670;&#160;</a></span>snapshot_seconds</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::snapshot_seconds = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>该统计窗口对应的状态任务秒数。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00438">438</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a60dd6b98af10418f0f99389652c2e2d0" name="a60dd6b98af10418f0f99389652c2e2d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60dd6b98af10418f0f99389652c2e2d0">&#9670;&#160;</a></span>stack_free_control_bytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::stack_free_control_bytes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>控制任务历史最少剩余栈。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a27">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00458">458</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2ff6b7bc44fbc0ce7a74073b9beb4346" name="a2ff6b7bc44fbc0ce7a74073b9beb4346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff6b7bc44fbc0ce7a74073b9beb4346">&#9670;&#160;</a></span>stack_free_ethernet_bytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::stack_free_ethernet_bytes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>以太网任务历史最少剩余栈。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a29">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00460">460</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a52216e941b9aabd254e75b04a2c0ecfe" name="a52216e941b9aabd254e75b04a2c0ecfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52216e941b9aabd254e75b04a2c0ecfe">&#9670;&#160;</a></span>stack_free_status_bytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::stack_free_status_bytes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>状态任务历史最少剩余栈。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a28">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00459">459</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa424a1f628a7c61983c63af4f8500f06" name="aa424a1f628a7c61983c63af4f8500f06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa424a1f628a7c61983c63af4f8500f06">&#9670;&#160;</a></span>telemetry_tx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::telemetry_tx = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>窗口内发送的遥测包数。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a14">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00447">447</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4b93613b7b8d71b5e4a06aeaed3ce172" name="a4b93613b7b8d71b5e4a06aeaed3ce172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b93613b7b8d71b5e4a06aeaed3ce172">&#9670;&#160;</a></span>uptime_ms</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::DiagnosticsInfo::uptime_ms = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>自应用程序启动起；49 天后回绕。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="09_diagnostics_8cpp-example.html#a3">09_diagnostics.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00437">437</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>include/infrabot/<a class="el" href="robot_8hpp_source.html">robot.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceinfrabot.html">infrabot</a></li><li class="navelem"><a class="el" href="structinfrabot_1_1DiagnosticsInfo.html">DiagnosticsInfo</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

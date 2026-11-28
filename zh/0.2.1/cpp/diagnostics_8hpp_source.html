@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: include/infrabot/diagnostics.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/index.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/diagnostics_8hpp_source.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('diagnostics_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">diagnostics.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="diagnostics_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* SPDX-License-Identifier: Apache-2.0 */</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/* Copyright (c) 2026 Yaolin Dong */</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;infrabot/protocol.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="robot_8hpp.html">infrabot/robot.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceinfrabot.html">infrabot</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structinfrabot_1_1DriveStateInfo.html">   23</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structinfrabot_1_1DriveStateInfo.html">DriveStateInfo</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structinfrabot_1_1DriveStateInfo.html#a2c57ae6b8e20c846c1ae5f057e4f0bd1">   24</a></span>    uint8_t <a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#a2c57ae6b8e20c846c1ae5f057e4f0bd1">code</a>;         </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structinfrabot_1_1DriveStateInfo.html#ac2ef6b93753575009c603792dfe996e8">   25</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#ac2ef6b93753575009c603792dfe996e8">name</a>;     </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structinfrabot_1_1DriveStateInfo.html#a23561bff7063ee00f105f90899b56153">   26</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#a23561bff7063ee00f105f90899b56153">meaning</a>;  </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structinfrabot_1_1DriveStateInfo.html#a0198034c33495739fa1a7174a602af9b">   27</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#a0198034c33495739fa1a7174a602af9b">causes</a>;   </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structinfrabot_1_1DriveStateInfo.html#af2160a638d44f431c1388f629a9d3fce">   28</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#af2160a638d44f431c1388f629a9d3fce">actions</a>;  </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structinfrabot_1_1DriveStateInfo.html#aba0a3188d64da34537fde2d27c2ed68f">   29</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#aba0a3188d64da34537fde2d27c2ed68f">fault</a>;           </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#a2140c128d971f6224dfc4fba50594715">   33</a></span><span class="keyword">const</span> <a class="code hl_struct" href="structinfrabot_1_1DriveStateInfo.html">DriveStateInfo</a> &amp;<a class="code hl_function" href="namespaceinfrabot.html#a2140c128d971f6224dfc4fba50594715">drive_state_info</a>(uint8_t state);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#a24a40e9055909aff4baeeefd98250049">   35</a></span>std::string <a class="code hl_function" href="namespaceinfrabot.html#a24a40e9055909aff4baeeefd98250049">describe_drive_fault</a>(uint8_t joint, uint8_t state);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#aadfaf51c2fd5518fbb0f0b11d0b3dfeb">   37</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceinfrabot.html#aadfaf51c2fd5518fbb0f0b11d0b3dfeb">controller_status_text</a>(uint8_t status);   </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#a23734fecfda340bfc89cb4cee30c308d">   38</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceinfrabot.html#a23734fecfda340bfc89cb4cee30c308d">reply_status_text</a>(uint8_t status);        </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#a76444c1ba390910c1902e2c49126889a">   39</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceinfrabot.html#a76444c1ba390910c1902e2c49126889a">invalid_reason_text</a>(uint8_t reason);      </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#ac4b3663ce339ef52eb650470c695b397">   40</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceinfrabot.html#ac4b3663ce339ef52eb650470c695b397">move_reason_text</a>(uint32_t reason);        </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#accfc264ed86ccbba2fe391970ee079bb">   41</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceinfrabot.html#accfc264ed86ccbba2fe391970ee079bb">command_name</a>(uint8_t command);            </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#a26a91d969576d48dfef631e8de3b6516">   42</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceinfrabot.html#a26a91d969576d48dfef631e8de3b6516">stop_phase_text</a>(<a class="code hl_enumeration" href="namespaceinfrabot.html#a27c32c73c6cd3429924a23ffc23f9ad1">StopPhase</a> phase);         </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#a93ed8032743750c07b296c1fcb5ca83b">   44</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceinfrabot.html#a93ed8032743750c07b296c1fcb5ca83b">mode_text</a>(<a class="code hl_enumeration" href="namespaceinfrabot.html#a8ddc12fc3d28d5674246b6605ee08d98">Mode</a> mode);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#ad08721cc39174186cb531de98fb8f14d">   46</a></span>std::string <a class="code hl_function" href="namespaceinfrabot.html#ad08721cc39174186cb531de98fb8f14d">describe_stop</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structinfrabot_1_1SafetyState.html">SafetyState</a> &amp;safety);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#a0382b2e17d564288180642f85623ff4f">   48</a></span>std::string <a class="code hl_function" href="namespaceinfrabot.html#a0382b2e17d564288180642f85623ff4f">describe_selfcheck</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structinfrabot_1_1SafetyState.html">SafetyState</a> &amp;safety);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#abba3f3aa2015f4012ad43379c6ea1e1f">   50</a></span>std::string <a class="code hl_function" href="namespaceinfrabot.html#abba3f3aa2015f4012ad43379c6ea1e1f">describe_selfcheck_reply</a>(uint32_t value);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#ad9ec5c00369d5f71cf0c7739ba18f6ab">   53</a></span>std::string <a class="code hl_function" href="namespaceinfrabot.html#ad9ec5c00369d5f71cf0c7739ba18f6ab">register_name</a>(uint8_t rid);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#acbf3584f785a385391b7a2d67e68709f">   55</a></span>std::string <a class="code hl_function" href="namespaceinfrabot.html#acbf3584f785a385391b7a2d67e68709f">register_value_text</a>(uint8_t rid, uint32_t raw);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespaceinfrabot.html#ad4fe384e9ea6e6bb5b8e11ddbdbc7380">   57</a></span>std::string <a class="code hl_function" href="namespaceinfrabot.html#ad4fe384e9ea6e6bb5b8e11ddbdbc7380">register_summary</a>(uint8_t rid);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} <span class="comment">// namespace infrabot</span></div>
+<div class="ttc" id="anamespaceinfrabot_html"><div class="ttname"><a href="namespaceinfrabot.html">infrabot</a></div><div class="ttdoc">The InfraBot SDK.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00046">robot.hpp:46</a></div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a0382b2e17d564288180642f85623ff4f"><div class="ttname"><a href="namespaceinfrabot.html#a0382b2e17d564288180642f85623ff4f">infrabot::describe_selfcheck</a></div><div class="ttdeci">std::string describe_selfcheck(const SafetyState &amp;safety)</div><div class="ttdoc">The self-check result with what to do; &quot;&quot; when it passed or did not run.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a2140c128d971f6224dfc4fba50594715"><div class="ttname"><a href="namespaceinfrabot.html#a2140c128d971f6224dfc4fba50594715">infrabot::drive_state_info</a></div><div class="ttdeci">const DriveStateInfo &amp; drive_state_info(uint8_t state)</div><div class="ttdoc">Every Damiao status code (INFRABOT_DRIVE_*); unknown codes get a generic entry.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a23734fecfda340bfc89cb4cee30c308d"><div class="ttname"><a href="namespaceinfrabot.html#a23734fecfda340bfc89cb4cee30c308d">infrabot::reply_status_text</a></div><div class="ttdeci">const char * reply_status_text(uint8_t status)</div><div class="ttdoc">INFRABOT_REPLY_*, the status of a DMAR reply.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a24a40e9055909aff4baeeefd98250049"><div class="ttname"><a href="namespaceinfrabot.html#a24a40e9055909aff4baeeefd98250049">infrabot::describe_drive_fault</a></div><div class="ttdeci">std::string describe_drive_fault(uint8_t joint, uint8_t state)</div><div class="ttdoc">One sentence for a drive fault: &quot;J3 过流：……可能原因：……处理：……&quot;. joint is 0-based.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a26a91d969576d48dfef631e8de3b6516"><div class="ttname"><a href="namespaceinfrabot.html#a26a91d969576d48dfef631e8de3b6516">infrabot::stop_phase_text</a></div><div class="ttdeci">const char * stop_phase_text(StopPhase phase)</div><div class="ttdoc">Phase of a controlled stop.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a27c32c73c6cd3429924a23ffc23f9ad1"><div class="ttname"><a href="namespaceinfrabot.html#a27c32c73c6cd3429924a23ffc23f9ad1">infrabot::StopPhase</a></div><div class="ttdeci">StopPhase</div><div class="ttdoc">Phase of a controlled stop: braking to rest, then holding enabled until a PC is back.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00098">robot.hpp:98</a></div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a76444c1ba390910c1902e2c49126889a"><div class="ttname"><a href="namespaceinfrabot.html#a76444c1ba390910c1902e2c49126889a">infrabot::invalid_reason_text</a></div><div class="ttdeci">const char * invalid_reason_text(uint8_t reason)</div><div class="ttdoc">INFRABOT_INVALID_*, why a command datagram was rejected.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a8ddc12fc3d28d5674246b6605ee08d98"><div class="ttname"><a href="namespaceinfrabot.html#a8ddc12fc3d28d5674246b6605ee08d98">infrabot::Mode</a></div><div class="ttdeci">Mode</div><div class="ttdoc">Control mode of the controller (INFRABOT_CONTROL_*).</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00049">robot.hpp:49</a></div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a93ed8032743750c07b296c1fcb5ca83b"><div class="ttname"><a href="namespaceinfrabot.html#a93ed8032743750c07b296c1fcb5ca83b">infrabot::mode_text</a></div><div class="ttdeci">const char * mode_text(Mode mode)</div><div class="ttdoc">Mode for display: &quot;RT Joint&quot;, &quot;RT 笛卡尔&quot;, &quot;movej（NRT Joint）&quot;, ...</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_aadfaf51c2fd5518fbb0f0b11d0b3dfeb"><div class="ttname"><a href="namespaceinfrabot.html#aadfaf51c2fd5518fbb0f0b11d0b3dfeb">infrabot::controller_status_text</a></div><div class="ttdeci">const char * controller_status_text(uint8_t status)</div><div class="ttdoc">INFRABOT_STATUS_*, in Chinese.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_abba3f3aa2015f4012ad43379c6ea1e1f"><div class="ttname"><a href="namespaceinfrabot.html#abba3f3aa2015f4012ad43379c6ea1e1f">infrabot::describe_selfcheck_reply</a></div><div class="ttdeci">std::string describe_selfcheck_reply(uint32_t value)</div><div class="ttdoc">The DMAR value of a failed SET_ARM_MODE (INFRABOT_SELFCHECK_REPLY_VALUE).</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_ac4b3663ce339ef52eb650470c695b397"><div class="ttname"><a href="namespaceinfrabot.html#ac4b3663ce339ef52eb650470c695b397">infrabot::move_reason_text</a></div><div class="ttdeci">const char * move_reason_text(uint32_t reason)</div><div class="ttdoc">INFRABOT_MOVE_*, why a move ended.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_acbf3584f785a385391b7a2d67e68709f"><div class="ttname"><a href="namespaceinfrabot.html#acbf3584f785a385391b7a2d67e68709f">infrabot::register_value_text</a></div><div class="ttdeci">std::string register_value_text(uint8_t rid, uint32_t raw)</div><div class="ttdoc">The raw value as the register's type: &quot;54&quot;, &quot;0.0038&quot; or &quot;0x11&quot;.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_accfc264ed86ccbba2fe391970ee079bb"><div class="ttname"><a href="namespaceinfrabot.html#accfc264ed86ccbba2fe391970ee079bb">infrabot::command_name</a></div><div class="ttdeci">const char * command_name(uint8_t command)</div><div class="ttdoc">INFRABOT_CMD_*, e.g. &quot;SET_ARM_MODE&quot;.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_ad08721cc39174186cb531de98fb8f14d"><div class="ttname"><a href="namespaceinfrabot.html#ad08721cc39174186cb531de98fb8f14d">infrabot::describe_stop</a></div><div class="ttdeci">std::string describe_stop(const SafetyState &amp;safety)</div><div class="ttdoc">The latched controlled stop, e.g. &quot;通信中断（实时流或心跳 100 ms 未到）&quot;, with joint and detail filled in.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_ad4fe384e9ea6e6bb5b8e11ddbdbc7380"><div class="ttname"><a href="namespaceinfrabot.html#ad4fe384e9ea6e6bb5b8e11ddbdbc7380">infrabot::register_summary</a></div><div class="ttdeci">std::string register_summary(uint8_t rid)</div><div class="ttdoc">One-line summary, e.g. &quot;KP_APR 位置环 Kp | f32 可写 [0, ∞)&quot;; &quot;RID 57：未知寄存器&quot;.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_ad9ec5c00369d5f71cf0c7739ba18f6ab"><div class="ttname"><a href="namespaceinfrabot.html#ad9ec5c00369d5f71cf0c7739ba18f6ab">infrabot::register_name</a></div><div class="ttdeci">std::string register_name(uint8_t rid)</div><div class="ttdoc">Register name; &quot;RID 57&quot; for an unknown one.</div></div>
+<div class="ttc" id="arobot_8hpp_html"><div class="ttname"><a href="robot_8hpp.html">robot.hpp</a></div><div class="ttdoc">The C++ API of the InfraBot SDK: one Robot per arm controller.</div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html">infrabot::DriveStateInfo</a></div><div class="ttdoc">The meaning of one Damiao drive status code. Returned by drive_state_info().</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00023">diagnostics.hpp:23</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_a0198034c33495739fa1a7174a602af9b"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#a0198034c33495739fa1a7174a602af9b">infrabot::DriveStateInfo::causes</a></div><div class="ttdeci">const char * causes</div><div class="ttdoc">Probable causes.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00027">diagnostics.hpp:27</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_a23561bff7063ee00f105f90899b56153"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#a23561bff7063ee00f105f90899b56153">infrabot::DriveStateInfo::meaning</a></div><div class="ttdeci">const char * meaning</div><div class="ttdoc">What happened.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00026">diagnostics.hpp:26</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_a2c57ae6b8e20c846c1ae5f057e4f0bd1"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#a2c57ae6b8e20c846c1ae5f057e4f0bd1">infrabot::DriveStateInfo::code</a></div><div class="ttdeci">uint8_t code</div><div class="ttdoc">INFRABOT_DRIVE_*.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00024">diagnostics.hpp:24</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_aba0a3188d64da34537fde2d27c2ed68f"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#aba0a3188d64da34537fde2d27c2ed68f">infrabot::DriveStateInfo::fault</a></div><div class="ttdeci">bool fault</div><div class="ttdoc">The code is a fault.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00029">diagnostics.hpp:29</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_ac2ef6b93753575009c603792dfe996e8"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#ac2ef6b93753575009c603792dfe996e8">infrabot::DriveStateInfo::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">Short name, e.g. &quot;过压&quot;.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00025">diagnostics.hpp:25</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_af2160a638d44f431c1388f629a9d3fce"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#af2160a638d44f431c1388f629a9d3fce">infrabot::DriveStateInfo::actions</a></div><div class="ttdeci">const char * actions</div><div class="ttdoc">What to do.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00028">diagnostics.hpp:28</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1SafetyState_html"><div class="ttname"><a href="structinfrabot_1_1SafetyState.html">infrabot::SafetyState</a></div><div class="ttdoc">Controlled stop and parameter self-check (telemetry v3).</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00152">robot.hpp:152</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_bd76219e2267c9f5eda15ad7d491fe26.html">infrabot</a></li><li class="navelem"><a class="el" href="diagnostics_8hpp.html">diagnostics.hpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

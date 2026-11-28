@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['rate_0',['rate',['../structinfrabot_1_1ParameterInfo.html#a61dd78a3e3913762d021193cbb9d122e',1,'infrabot::ParameterInfo']]],
+  ['reason_1',['reason',['../structinfrabot_1_1MotionResult.html#ac2199a7aae167e91b34da19363a98acc',1,'infrabot::MotionResult']]],
+  ['received_2',['received',['../structinfrabot_1_1RobotInfo.html#ae1222a18fcb0b0ed94badc5108dabd86',1,'infrabot::RobotInfo']]],
+  ['reconnects_3',['reconnects',['../structinfrabot_1_1SerialLogStats.html#aac6b22c9f525edb508262d6ff4847ae8',1,'infrabot::SerialLogStats']]],
+  ['register_5fid_4',['register_id',['../structinfrabot_1_1MaintenanceRequest.html#adfb01791132fb52e6c0931d70cb0b3ee',1,'infrabot::MaintenanceRequest']]],
+  ['reply_5',['reply',['../structinfrabot_1_1MotionStatus.html#a0561d4593f3f254993f706b2e0b0cd78',1,'infrabot::MotionStatus']]],
+  ['reply_5fage_5fus_6',['reply_age_us',['../structinfrabot_1_1MotionStatus.html#a279d40f5f1986da167c56fd33ca32d29',1,'infrabot::MotionStatus']]],
+  ['requested_7',['requested',['../structinfrabot_1_1ParameterInfo.html#a7043ba93b751b149783bd9d2c0139f75',1,'infrabot::ParameterInfo']]],
+  ['result_8',['result',['../structinfrabot_1_1MotionResult.html#a41e8f123eb37067b7bce14249c884a44',1,'infrabot::MotionResult']]],
+  ['retries_9',['retries',['../structinfrabot_1_1McuLogOptions.html#a94bfd6dea4dc06e9f326a457bce5d7b3',1,'infrabot::McuLogOptions']]],
+  ['rotate_5fseconds_10',['rotate_seconds',['../structinfrabot_1_1RecordOptions.html#a25339dfbe267535751dd9713e4f8af8c',1,'infrabot::RecordOptions']]],
+  ['rx_5finterval_5fmax_5fus_11',['rx_interval_max_us',['../structinfrabot_1_1LinkStats.html#a85fd312c427b6cb4528927e88fdc900a',1,'infrabot::LinkStats']]],
+  ['rx_5finvalid_12',['rx_invalid',['../structinfrabot_1_1LinkStats.html#ad84cfd6918fc261ba5e307db04502222',1,'infrabot::LinkStats']]],
+  ['rx_5flast_5fsecond_13',['rx_last_second',['../structinfrabot_1_1LinkStats.html#a0e151b30402a26b95249f7bca422fd25',1,'infrabot::LinkStats']]],
+  ['rx_5flost_14',['rx_lost',['../structinfrabot_1_1LinkStats.html#ab3be2678872a4de80d5a1756e968f2c4',1,'infrabot::LinkStats']]],
+  ['rx_5ftelemetry_15',['rx_telemetry',['../structinfrabot_1_1LinkStats.html#a6b61594b787338591f0263364ae4ed79',1,'infrabot::LinkStats']]]
+];

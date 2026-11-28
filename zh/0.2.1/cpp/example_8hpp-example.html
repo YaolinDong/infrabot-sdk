@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: example.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/index.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/example_8hpp-example.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('example_8hpp-example.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">example.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<p>每个 C++ 程序使用的连接、使能和停止流程。</p>
+<div class="fragment"><div class="line"><span class="comment">/* SPDX-License-Identifier: Apache-2.0 */</span></div>
+<div class="line"><span class="comment">/* Copyright (c) 2026 Yaolin Dong */</span></div>
+<div class="line"><span class="preprocessor">#pragma once</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="robot_8hpp.html">infrabot/robot.hpp</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>example {</div>
+<div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> check(<span class="keywordtype">bool</span> ok, <span class="keyword">const</span> std::string&amp; error) {</div>
+<div class="line">    <span class="keywordflow">if</span> (!ok) <span class="keywordflow">throw</span> std::runtime_error(error);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Ports from the environment, for a loopback board; the controller uses the defaults.</span></div>
+<div class="line"><span class="keyword">inline</span> uint16_t port(<span class="keyword">const</span> <span class="keywordtype">char</span>* name, uint16_t fallback) {</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* value = std::getenv(name);</div>
+<div class="line">    <span class="keywordflow">return</span> value &amp;&amp; *value ? <span class="keyword">static_cast&lt;</span>uint16_t<span class="keyword">&gt;</span>(std::stoi(value)) : fallback;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Examples take an optional controller IP. STOP returns an enabled arm to hold.</span></div>
+<div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Action&gt;</div>
+<div class="line"><span class="keywordtype">int</span> connected(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv, <span class="keywordtype">bool</span> enable_arm, Action action) {</div>
+<div class="line">    <a id="_a0" name="_a0"></a><a class="code hl_class" href="classinfrabot_1_1Robot.html">infrabot::Robot</a> robot(argc &gt; 1 ? argv[1] : <span class="stringliteral">&quot;192.168.0.50&quot;</span>,</div>
+<div class="line">                          port(<span class="stringliteral">&quot;INFRABOT_EXAMPLE_COMMAND_PORT&quot;</span>, INFRABOT_COMMAND_PORT),</div>
+<div class="line">                          port(<span class="stringliteral">&quot;INFRABOT_EXAMPLE_TELEMETRY_PORT&quot;</span>, INFRABOT_TELEMETRY_PORT));</div>
+<div class="line">    <span class="comment">// A read-only session sends no heartbeat, so it never looks like the controlling PC.</span></div>
+<div class="line">    robot.<a id="a1" name="a1"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#af799d95495052d0b362670255afefd94">set_heartbeat</a>(enable_arm);</div>
+<div class="line">    std::string error;</div>
+<div class="line">    <span class="keywordtype">bool</span> enabled = <span class="keyword">false</span>;</div>
+<div class="line">    <span class="keywordflow">try</span> {</div>
+<div class="line">        check(robot.<a id="a2" name="a2"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#ae4e6197c0a5e9f77f1cb598c2f15db4c">connect</a>(error), error);</div>
+<div class="line">        <span class="keywordflow">if</span> (!robot.<a id="a3" name="a3"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#aab69d130a34fc328655de53dc2ec48cf">info</a>().<a id="a4" name="a4"></a><a class="code hl_variable" href="structinfrabot_1_1RobotInfo.html#ae1222a18fcb0b0ed94badc5108dabd86">received</a>) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Controller did not reply&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">if</span> (enable_arm) {</div>
+<div class="line">            <span class="comment">// DMIO can arrive before the first DMTL. Match the SDK&#39;s 100 ms freshness check.</span></div>
+<div class="line">            <span class="keyword">const</span> <span class="keyword">auto</span> deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(500);</div>
+<div class="line">            <span class="keywordflow">while</span> (robot.<a id="a5" name="a5"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a2572c257b11b525378c37aa6d2e3de1a">state</a>().<a id="a6" name="a6"></a><a class="code hl_variable" href="structinfrabot_1_1RobotState.html#a95e85e60a9dbc114e07cadec8edc25ab">telemetry_age_ms</a> &gt; 100) {</div>
+<div class="line">                <span class="keywordflow">if</span> (std::chrono::steady_clock::now() &gt;= deadline)</div>
+<div class="line">                    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No fresh telemetry before drive setup&quot;</span>);</div>
+<div class="line">                std::this_thread::sleep_for(std::chrono::milliseconds(5));</div>
+<div class="line">            }</div>
+<div class="line">            robot.<a class="code hl_function" href="classinfrabot_1_1Robot.html#af799d95495052d0b362670255afefd94">set_heartbeat</a>(<span class="keyword">true</span>);</div>
+<div class="line">            <span class="keyword">const</span> <span class="keyword">auto</span> s = robot.<a class="code hl_function" href="classinfrabot_1_1Robot.html#a2572c257b11b525378c37aa6d2e3de1a">state</a>();</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> arm_enabled = (s.enabled_mask &amp; INFRABOT_ARM_MASK) == INFRABOT_ARM_MASK;</div>
+<div class="line">            <span class="keywordflow">if</span> (s.enabled &amp;&amp; !(arm_enabled &amp;&amp; s.mode == <a id="a7" name="a7"></a><a class="code hl_enumvalue" href="namespaceinfrabot.html#a8ddc12fc3d28d5674246b6605ee08d98ae599161956d626eda4cb0a5ffb85271c">infrabot::Mode::Idle</a> &amp;&amp; s.profile_ready &amp;&amp;</div>
+<div class="line">                               s.profile == <a id="a8" name="a8"></a><a class="code hl_enumvalue" href="namespaceinfrabot.html#a459349a7e7455ebd229bfe6dcd166d7cabc9655f8014d3199cdb20d7677c7b444">infrabot::MotorProfile::Mit</a>))</div>
+<div class="line">                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;The arm is enabled outside IDLE/MIT or only partly: stop or disable it first&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">if</span> (!arm_enabled) {</div>
+<div class="line">                <span class="comment">// A previous example left the arm enabled and holding in IDLE: reuse it as it is.</span></div>
+<div class="line">                check(robot.<a id="a9" name="a9"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a7b40cb7b39f93a5f98ff8987294bab7f">set_motor_profile</a>(<a class="code hl_enumvalue" href="namespaceinfrabot.html#a459349a7e7455ebd229bfe6dcd166d7cabc9655f8014d3199cdb20d7677c7b444">infrabot::MotorProfile::Mit</a>, error), error);</div>
+<div class="line">                check(robot.<a id="a10" name="a10"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#add5008b8ca99576f1a17a01a2ab5a261">servo_on</a>(<a id="a11" name="a11"></a><a class="code hl_enumvalue" href="namespaceinfrabot.html#a5e67dccecc9bb380f0058f4c8771b14ba551c5c03a1a91f2cf90e0d9a9b6dd378">infrabot::MotorGroup::Arm</a>, error), error);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="comment">// A mode switch needs a still arm. Right after a previous example stopped a local mode, the</span></div>
+<div class="line">            <span class="comment">// hold is still settling for a moment.</span></div>
+<div class="line">            <span class="keyword">const</span> <span class="keyword">auto</span> rest = std::chrono::steady_clock::now() + std::chrono::seconds(3);</div>
+<div class="line">            <span class="keywordflow">for</span> (;;) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keyword">auto</span> v = robot.<a class="code hl_function" href="classinfrabot_1_1Robot.html#a2572c257b11b525378c37aa6d2e3de1a">state</a>().<a id="a12" name="a12"></a><a class="code hl_variable" href="structinfrabot_1_1RobotState.html#a443322a19c8fc4e150454c2d48979d77">joints</a>.<a id="a13" name="a13"></a><a class="code hl_variable" href="structinfrabot_1_1JointState.html#a615b87e5f1c2b1c3535389ca051a6d2a">velocity</a>;</div>
+<div class="line">                <span class="keywordflow">if</span> (std::all_of(v.begin(), v.begin() + 7, [](<span class="keywordtype">float</span> x) { return std::fabs(x) &lt;= 0.05f; })) <span class="keywordflow">break</span>;</div>
+<div class="line">                <span class="keywordflow">if</span> (std::chrono::steady_clock::now() &gt;= rest)</div>
+<div class="line">                    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;The arm does not come to rest (above 0.05 rad/s): let go of it&quot;</span>);</div>
+<div class="line">                std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
+<div class="line">            }</div>
+<div class="line">            enabled = <span class="keyword">true</span>;</div>
+<div class="line">        }</div>
+<div class="line">        action(robot, error);</div>
+<div class="line">        <span class="keywordflow">if</span> (enabled) check(robot.<a id="a14" name="a14"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a36fb1e1af339bb5e9b76df7c8180b2bb">stop</a>(error), error);</div>
+<div class="line">        <span class="keywordflow">return</span> 0;</div>
+<div class="line">    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; failure) {</div>
+<div class="line">        std::cerr &lt;&lt; failure.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">        <span class="keywordflow">if</span> (enabled &amp;&amp; !robot.<a class="code hl_function" href="classinfrabot_1_1Robot.html#a36fb1e1af339bb5e9b76df7c8180b2bb">stop</a>(error)) std::cerr &lt;&lt; error &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">        <span class="keywordflow">return</span> 1;</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">inline</span> std::array&lt;float, 7&gt; hold(<a class="code hl_class" href="classinfrabot_1_1Robot.html">infrabot::Robot</a>&amp; robot) {</div>
+<div class="line">    <span class="keyword">auto</span> q = robot.<a id="a15" name="a15"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#acdb02e850ef36cafb44723d2eefb2dea">hold_command</a>();</div>
+<div class="line">    std::array&lt;float, 7&gt; arm;</div>
+<div class="line">    std::copy_n(q.begin(), arm.size(), arm.begin());</div>
+<div class="line">    <span class="keywordflow">return</span> arm;</div>
+<div class="line">}</div>
+<div class="line">}  <span class="comment">// namespace example</span></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html"><div class="ttname"><a href="classinfrabot_1_1Robot.html">infrabot::Robot</a></div><div class="ttdoc">The client for one arm controller.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00499">robot.hpp:499</a></div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a2572c257b11b525378c37aa6d2e3de1a"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a2572c257b11b525378c37aa6d2e3de1a">infrabot::Robot::state</a></div><div class="ttdeci">RobotState state() const</div><div class="ttdoc">[RT] A copy of the newest telemetry: joints, mode, enabled drives, faults and stops.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a36fb1e1af339bb5e9b76df7c8180b2bb"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a36fb1e1af339bb5e9b76df7c8180b2bb">infrabot::Robot::stop</a></div><div class="ttdeci">bool stop(std::string &amp;error, bool wait=true)</div><div class="ttdoc">[Blocking, 2 s] Controlled stop, in any mode: brakes to rest, then holds enabled in IDLE.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a7b40cb7b39f93a5f98ff8987294bab7f"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a7b40cb7b39f93a5f98ff8987294bab7f">infrabot::Robot::set_motor_profile</a></div><div class="ttdeci">bool set_motor_profile(MotorProfile profile, std::string &amp;error)</div><div class="ttdoc">[Blocking, 3 s] Selects the drive mode of J1–J7 (J8 stays force-position) and checks the drives.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_aab69d130a34fc328655de53dc2ec48cf"><div class="ttname"><a href="classinfrabot_1_1Robot.html#aab69d130a34fc328655de53dc2ec48cf">infrabot::Robot::info</a></div><div class="ttdeci">RobotInfo info() const</div><div class="ttdoc">[Non-blocking] Identity, limits and capabilities, read once by connect().</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_acdb02e850ef36cafb44723d2eefb2dea"><div class="ttname"><a href="classinfrabot_1_1Robot.html#acdb02e850ef36cafb44723d2eefb2dea">infrabot::Robot::hold_command</a></div><div class="ttdeci">std::array&lt; float, 8 &gt; hold_command() const</div><div class="ttdoc">[Non-blocking] The hold command read when the mode was entered.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_add5008b8ca99576f1a17a01a2ab5a261"><div class="ttname"><a href="classinfrabot_1_1Robot.html#add5008b8ca99576f1a17a01a2ab5a261">infrabot::Robot::servo_on</a></div><div class="ttdeci">bool servo_on(MotorGroup group, std::string &amp;error)</div><div class="ttdoc">[Blocking, 3 s] Enables a drive group in IDLE and waits for telemetry to show it.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_ae4e6197c0a5e9f77f1cb598c2f15db4c"><div class="ttname"><a href="classinfrabot_1_1Robot.html#ae4e6197c0a5e9f77f1cb598c2f15db4c">infrabot::Robot::connect</a></div><div class="ttdeci">bool connect(std::string &amp;error)</div><div class="ttdoc">[Blocking, up to 0.5 s] Opens the link: negotiates the protocol, then starts the heartbeat.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_af799d95495052d0b362670255afefd94"><div class="ttname"><a href="classinfrabot_1_1Robot.html#af799d95495052d0b362670255afefd94">infrabot::Robot::set_heartbeat</a></div><div class="ttdeci">void set_heartbeat(bool enabled)</div><div class="ttdoc">[Non-blocking] Turns the heartbeat on or off.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a459349a7e7455ebd229bfe6dcd166d7cabc9655f8014d3199cdb20d7677c7b444"><div class="ttname"><a href="namespaceinfrabot.html#a459349a7e7455ebd229bfe6dcd166d7cabc9655f8014d3199cdb20d7677c7b444">infrabot::MotorProfile::Mit</a></div><div class="ttdeci">@ Mit</div><div class="ttdoc">MIT: position and velocity with kp/kd plus a torque feed-forward.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a5e67dccecc9bb380f0058f4c8771b14ba551c5c03a1a91f2cf90e0d9a9b6dd378"><div class="ttname"><a href="namespaceinfrabot.html#a5e67dccecc9bb380f0058f4c8771b14ba551c5c03a1a91f2cf90e0d9a9b6dd378">infrabot::MotorGroup::Arm</a></div><div class="ttdeci">@ Arm</div><div class="ttdoc">J1–J7.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a8ddc12fc3d28d5674246b6605ee08d98ae599161956d626eda4cb0a5ffb85271c"><div class="ttname"><a href="namespaceinfrabot.html#a8ddc12fc3d28d5674246b6605ee08d98ae599161956d626eda4cb0a5ffb85271c">infrabot::Mode::Idle</a></div><div class="ttdeci">@ Idle</div><div class="ttdoc">Drives hold their command; no PC stream needed.</div></div>
+<div class="ttc" id="arobot_8hpp_html"><div class="ttname"><a href="robot_8hpp.html">robot.hpp</a></div><div class="ttdoc">The C++ API of the InfraBot SDK: one Robot per arm controller.</div></div>
+<div class="ttc" id="astructinfrabot_1_1JointState_html_a615b87e5f1c2b1c3535389ca051a6d2a"><div class="ttname"><a href="structinfrabot_1_1JointState.html#a615b87e5f1c2b1c3535389ca051a6d2a">infrabot::JointState::velocity</a></div><div class="ttdeci">std::array&lt; float, 8 &gt; velocity</div><div class="ttdoc">Velocity, rad/s.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00133">robot.hpp:133</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1RobotInfo_html_ae1222a18fcb0b0ed94badc5108dabd86"><div class="ttname"><a href="structinfrabot_1_1RobotInfo.html#ae1222a18fcb0b0ed94badc5108dabd86">infrabot::RobotInfo::received</a></div><div class="ttdeci">bool received</div><div class="ttdoc">A DMIO answer arrived (firmware with DMIF).</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00113">robot.hpp:113</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1RobotState_html_a443322a19c8fc4e150454c2d48979d77"><div class="ttname"><a href="structinfrabot_1_1RobotState.html#a443322a19c8fc4e150454c2d48979d77">infrabot::RobotState::joints</a></div><div class="ttdeci">JointState joints</div><div class="ttdoc">Per-drive state.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00202">robot.hpp:202</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1RobotState_html_a95e85e60a9dbc114e07cadec8edc25ab"><div class="ttname"><a href="structinfrabot_1_1RobotState.html#a95e85e60a9dbc114e07cadec8edc25ab">infrabot::RobotState::telemetry_age_ms</a></div><div class="ttdeci">uint32_t telemetry_age_ms</div><div class="ttdoc">Age of the newest telemetry, ms; UINT32_MAX before the first.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00200">robot.hpp:200</a></div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

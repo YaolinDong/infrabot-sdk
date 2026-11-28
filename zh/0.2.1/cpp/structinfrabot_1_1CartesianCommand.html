@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: infrabot::CartesianCommand结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/classinfrabot_1_1CartesianCommand.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/structinfrabot_1_1CartesianCommand.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structinfrabot_1_1CartesianCommand.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="structinfrabot_1_1CartesianCommand-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">infrabot::CartesianCommand结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>一条 RT_CARTESIAN 指令。</p>
+
+<p><code>#include &lt;<a class="el" href="robot_8hpp_source.html">infrabot/robot.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a84f8f106d3d2494c4e1d2d07ee40a73a" id="r_a84f8f106d3d2494c4e1d2d07ee40a73a"><td class="memItemLeft" align="right" valign="top"><a id="a84f8f106d3d2494c4e1d2d07ee40a73a" name="a84f8f106d3d2494c4e1d2d07ee40a73a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CartesianCommand</b> ()</td></tr>
+<tr class="memdesc:a84f8f106d3d2494c4e1d2d07ee40a73a"><td class="mdescLeft">&#160;</td><td class="mdescRight">单位旋转、模板增益、3 rad/s 速度上限。</td></tr>
+<tr class="separator:a84f8f106d3d2494c4e1d2d07ee40a73a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:aa1eb9970e2ad72903b1dc68ffc4cbdbe" id="r_aa1eb9970e2ad72903b1dc68ffc4cbdbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceinfrabot.html#a0f429fdd3b92812966fc95f1708a9d67">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1CartesianCommand.html#aa1eb9970e2ad72903b1dc68ffc4cbdbe">pose</a> {}</td></tr>
+<tr class="memdesc:aa1eb9970e2ad72903b1dc68ffc4cbdbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">目标末端位姿。</td></tr>
+<tr class="separator:aa1eb9970e2ad72903b1dc68ffc4cbdbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eae6b8e041051a006fb91f3309daaac" id="r_a3eae6b8e041051a006fb91f3309daaac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structinfrabot_1_1CartesianLimits.html">CartesianLimits</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1CartesianCommand.html#a3eae6b8e041051a006fb91f3309daaac">limits</a> {}</td></tr>
+<tr class="memdesc:a3eae6b8e041051a006fb91f3309daaac"><td class="mdescLeft">&#160;</td><td class="mdescRight">直线运动的速度限制。</td></tr>
+<tr class="separator:a3eae6b8e041051a006fb91f3309daaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a858a5f8a50aadcb19d621d8d1fee5354" id="r_a858a5f8a50aadcb19d621d8d1fee5354"><td class="memItemLeft" align="right" valign="top">std::array&lt; float, 7 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1CartesianCommand.html#a858a5f8a50aadcb19d621d8d1fee5354">torque</a> {}</td></tr>
+<tr class="memdesc:a858a5f8a50aadcb19d621d8d1fee5354"><td class="mdescLeft">&#160;</td><td class="mdescRight">MIT 力矩前馈，单位 N·m。</td></tr>
+<tr class="separator:a858a5f8a50aadcb19d621d8d1fee5354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a337d003bc357c7033ab4a515ec87934a" id="r_a337d003bc357c7033ab4a515ec87934a"><td class="memItemLeft" align="right" valign="top">std::array&lt; float, 7 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1CartesianCommand.html#a337d003bc357c7033ab4a515ec87934a">kp</a> {}</td></tr>
+<tr class="memdesc:a337d003bc357c7033ab4a515ec87934a"><td class="mdescLeft">&#160;</td><td class="mdescRight">MIT 刚度。</td></tr>
+<tr class="separator:a337d003bc357c7033ab4a515ec87934a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30960d00691baa9fe226f67e6012f9b" id="r_ac30960d00691baa9fe226f67e6012f9b"><td class="memItemLeft" align="right" valign="top">std::array&lt; float, 7 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1CartesianCommand.html#ac30960d00691baa9fe226f67e6012f9b">kd</a> {}</td></tr>
+<tr class="memdesc:ac30960d00691baa9fe226f67e6012f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">MIT 阻尼。</td></tr>
+<tr class="separator:ac30960d00691baa9fe226f67e6012f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbeba19534f9dbf44527c828044b6bda" id="r_afbeba19534f9dbf44527c828044b6bda"><td class="memItemLeft" align="right" valign="top">std::array&lt; float, 7 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1CartesianCommand.html#afbeba19534f9dbf44527c828044b6bda">velocity_limit</a> {}</td></tr>
+<tr class="memdesc:afbeba19534f9dbf44527c828044b6bda"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置速度模式的 v_des，单位 rad/s。</td></tr>
+<tr class="separator:afbeba19534f9dbf44527c828044b6bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>一条 RT_CARTESIAN 指令。</p>
+<p>用 <code>Robot::servep()</code> 发送。</p>
+<p>控制器在 <code>limits</code> 范围内让末端沿直线移动到 <code>pose</code>，以 1 kHz 求解逆运动学。每个关节的输出增益与 <code>JointCommand</code> 相同。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="13_rt_cartesian_stream_8cpp-example.html#_a4">13_rt_cartesian_stream.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00254">254</a> 行定义.</p>
+</div><h2 class="groupheader">类成员变量说明</h2>
+<a id="ac30960d00691baa9fe226f67e6012f9b" name="ac30960d00691baa9fe226f67e6012f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30960d00691baa9fe226f67e6012f9b">&#9670;&#160;</a></span>kd</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;float, 7&gt; infrabot::CartesianCommand::kd {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MIT 阻尼。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00259">259</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a337d003bc357c7033ab4a515ec87934a" name="a337d003bc357c7033ab4a515ec87934a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a337d003bc357c7033ab4a515ec87934a">&#9670;&#160;</a></span>kp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;float, 7&gt; infrabot::CartesianCommand::kp {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MIT 刚度。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00258">258</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3eae6b8e041051a006fb91f3309daaac" name="a3eae6b8e041051a006fb91f3309daaac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eae6b8e041051a006fb91f3309daaac">&#9670;&#160;</a></span>limits</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structinfrabot_1_1CartesianLimits.html">CartesianLimits</a> infrabot::CartesianCommand::limits {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>直线运动的速度限制。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="13_rt_cartesian_stream_8cpp-example.html#a5">13_rt_cartesian_stream.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00256">256</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1eb9970e2ad72903b1dc68ffc4cbdbe" name="aa1eb9970e2ad72903b1dc68ffc4cbdbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1eb9970e2ad72903b1dc68ffc4cbdbe">&#9670;&#160;</a></span>pose</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceinfrabot.html#a0f429fdd3b92812966fc95f1708a9d67">Pose</a> infrabot::CartesianCommand::pose {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>目标末端位姿。</p>
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="13_rt_cartesian_stream_8cpp-example.html#a8">13_rt_cartesian_stream.cpp</a>.</dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00255">255</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a858a5f8a50aadcb19d621d8d1fee5354" name="a858a5f8a50aadcb19d621d8d1fee5354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a858a5f8a50aadcb19d621d8d1fee5354">&#9670;&#160;</a></span>torque</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;float, 7&gt; infrabot::CartesianCommand::torque {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MIT 力矩前馈，单位 N·m。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00257">257</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afbeba19534f9dbf44527c828044b6bda" name="afbeba19534f9dbf44527c828044b6bda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbeba19534f9dbf44527c828044b6bda">&#9670;&#160;</a></span>velocity_limit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;float, 7&gt; infrabot::CartesianCommand::velocity_limit {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>位置速度模式的 v_des，单位 rad/s。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00260">260</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>include/infrabot/<a class="el" href="robot_8hpp_source.html">robot.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceinfrabot.html">infrabot</a></li><li class="navelem"><a class="el" href="structinfrabot_1_1CartesianCommand.html">CartesianCommand</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

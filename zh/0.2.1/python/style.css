@@ -1,0 +1,9 @@
+/* The API and language switches, in the header of every page. */
+.ib-switch { position: fixed; top: 14px; right: 16px; z-index: 101; display: flex; gap: 10px;
+             font: 13px/1 system-ui, sans-serif; }
+.ib-switch .seg { display: inline-flex; border: 1px solid #1a5fb4; border-radius: 5px;
+                  overflow: hidden; background: #fff; }
+.ib-switch .seg > * { padding: 5px 11px; color: #1a5fb4; text-decoration: none; }
+.ib-switch .seg > * + * { border-left: 1px solid #1a5fb4; }
+.ib-switch .seg a:hover { background: #e8f0fb; }
+.ib-switch .seg .on { background: #1a5fb4; color: #fff; font-weight: 600; }

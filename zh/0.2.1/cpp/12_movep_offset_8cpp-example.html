@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: 12_movep_offset.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/index.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/12_movep_offset_8cpp-example.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('12_movep_offset_8cpp-example.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">12_movep_offset.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<p><code>--dz</code>, <code>--speed</code></p>
+<div class="fragment"><div class="line"><span class="comment">/* SPDX-License-Identifier: Apache-2.0 */</span></div>
+<div class="line"><span class="comment">/* Copyright (c) 2026 Yaolin Dong */</span></div>
+<div class="line"><span class="comment">// Before enabling the arm, clear its workspace and verify the hardware emergency stop.</span></div>
+<div class="line"><span class="comment">// NRT Cartesian move: the tool goes DZ m along the base z axis in a straight line, then back. The start</span></div>
+<div class="line"><span class="comment">// pose is the forward kinematics of the held joints. Usage: 12_movep_offset [IP [DZ]]. Default +0.02 m.</span></div>
+<div class="line"><span class="comment">// MIT holds by stiffness alone: without gravity feed-forward the tool stays about 10 mm short of its</span></div>
+<div class="line"><span class="comment">// target. The arrival tolerance below allows for that; the printed error is what the arm actually reached.</span></div>
+<div class="line"><span class="preprocessor">#include &quot;example.hpp&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> check(<span class="keyword">const</span> <a id="_a0" name="_a0"></a><a class="code hl_struct" href="structinfrabot_1_1MotionResult.html">infrabot::MotionResult</a>&amp; result, <span class="keyword">const</span> std::string&amp; error) {</div>
+<div class="line">    <span class="keywordflow">if</span> (!error.empty() || result.<a id="a1" name="a1"></a><a class="code hl_variable" href="structinfrabot_1_1MotionResult.html#a41e8f123eb37067b7bce14249c884a44">result</a> != 0) <span class="keywordflow">throw</span> std::runtime_error(error.empty() ? result.<a id="a2" name="a2"></a><a class="code hl_variable" href="structinfrabot_1_1MotionResult.html#ab3fe9ca4cfd9776c3f37646e32af369d">message</a> : error);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">float</span> dz = argc &gt; 2 ? std::stof(argv[2]) : 0.02f;</div>
+<div class="line">    <span class="keywordflow">return</span> example::connected(argc, argv, <span class="keyword">true</span>, [&amp;](<a id="_a3" name="_a3"></a><a class="code hl_class" href="classinfrabot_1_1Robot.html">infrabot::Robot</a>&amp; robot, std::string&amp; error) {</div>
+<div class="line">        example::check(robot.<a id="a4" name="a4"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#af4a50d4f7d96e512bd56d9df619d4572">switch_mode</a>(<a id="a5" name="a5"></a><a class="code hl_enumvalue" href="namespaceinfrabot.html#a8ddc12fc3d28d5674246b6605ee08d98ad7f4b2a5161c6223707a648de04ed63e">infrabot::Mode::NrtCartesian</a>, error), error);</div>
+<div class="line">        <span class="keyword">const</span> <span class="keyword">auto</span> start = <a id="a6" name="a6"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#adf4374ecd67cf85f99fc4adcfeb94544">infrabot::Robot::forward</a>(example::hold(robot));</div>
+<div class="line">        <span class="keyword">auto</span> target = start;</div>
+<div class="line">        target[2] += dz;</div>
+<div class="line">        <a id="_a7" name="_a7"></a><a class="code hl_struct" href="structinfrabot_1_1CartesianMoveOptions.html">infrabot::CartesianMoveOptions</a> options;</div>
+<div class="line">        options.<a id="a8" name="a8"></a><a class="code hl_variable" href="structinfrabot_1_1CartesianMoveOptions.html#ae2155b5a0ab4e2a07b6ef67ba9c80e92">limits</a>.<a id="a9" name="a9"></a><a class="code hl_variable" href="structinfrabot_1_1CartesianLimits.html#ae64c8a1d971daad013dff914e8d40497">linear_velocity</a> = 0.02f;</div>
+<div class="line">        options.<a class="code hl_variable" href="structinfrabot_1_1CartesianMoveOptions.html#ae2155b5a0ab4e2a07b6ef67ba9c80e92">limits</a>.<a id="a10" name="a10"></a><a class="code hl_variable" href="structinfrabot_1_1CartesianLimits.html#af47bbcd16b609307fdcadebad62b4a5e">angular_velocity</a> = 0.2f;</div>
+<div class="line">        options.<a id="a11" name="a11"></a><a class="code hl_variable" href="structinfrabot_1_1CartesianMoveOptions.html#a4b1fd1c0969c09c8d5c15892beedcc83">position_tolerance</a> = 0.03f;</div>
+<div class="line">        <span class="keyword">auto</span> result = robot.<a id="a12" name="a12"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#a71407ad645d77aececcb20552ff507cb">movep</a>(target, options, error);</div>
+<div class="line">        check(result, error);</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;tool at z = %.3f m, error %.1f mm/mrad\n&quot;</span>, target[2], result.max_error_rad * 1000.0f);</div>
+<div class="line">        result = robot.<a class="code hl_function" href="classinfrabot_1_1Robot.html#a71407ad645d77aececcb20552ff507cb">movep</a>(start, options, error);</div>
+<div class="line">        check(result, error);</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;back at the start, error %.1f mm/mrad\n&quot;</span>, result.max_error_rad * 1000.0f);</div>
+<div class="line">    });</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html"><div class="ttname"><a href="classinfrabot_1_1Robot.html">infrabot::Robot</a></div><div class="ttdoc">The client for one arm controller.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00499">robot.hpp:499</a></div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_a71407ad645d77aececcb20552ff507cb"><div class="ttname"><a href="classinfrabot_1_1Robot.html#a71407ad645d77aececcb20552ff507cb">infrabot::Robot::movep</a></div><div class="ttdeci">MotionResult movep(const Pose &amp;pose, const CartesianMoveOptions &amp;options, std::string &amp;error)</div><div class="ttdoc">[Blocking] Moves the tool to pose along a straight line in NRT_CARTESIAN.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_adf4374ecd67cf85f99fc4adcfeb94544"><div class="ttname"><a href="classinfrabot_1_1Robot.html#adf4374ecd67cf85f99fc4adcfeb94544">infrabot::Robot::forward</a></div><div class="ttdeci">static Pose forward(const std::array&lt; float, 7 &gt; &amp;joints)</div><div class="ttdoc">[Non-blocking] Forward kinematics of the H7C arm, computed locally.</div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_af4a50d4f7d96e512bd56d9df619d4572"><div class="ttname"><a href="classinfrabot_1_1Robot.html#af4a50d4f7d96e512bd56d9df619d4572">infrabot::Robot::switch_mode</a></div><div class="ttdeci">bool switch_mode(Mode mode, std::string &amp;error)</div><div class="ttdoc">[Blocking, 2 s] Switches the controller's control mode.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a8ddc12fc3d28d5674246b6605ee08d98ad7f4b2a5161c6223707a648de04ed63e"><div class="ttname"><a href="namespaceinfrabot.html#a8ddc12fc3d28d5674246b6605ee08d98ad7f4b2a5161c6223707a648de04ed63e">infrabot::Mode::NrtCartesian</a></div><div class="ttdeci">@ NrtCartesian</div><div class="ttdoc">Straight-line tool moves with movep().</div></div>
+<div class="ttc" id="astructinfrabot_1_1CartesianLimits_html_ae64c8a1d971daad013dff914e8d40497"><div class="ttname"><a href="structinfrabot_1_1CartesianLimits.html#ae64c8a1d971daad013dff914e8d40497">infrabot::CartesianLimits::linear_velocity</a></div><div class="ttdeci">float linear_velocity</div><div class="ttdoc">m/s, at most 0.5.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00239">robot.hpp:239</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1CartesianLimits_html_af47bbcd16b609307fdcadebad62b4a5e"><div class="ttname"><a href="structinfrabot_1_1CartesianLimits.html#af47bbcd16b609307fdcadebad62b4a5e">infrabot::CartesianLimits::angular_velocity</a></div><div class="ttdeci">float angular_velocity</div><div class="ttdoc">rad/s, at most π.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00240">robot.hpp:240</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1CartesianMoveOptions_html"><div class="ttname"><a href="structinfrabot_1_1CartesianMoveOptions.html">infrabot::CartesianMoveOptions</a></div><div class="ttdoc">Options of a Cartesian move. Used by Robot::movep() and Robot::submit_movep().</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00279">robot.hpp:279</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1CartesianMoveOptions_html_a4b1fd1c0969c09c8d5c15892beedcc83"><div class="ttname"><a href="structinfrabot_1_1CartesianMoveOptions.html#a4b1fd1c0969c09c8d5c15892beedcc83">infrabot::CartesianMoveOptions::position_tolerance</a></div><div class="ttdeci">float position_tolerance</div><div class="ttdoc">Arrival tolerance of the tool, m and rad; 0.0005–0.05.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00282">robot.hpp:282</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1CartesianMoveOptions_html_ae2155b5a0ab4e2a07b6ef67ba9c80e92"><div class="ttname"><a href="structinfrabot_1_1CartesianMoveOptions.html#ae2155b5a0ab4e2a07b6ef67ba9c80e92">infrabot::CartesianMoveOptions::limits</a></div><div class="ttdeci">CartesianLimits limits</div><div class="ttdoc">Speed limits of the straight-line motion.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00284">robot.hpp:284</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1MotionResult_html"><div class="ttname"><a href="structinfrabot_1_1MotionResult.html">infrabot::MotionResult</a></div><div class="ttdoc">Outcome of a movej(), movep() or wait_motion().</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00295">robot.hpp:295</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1MotionResult_html_a41e8f123eb37067b7bce14249c884a44"><div class="ttname"><a href="structinfrabot_1_1MotionResult.html#a41e8f123eb37067b7bce14249c884a44">infrabot::MotionResult::result</a></div><div class="ttdeci">uint8_t result</div><div class="ttdoc">INFRABOT_MOVE_*: 0 means arrived.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00296">robot.hpp:296</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1MotionResult_html_ab3fe9ca4cfd9776c3f37646e32af369d"><div class="ttname"><a href="structinfrabot_1_1MotionResult.html#ab3fe9ca4cfd9776c3f37646e32af369d">infrabot::MotionResult::message</a></div><div class="ttdeci">std::string message</div><div class="ttdoc">Why it failed, in Chinese; empty on arrival.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00303">robot.hpp:303</a></div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

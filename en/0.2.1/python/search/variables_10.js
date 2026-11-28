@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['rate_0',['rate',['../classinfrabot_1_1ParameterInfo.html#a00eb75d38908a180c79474731d2ea276',1,'infrabot::ParameterInfo']]],
+  ['ready_1',['Ready',['../classinfrabot_1_1MotionPhase.html#a5fb9702056031675acb674c999fe4fad',1,'infrabot::MotionPhase']]],
+  ['reason_2',['reason',['../classinfrabot_1_1MotionResult.html#acaf52430f46f5f67fd49849f20d7dd19',1,'infrabot.MotionResult.reason'],['../classinfrabot_1_1MoveReply.html#a3e13cd5f4370ff7231aa95f890a7f91b',1,'infrabot.MoveReply.reason']]],
+  ['received_3',['received',['../classinfrabot_1_1RobotInfo.html#a31e356f6b179f2b22409134764490adb',1,'infrabot::RobotInfo']]],
+  ['reconnects_4',['reconnects',['../classinfrabot_1_1SerialLogStats.html#ab285db31c5b38fe367a3a794d20e8bed',1,'infrabot::SerialLogStats']]],
+  ['recovery_5',['Recovery',['../classinfrabot_1_1OperationalStatus.html#ae0d10a3519dd473b979f047d9ce201f0',1,'infrabot::OperationalStatus']]],
+  ['register_5ff32_6',['REGISTER_F32',['../namespaceinfrabot.html#a88c56d06976fd7dfc2701c4a48cc4249',1,'infrabot']]],
+  ['register_5fu32_7',['REGISTER_U32',['../namespaceinfrabot.html#a8cb4c35afe6c6cc933aca86dd9379024',1,'infrabot']]],
+  ['reply_8',['reply',['../classinfrabot_1_1MotionStatus.html#a0d9401875692478875bb2758a08e72f7',1,'infrabot::MotionStatus']]],
+  ['reply_5fage_5fus_9',['reply_age_us',['../classinfrabot_1_1MotionStatus.html#a708df562c8aa0a8a43ca7d7a2dcf8538',1,'infrabot::MotionStatus']]],
+  ['request_5fid_10',['request_id',['../classinfrabot_1_1MoveReply.html#a80df0ad2ace64c2526e0406fb9865df0',1,'infrabot::MoveReply']]],
+  ['requested_11',['requested',['../classinfrabot_1_1StopReason.html#a64e5e9fb3c45ef0b3c75e3b35ccf5d6c',1,'infrabot.StopReason.Requested'],['../classinfrabot_1_1ParameterInfo.html#a2d581925e2dfb5264ed3a2986aab360c',1,'infrabot.ParameterInfo.requested']]],
+  ['result_12',['result',['../classinfrabot_1_1MoveReply.html#abe590f091b03db87836a9142e0ad06ca',1,'infrabot.MoveReply.result'],['../classinfrabot_1_1MotionResult.html#a0686c333025e4398bcf66ea9209a8386',1,'infrabot.MotionResult.result']]],
+  ['retries_13',['retries',['../classinfrabot_1_1McuLogOptions.html#a2fc3ead5e7fc50d2ad74904b48304728',1,'infrabot::McuLogOptions']]],
+  ['rotate_5fseconds_14',['rotate_seconds',['../classinfrabot_1_1RecordOptions.html#a7d56e4700e1f8e0a98daad1e10ac315d',1,'infrabot::RecordOptions']]],
+  ['rtcartesian_15',['rtcartesian',['../classinfrabot_1_1Mode.html#a9d0dd96c632685542a7b504131322c3d',1,'infrabot.Mode.RtCartesian'],['../classinfrabot_1_1OperationalStatus.html#a1c4b8da7478ab42694380ce0a3274158',1,'infrabot.OperationalStatus.RtCartesian']]],
+  ['rtjoint_16',['rtjoint',['../classinfrabot_1_1Mode.html#a0e548a28c1a94ece358fe790c161a67f',1,'infrabot.Mode.RtJoint'],['../classinfrabot_1_1OperationalStatus.html#a5818e6508e459ea273fb621d11c4920f',1,'infrabot.OperationalStatus.RtJoint']]],
+  ['running_17',['Running',['../classinfrabot_1_1MotionPhase.html#a01e7dfa24161ac617316ca017381833c',1,'infrabot::MotionPhase']]],
+  ['rx_5finterval_5fmax_5fus_18',['rx_interval_max_us',['../classinfrabot_1_1LinkStats.html#ad9effd6c29aebde4a56ca8a5783894f4',1,'infrabot::LinkStats']]],
+  ['rx_5finvalid_19',['rx_invalid',['../classinfrabot_1_1LinkStats.html#a306e416cc48c70b3a509ffdf7a5afd96',1,'infrabot::LinkStats']]],
+  ['rx_5flast_5fsecond_20',['rx_last_second',['../classinfrabot_1_1LinkStats.html#ac612916db633dac6e68249d203bdf3b2',1,'infrabot::LinkStats']]],
+  ['rx_5flost_21',['rx_lost',['../classinfrabot_1_1LinkStats.html#a76ce0275c484ea481e41969c4b5038f1',1,'infrabot::LinkStats']]],
+  ['rx_5ftelemetry_22',['rx_telemetry',['../classinfrabot_1_1LinkStats.html#adaad995cc243f5212c52aa4b02b3b01c',1,'infrabot::LinkStats']]]
+];

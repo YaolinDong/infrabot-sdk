@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: 09_diagnostics.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/index.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/09_diagnostics_8cpp-example.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('09_diagnostics_8cpp-example.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">09_diagnostics.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<p>循环时序、CAN、内存、电机状态</p>
+<div class="fragment"><div class="line"><span class="comment">/* SPDX-License-Identifier: Apache-2.0 */</span></div>
+<div class="line"><span class="comment">/* Copyright (c) 2026 Yaolin Dong */</span></div>
+<div class="line"><span class="comment">// Prints one diagnostic snapshot: loop timing, CAN and command counters, memory, drive states.</span></div>
+<div class="line"><span class="comment">// Usage: 09_diagnostics [IP]. Read only; it also works from a second PC while another controls the arm.</span></div>
+<div class="line"><span class="comment">// The arm is not enabled and does not move.</span></div>
+<div class="line"><span class="preprocessor">#include &quot;example.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="diagnostics_8hpp.html">infrabot/diagnostics.hpp</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) {</div>
+<div class="line">    <span class="keywordflow">if</span> (argc &gt; 2) {</div>
+<div class="line">        std::cerr &lt;&lt; <span class="stringliteral">&quot;Usage: &quot;</span> &lt;&lt; argv[0] &lt;&lt; <span class="stringliteral">&quot; [IP]\n&quot;</span>;</div>
+<div class="line">        <span class="keywordflow">return</span> 2;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> example::connected(argc, argv, <span class="keyword">false</span>, [&amp;](<a id="_a0" name="_a0"></a><a class="code hl_class" href="classinfrabot_1_1Robot.html">infrabot::Robot</a>&amp; robot, std::string&amp; error) {</div>
+<div class="line">        <a id="_a1" name="_a1"></a><a class="code hl_struct" href="structinfrabot_1_1DiagnosticsInfo.html">infrabot::DiagnosticsInfo</a> d;</div>
+<div class="line">        example::check(robot.<a id="a2" name="a2"></a><a class="code hl_function" href="classinfrabot_1_1Robot.html#ab47a20b7b53310317f8c320d967fb994">diagnostics</a>(d, error), error);</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;uptime %.1f s, status %s\n&quot;</span>, d.<a id="a3" name="a3"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a4b93613b7b8d71b5e4a06aeaed3ce172">uptime_ms</a> / 1000.0,</div>
+<div class="line">                    <a id="a4" name="a4"></a><a class="code hl_function" href="namespaceinfrabot.html#aadfaf51c2fd5518fbb0f0b11d0b3dfeb">infrabot::controller_status_text</a>(d.<a id="a5" name="a5"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#aed086f480d66590e75ff22d790d37ed0">controller_status</a>));</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;last second: control %u Hz, missed %u, period max %u us\n&quot;</span>, d.<a id="a6" name="a6"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#ae816c593865c86eba51dfa5d2aef6f34">control_hz</a>, d.<a id="a7" name="a7"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a6b54baf1c7f46f964c600b2550f2790b">control_missed</a>,</div>
+<div class="line">                    d.<a id="a8" name="a8"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a6f923975141958e6ff19a82ce307beae">control_period_max_us</a>);</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;  CAN tx %u rx %u tx errors %u; commands %u, invalid %u; telemetry %u\n&quot;</span>, d.<a id="a9" name="a9"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a8879965a74a57abcfce0e067a83dee4a">can_tx</a>, d.<a id="a10" name="a10"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a84c4affab41dc71f2632b5516464711e">can_rx</a>,</div>
+<div class="line">                    d.<a id="a11" name="a11"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a6a660b7682a5e642be32326ae903c86c">can_tx_errors</a>, d.<a id="a12" name="a12"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a902d3746e0860ba3dbb26d5e0e8a6757">command_rx</a>, d.<a id="a13" name="a13"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a026f68d286aa750ba4727895b547c8a1">command_invalid</a>, d.<a id="a14" name="a14"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#aa424a1f628a7c61983c63af4f8500f06">telemetry_tx</a>);</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;since boot: missed %u, CAN tx errors %u, CAN error events %u, invalid commands %u\n&quot;</span>,</div>
+<div class="line">                    d.<a id="a15" name="a15"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a7c4ed73b14133b9ac1971d22c3d9c5a8">control_missed_total</a>, d.<a id="a16" name="a16"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a42d57b84407430f08a24889cf1ae23b8">can_tx_errors_total</a>, d.<a id="a17" name="a17"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#ad9c780dabff89216091b2268d666305c">can_error_events</a>, d.<a id="a18" name="a18"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#acc2e49087ecfee6bab56129c03ea663b">command_invalid_total</a>);</div>
+<div class="line">        <span class="keywordflow">if</span> (d.<a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#acc2e49087ecfee6bab56129c03ea663b">command_invalid_total</a> != 0)</div>
+<div class="line">            std::printf(<span class="stringliteral">&quot;  last invalid command: %s\n&quot;</span>, <a id="a19" name="a19"></a><a class="code hl_function" href="namespaceinfrabot.html#a76444c1ba390910c1902e2c49126889a">infrabot::invalid_reason_text</a>(d.<a id="a20" name="a20"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a1799ff3e8462f0b066cf6c5defa94773">invalid_reason</a>));</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;CAN TEC %u REC %u%s%s\n&quot;</span>, d.<a id="a21" name="a21"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#af707ac5bf9962b902c814023243001fd">can_tec</a>, d.<a id="a22" name="a22"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#af7e66d18ad550cf915acddb0181e42c4">can_rec</a>, d.<a id="a23" name="a23"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#afb831ee4e2a0deadc4683a3f99bb11a4">can_error_passive</a> ? <span class="stringliteral">&quot; error-passive&quot;</span> : <span class="stringliteral">&quot;&quot;</span>,</div>
+<div class="line">                    d.<a id="a24" name="a24"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#ad4db78bfd89241e56d2686bff0bc5429">can_bus_off</a> ? <span class="stringliteral">&quot; BUS-OFF&quot;</span> : <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line">        std::printf(<span class="stringliteral">&quot;heap free %u B (lowest %u B); least stack free: control %u B, status %u B, ethernet %u B\n&quot;</span>,</div>
+<div class="line">                    d.<a id="a25" name="a25"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a10381d4345c8642906fd663db40c7b98">heap_free_bytes</a>, d.<a id="a26" name="a26"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a7940f44f56ee1be4351955c6b96d10a1">heap_min_free_bytes</a>, d.<a id="a27" name="a27"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a60dd6b98af10418f0f99389652c2e2d0">stack_free_control_bytes</a>,</div>
+<div class="line">                    d.<a id="a28" name="a28"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a52216e941b9aabd254e75b04a2c0ecfe">stack_free_status_bytes</a>, d.<a id="a29" name="a29"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a2ff6b7bc44fbc0ce7a74073b9beb4346">stack_free_ethernet_bytes</a>);</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; d.<a id="a30" name="a30"></a><a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a147069e58d67424dd14c884d471b8792">drive_state</a>.size(); ++i)</div>
+<div class="line">            std::printf(<span class="stringliteral">&quot;J%zu %s\n&quot;</span>, i + 1, <a id="a31" name="a31"></a><a class="code hl_function" href="namespaceinfrabot.html#a2140c128d971f6224dfc4fba50594715">infrabot::drive_state_info</a>(d.<a class="code hl_variable" href="structinfrabot_1_1DiagnosticsInfo.html#a147069e58d67424dd14c884d471b8792">drive_state</a>[i]).<a id="a32" name="a32"></a><a class="code hl_variable" href="structinfrabot_1_1DriveStateInfo.html#ac2ef6b93753575009c603792dfe996e8">name</a>);</div>
+<div class="line">    });</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html"><div class="ttname"><a href="classinfrabot_1_1Robot.html">infrabot::Robot</a></div><div class="ttdoc">The client for one arm controller.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00499">robot.hpp:499</a></div></div>
+<div class="ttc" id="aclassinfrabot_1_1Robot_html_ab47a20b7b53310317f8c320d967fb994"><div class="ttname"><a href="classinfrabot_1_1Robot.html#ab47a20b7b53310317f8c320d967fb994">infrabot::Robot::diagnostics</a></div><div class="ttdeci">bool diagnostics(DiagnosticsInfo &amp;diagnostics, std::string &amp;error)</div><div class="ttdoc">[Blocking, up to 600 ms] One diagnostic snapshot of the controller.</div></div>
+<div class="ttc" id="adiagnostics_8hpp_html"><div class="ttname"><a href="diagnostics_8hpp.html">diagnostics.hpp</a></div><div class="ttdoc">Human-readable meaning of the codes in infrabot/protocol.h.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a2140c128d971f6224dfc4fba50594715"><div class="ttname"><a href="namespaceinfrabot.html#a2140c128d971f6224dfc4fba50594715">infrabot::drive_state_info</a></div><div class="ttdeci">const DriveStateInfo &amp; drive_state_info(uint8_t state)</div><div class="ttdoc">Every Damiao status code (INFRABOT_DRIVE_*); unknown codes get a generic entry.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_a76444c1ba390910c1902e2c49126889a"><div class="ttname"><a href="namespaceinfrabot.html#a76444c1ba390910c1902e2c49126889a">infrabot::invalid_reason_text</a></div><div class="ttdeci">const char * invalid_reason_text(uint8_t reason)</div><div class="ttdoc">INFRABOT_INVALID_*, why a command datagram was rejected.</div></div>
+<div class="ttc" id="anamespaceinfrabot_html_aadfaf51c2fd5518fbb0f0b11d0b3dfeb"><div class="ttname"><a href="namespaceinfrabot.html#aadfaf51c2fd5518fbb0f0b11d0b3dfeb">infrabot::controller_status_text</a></div><div class="ttdeci">const char * controller_status_text(uint8_t status)</div><div class="ttdoc">INFRABOT_STATUS_*, in Chinese.</div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html">infrabot::DiagnosticsInfo</a></div><div class="ttdoc">One diagnostic snapshot (firmware with INFRABOT_CAP_DIAGNOSTICS).</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00436">robot.hpp:436</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a026f68d286aa750ba4727895b547c8a1"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a026f68d286aa750ba4727895b547c8a1">infrabot::DiagnosticsInfo::command_invalid</a></div><div class="ttdeci">uint32_t command_invalid</div><div class="ttdoc">Command datagrams rejected in the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00446">robot.hpp:446</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a10381d4345c8642906fd663db40c7b98"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a10381d4345c8642906fd663db40c7b98">infrabot::DiagnosticsInfo::heap_free_bytes</a></div><div class="ttdeci">uint32_t heap_free_bytes</div><div class="ttdoc">FreeRTOS heap free now.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00456">robot.hpp:456</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a147069e58d67424dd14c884d471b8792"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a147069e58d67424dd14c884d471b8792">infrabot::DiagnosticsInfo::drive_state</a></div><div class="ttdeci">std::array&lt; uint8_t, 8 &gt; drive_state</div><div class="ttdoc">INFRABOT_DRIVE_* of J1–J8, now.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00461">robot.hpp:461</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a1799ff3e8462f0b066cf6c5defa94773"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a1799ff3e8462f0b066cf6c5defa94773">infrabot::DiagnosticsInfo::invalid_reason</a></div><div class="ttdeci">uint8_t invalid_reason</div><div class="ttdoc">INFRABOT_INVALID_* of the last rejected command datagram.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00463">robot.hpp:463</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a2ff6b7bc44fbc0ce7a74073b9beb4346"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a2ff6b7bc44fbc0ce7a74073b9beb4346">infrabot::DiagnosticsInfo::stack_free_ethernet_bytes</a></div><div class="ttdeci">uint32_t stack_free_ethernet_bytes</div><div class="ttdoc">Least free stack ever of the Ethernet task.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00460">robot.hpp:460</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a42d57b84407430f08a24889cf1ae23b8"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a42d57b84407430f08a24889cf1ae23b8">infrabot::DiagnosticsInfo::can_tx_errors_total</a></div><div class="ttdeci">uint32_t can_tx_errors_total</div><div class="ttdoc">Drive frames not queued since boot.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00450">robot.hpp:450</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a4b93613b7b8d71b5e4a06aeaed3ce172"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a4b93613b7b8d71b5e4a06aeaed3ce172">infrabot::DiagnosticsInfo::uptime_ms</a></div><div class="ttdeci">uint32_t uptime_ms</div><div class="ttdoc">Since the application started; wraps after 49 days.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00437">robot.hpp:437</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a52216e941b9aabd254e75b04a2c0ecfe"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a52216e941b9aabd254e75b04a2c0ecfe">infrabot::DiagnosticsInfo::stack_free_status_bytes</a></div><div class="ttdeci">uint32_t stack_free_status_bytes</div><div class="ttdoc">Least free stack ever of the status task.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00459">robot.hpp:459</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a60dd6b98af10418f0f99389652c2e2d0"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a60dd6b98af10418f0f99389652c2e2d0">infrabot::DiagnosticsInfo::stack_free_control_bytes</a></div><div class="ttdeci">uint32_t stack_free_control_bytes</div><div class="ttdoc">Least free stack ever of the control task.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00458">robot.hpp:458</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a6a660b7682a5e642be32326ae903c86c"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a6a660b7682a5e642be32326ae903c86c">infrabot::DiagnosticsInfo::can_tx_errors</a></div><div class="ttdeci">uint32_t can_tx_errors</div><div class="ttdoc">Drive frames that could not be queued in the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00444">robot.hpp:444</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a6b54baf1c7f46f964c600b2550f2790b"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a6b54baf1c7f46f964c600b2550f2790b">infrabot::DiagnosticsInfo::control_missed</a></div><div class="ttdeci">uint32_t control_missed</div><div class="ttdoc">Control ticks missed in the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00440">robot.hpp:440</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a6f923975141958e6ff19a82ce307beae"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a6f923975141958e6ff19a82ce307beae">infrabot::DiagnosticsInfo::control_period_max_us</a></div><div class="ttdeci">uint32_t control_period_max_us</div><div class="ttdoc">Longest control period in the window, µs.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00441">robot.hpp:441</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a7940f44f56ee1be4351955c6b96d10a1"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a7940f44f56ee1be4351955c6b96d10a1">infrabot::DiagnosticsInfo::heap_min_free_bytes</a></div><div class="ttdeci">uint32_t heap_min_free_bytes</div><div class="ttdoc">FreeRTOS heap free at its lowest since boot.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00457">robot.hpp:457</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a7c4ed73b14133b9ac1971d22c3d9c5a8"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a7c4ed73b14133b9ac1971d22c3d9c5a8">infrabot::DiagnosticsInfo::control_missed_total</a></div><div class="ttdeci">uint32_t control_missed_total</div><div class="ttdoc">Control ticks missed since boot.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00449">robot.hpp:449</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a84c4affab41dc71f2632b5516464711e"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a84c4affab41dc71f2632b5516464711e">infrabot::DiagnosticsInfo::can_rx</a></div><div class="ttdeci">uint32_t can_rx</div><div class="ttdoc">CAN frames received in the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00443">robot.hpp:443</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a8879965a74a57abcfce0e067a83dee4a"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a8879965a74a57abcfce0e067a83dee4a">infrabot::DiagnosticsInfo::can_tx</a></div><div class="ttdeci">uint32_t can_tx</div><div class="ttdoc">Drive frames queued in the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00442">robot.hpp:442</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_a902d3746e0860ba3dbb26d5e0e8a6757"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#a902d3746e0860ba3dbb26d5e0e8a6757">infrabot::DiagnosticsInfo::command_rx</a></div><div class="ttdeci">uint32_t command_rx</div><div class="ttdoc">Command datagrams accepted in the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00445">robot.hpp:445</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_aa424a1f628a7c61983c63af4f8500f06"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#aa424a1f628a7c61983c63af4f8500f06">infrabot::DiagnosticsInfo::telemetry_tx</a></div><div class="ttdeci">uint32_t telemetry_tx</div><div class="ttdoc">Telemetry packets sent in the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00447">robot.hpp:447</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_acc2e49087ecfee6bab56129c03ea663b"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#acc2e49087ecfee6bab56129c03ea663b">infrabot::DiagnosticsInfo::command_invalid_total</a></div><div class="ttdeci">uint32_t command_invalid_total</div><div class="ttdoc">Command datagrams rejected since boot.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00451">robot.hpp:451</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_ad4db78bfd89241e56d2686bff0bc5429"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#ad4db78bfd89241e56d2686bff0bc5429">infrabot::DiagnosticsInfo::can_bus_off</a></div><div class="ttdeci">bool can_bus_off</div><div class="ttdoc">CAN controller bus-off.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00455">robot.hpp:455</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_ad9c780dabff89216091b2268d666305c"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#ad9c780dabff89216091b2268d666305c">infrabot::DiagnosticsInfo::can_error_events</a></div><div class="ttdeci">uint32_t can_error_events</div><div class="ttdoc">CAN error events since boot.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00448">robot.hpp:448</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_ae816c593865c86eba51dfa5d2aef6f34"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#ae816c593865c86eba51dfa5d2aef6f34">infrabot::DiagnosticsInfo::control_hz</a></div><div class="ttdeci">uint32_t control_hz</div><div class="ttdoc">Control ticks completed in the window (1000 when healthy).</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00439">robot.hpp:439</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_aed086f480d66590e75ff22d790d37ed0"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#aed086f480d66590e75ff22d790d37ed0">infrabot::DiagnosticsInfo::controller_status</a></div><div class="ttdeci">uint8_t controller_status</div><div class="ttdoc">INFRABOT_STATUS_*, now.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00462">robot.hpp:462</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_af707ac5bf9962b902c814023243001fd"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#af707ac5bf9962b902c814023243001fd">infrabot::DiagnosticsInfo::can_tec</a></div><div class="ttdeci">uint8_t can_tec</div><div class="ttdoc">CAN transmit error counter at the end of the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00452">robot.hpp:452</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_af7e66d18ad550cf915acddb0181e42c4"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#af7e66d18ad550cf915acddb0181e42c4">infrabot::DiagnosticsInfo::can_rec</a></div><div class="ttdeci">uint8_t can_rec</div><div class="ttdoc">CAN receive error counter at the end of the window.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00453">robot.hpp:453</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DiagnosticsInfo_html_afb831ee4e2a0deadc4683a3f99bb11a4"><div class="ttname"><a href="structinfrabot_1_1DiagnosticsInfo.html#afb831ee4e2a0deadc4683a3f99bb11a4">infrabot::DiagnosticsInfo::can_error_passive</a></div><div class="ttdeci">bool can_error_passive</div><div class="ttdoc">CAN controller error-passive.</div><div class="ttdef"><b>Definition</b> <a href="robot_8hpp_source.html#l00454">robot.hpp:454</a></div></div>
+<div class="ttc" id="astructinfrabot_1_1DriveStateInfo_html_ac2ef6b93753575009c603792dfe996e8"><div class="ttname"><a href="structinfrabot_1_1DriveStateInfo.html#ac2ef6b93753575009c603792dfe996e8">infrabot::DriveStateInfo::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">Short name, e.g. &quot;过压&quot;.</div><div class="ttdef"><b>Definition</b> <a href="diagnostics_8hpp_source.html#l00025">diagnostics.hpp:25</a></div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+var classinfrabot_1_1OperationalStatus =
+[
+    [ "Booting", "classinfrabot_1_1OperationalStatus.html#a098a9b7c6fb033f40989a28d595af89d", null ],
+    [ "CartesianAdmittance", "classinfrabot_1_1OperationalStatus.html#af8e0ea46004168326b76a0bbeb157565", null ],
+    [ "CartesianImpedance", "classinfrabot_1_1OperationalStatus.html#a85db20a1724a8c73e26990675a378787", null ],
+    [ "Disabled", "classinfrabot_1_1OperationalStatus.html#ab7fd9e2c7631611f256c0bcaadfa0e23", null ],
+    [ "Enabling", "classinfrabot_1_1OperationalStatus.html#ae1ef1bcd8f3c6f8f93c69190f4a2fd5a", null ],
+    [ "Estop", "classinfrabot_1_1OperationalStatus.html#a935227eb953f8a0962c30b004d7014e0", null ],
+    [ "Fault", "classinfrabot_1_1OperationalStatus.html#ad3d4ed19407133b52c1b3255915d12c9", null ],
+    [ "GravityFree", "classinfrabot_1_1OperationalStatus.html#add4dc965127638627c69c7542f88eb65", null ],
+    [ "GravityLock", "classinfrabot_1_1OperationalStatus.html#a84692e22489cc2f4a6c750893a0cabbf", null ],
+    [ "IdleHold", "classinfrabot_1_1OperationalStatus.html#acbb7fa617f6b2cf73f15aeec63cdf0a0", null ],
+    [ "JointAdmittance", "classinfrabot_1_1OperationalStatus.html#a346de38ae77604cb13c57236a5c9a879", null ],
+    [ "JointImpedance", "classinfrabot_1_1OperationalStatus.html#a01d3b8d4440026ef21fbee9ff0ac444e", null ],
+    [ "name", "classinfrabot_1_1OperationalStatus.html#a4ba4bf4d6868a2813bf0c968199a9374", null ],
+    [ "NrtCartesian", "classinfrabot_1_1OperationalStatus.html#adfae449892c3d86a0bd28e0b89b0ceb0", null ],
+    [ "NrtJoint", "classinfrabot_1_1OperationalStatus.html#ad76df1f37417d732905871133ccab599", null ],
+    [ "Precheck", "classinfrabot_1_1OperationalStatus.html#a7e86203266ee41d4c503c78537f81f6a", null ],
+    [ "ProfileRequired", "classinfrabot_1_1OperationalStatus.html#ac94bd9724440e08ff7d0e304063321f0", null ],
+    [ "Recovery", "classinfrabot_1_1OperationalStatus.html#ae0d10a3519dd473b979f047d9ce201f0", null ],
+    [ "RtCartesian", "classinfrabot_1_1OperationalStatus.html#a1c4b8da7478ab42694380ce0a3274158", null ],
+    [ "RtJoint", "classinfrabot_1_1OperationalStatus.html#a5818e6508e459ea273fb621d11c4920f", null ],
+    [ "Stopping", "classinfrabot_1_1OperationalStatus.html#a8cfd6420332a0978ab1ddf2c66a73303", null ],
+    [ "Unknown", "classinfrabot_1_1OperationalStatus.html#a77ba72df8cc2f885a6459a84cbf4795d", null ],
+    [ "value", "classinfrabot_1_1OperationalStatus.html#af26e82156e641594755c339e43792b5b", null ]
+];

@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>InfraBot SDK: infrabot::MaintenanceRequest结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">InfraBot SDK<span id="projectnumber">&#160;0.2.1</span>
+   </div>
+   <div id="projectbrief">C++ 接口参考</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<div class="ib-switch"><span class="seg"><span class="on">C++</span><a href="../python/index.html">Python</a></span><span class="seg"><a href="../../../en/0.2.1/cpp/structinfrabot_1_1MaintenanceRequest.html">English</a><span class="on">简体中文</span></span></div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structinfrabot_1_1MaintenanceRequest.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="structinfrabot_1_1MaintenanceRequest-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">infrabot::MaintenanceRequest结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>一个 DMCP v4 维护操作，使用报文单位，供 <code>Robot::send_maintenance()</code> 使用。</p>
+
+<p><code>#include &lt;<a class="el" href="robot_8hpp_source.html">infrabot/robot.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a89596a73118f604ecabbd2128f77d002" id="r_a89596a73118f604ecabbd2128f77d002"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#a89596a73118f604ecabbd2128f77d002">command</a> = 0</td></tr>
+<tr class="memdesc:a89596a73118f604ecabbd2128f77d002"><td class="mdescLeft">&#160;</td><td class="mdescRight">INFRABOT_CMD_*。</td></tr>
+<tr class="separator:a89596a73118f604ecabbd2128f77d002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82f67348570eec0489852ddb509eb18" id="r_ab82f67348570eec0489852ddb509eb18"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#ab82f67348570eec0489852ddb509eb18">motor</a> = INFRABOT_MOTOR_ALL</td></tr>
+<tr class="memdesc:ab82f67348570eec0489852ddb509eb18"><td class="mdescLeft">&#160;</td><td class="mdescRight">电机 0–7，或 INFRABOT_MOTOR_ALL。</td></tr>
+<tr class="separator:ab82f67348570eec0489852ddb509eb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad99abaa88fcc0e2d5d19d4c79f16996c" id="r_ad99abaa88fcc0e2d5d19d4c79f16996c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#ad99abaa88fcc0e2d5d19d4c79f16996c">mode</a> = 0</td></tr>
+<tr class="memdesc:ad99abaa88fcc0e2d5d19d4c79f16996c"><td class="mdescLeft">&#160;</td><td class="mdescRight">按指令不同，为 INFRABOT_DRIVE_MODE_* 或 INFRABOT_CONTROL_*。</td></tr>
+<tr class="separator:ad99abaa88fcc0e2d5d19d4c79f16996c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10edbf4f230ae3ff1a15171787cc1c8d" id="r_a10edbf4f230ae3ff1a15171787cc1c8d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#a10edbf4f230ae3ff1a15171787cc1c8d">value_type</a> = 0</td></tr>
+<tr class="memdesc:a10edbf4f230ae3ff1a15171787cc1c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">INFRABOT_REGISTER_U32 或 _F32。</td></tr>
+<tr class="separator:a10edbf4f230ae3ff1a15171787cc1c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfb01791132fb52e6c0931d70cb0b3ee" id="r_adfb01791132fb52e6c0931d70cb0b3ee"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#adfb01791132fb52e6c0931d70cb0b3ee">register_id</a> = 0</td></tr>
+<tr class="memdesc:adfb01791132fb52e6c0931d70cb0b3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">INFRABOT_RID_*。</td></tr>
+<tr class="separator:adfb01791132fb52e6c0931d70cb0b3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384b39edd398d5806e7d5c168eaf7659" id="r_a384b39edd398d5806e7d5c168eaf7659"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#a384b39edd398d5806e7d5c168eaf7659">value</a> = 0</td></tr>
+<tr class="memdesc:a384b39edd398d5806e7d5c168eaf7659"><td class="mdescLeft">&#160;</td><td class="mdescRight">寄存器值或指令参数。</td></tr>
+<tr class="separator:a384b39edd398d5806e7d5c168eaf7659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98eecedd731a3a3a9be0ecff6966c92d" id="r_a98eecedd731a3a3a9be0ecff6966c92d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#a98eecedd731a3a3a9be0ecff6966c92d">position_mrad</a> = 0</td></tr>
+<tr class="memdesc:a98eecedd731a3a3a9be0ecff6966c92d"><td class="mdescLeft">&#160;</td><td class="mdescRight">位置，单位 mrad（报文中的 target_position_mrad[motor]）。</td></tr>
+<tr class="separator:a98eecedd731a3a3a9be0ecff6966c92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb2fc0a5485dcfea8154e7804e2ede2" id="r_afdb2fc0a5485dcfea8154e7804e2ede2"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#afdb2fc0a5485dcfea8154e7804e2ede2">velocity_mrad_s</a> = 0</td></tr>
+<tr class="memdesc:afdb2fc0a5485dcfea8154e7804e2ede2"><td class="mdescLeft">&#160;</td><td class="mdescRight">速度，单位 mrad/s。</td></tr>
+<tr class="separator:afdb2fc0a5485dcfea8154e7804e2ede2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21be76903814057177571ae0f93c499e" id="r_a21be76903814057177571ae0f93c499e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#a21be76903814057177571ae0f93c499e">kp_milli</a> = 0</td></tr>
+<tr class="memdesc:a21be76903814057177571ae0f93c499e"><td class="mdescLeft">&#160;</td><td class="mdescRight">刚度 × 1000。</td></tr>
+<tr class="separator:a21be76903814057177571ae0f93c499e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4d658db0f46d42128ec939875cf62f7" id="r_ab4d658db0f46d42128ec939875cf62f7"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#ab4d658db0f46d42128ec939875cf62f7">kd_milli</a> = 0</td></tr>
+<tr class="memdesc:ab4d658db0f46d42128ec939875cf62f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻尼 × 1000。</td></tr>
+<tr class="separator:ab4d658db0f46d42128ec939875cf62f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa385f00d8ee210ef5c2a160705e36996" id="r_aa385f00d8ee210ef5c2a160705e36996"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#aa385f00d8ee210ef5c2a160705e36996">torque_mNm</a> = 0</td></tr>
+<tr class="memdesc:aa385f00d8ee210ef5c2a160705e36996"><td class="mdescLeft">&#160;</td><td class="mdescRight">力矩，单位 mN·m。</td></tr>
+<tr class="separator:aa385f00d8ee210ef5c2a160705e36996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529dee17fdd2d4fb5362eace18d5f75b" id="r_a529dee17fdd2d4fb5362eace18d5f75b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#a529dee17fdd2d4fb5362eace18d5f75b">velocity_limit_mrad_s</a> = 0</td></tr>
+<tr class="memdesc:a529dee17fdd2d4fb5362eace18d5f75b"><td class="mdescLeft">&#160;</td><td class="mdescRight">速度上限，单位 mrad/s。</td></tr>
+<tr class="separator:a529dee17fdd2d4fb5362eace18d5f75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab241b63cbf9332d78c59e81995eafa2d" id="r_ab241b63cbf9332d78c59e81995eafa2d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html#ab241b63cbf9332d78c59e81995eafa2d">torque_ratio_milli</a> = 0</td></tr>
+<tr class="memdesc:ab241b63cbf9332d78c59e81995eafa2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">电流上限，取电机最大值的千分比。</td></tr>
+<tr class="separator:ab241b63cbf9332d78c59e81995eafa2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>一个 DMCP v4 维护操作，使用报文单位，供 <code>Robot::send_maintenance()</code> 使用。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00330">330</a> 行定义.</p>
+</div><h2 class="groupheader">类成员变量说明</h2>
+<a id="a89596a73118f604ecabbd2128f77d002" name="a89596a73118f604ecabbd2128f77d002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89596a73118f604ecabbd2128f77d002">&#9670;&#160;</a></span>command</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::MaintenanceRequest::command = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>INFRABOT_CMD_*。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00331">331</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab4d658db0f46d42128ec939875cf62f7" name="ab4d658db0f46d42128ec939875cf62f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4d658db0f46d42128ec939875cf62f7">&#9670;&#160;</a></span>kd_milli</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t infrabot::MaintenanceRequest::kd_milli = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>阻尼 × 1000。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00340">340</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a21be76903814057177571ae0f93c499e" name="a21be76903814057177571ae0f93c499e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21be76903814057177571ae0f93c499e">&#9670;&#160;</a></span>kp_milli</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t infrabot::MaintenanceRequest::kp_milli = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>刚度 × 1000。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00339">339</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad99abaa88fcc0e2d5d19d4c79f16996c" name="ad99abaa88fcc0e2d5d19d4c79f16996c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad99abaa88fcc0e2d5d19d4c79f16996c">&#9670;&#160;</a></span>mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::MaintenanceRequest::mode = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>按指令不同，为 INFRABOT_DRIVE_MODE_* 或 INFRABOT_CONTROL_*。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00333">333</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab82f67348570eec0489852ddb509eb18" name="ab82f67348570eec0489852ddb509eb18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82f67348570eec0489852ddb509eb18">&#9670;&#160;</a></span>motor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::MaintenanceRequest::motor = INFRABOT_MOTOR_ALL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>电机 0–7，或 INFRABOT_MOTOR_ALL。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00332">332</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a98eecedd731a3a3a9be0ecff6966c92d" name="a98eecedd731a3a3a9be0ecff6966c92d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98eecedd731a3a3a9be0ecff6966c92d">&#9670;&#160;</a></span>position_mrad</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t infrabot::MaintenanceRequest::position_mrad = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>位置，单位 mrad（报文中的 target_position_mrad[motor]）。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00337">337</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adfb01791132fb52e6c0931d70cb0b3ee" name="adfb01791132fb52e6c0931d70cb0b3ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfb01791132fb52e6c0931d70cb0b3ee">&#9670;&#160;</a></span>register_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::MaintenanceRequest::register_id = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>INFRABOT_RID_*。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00335">335</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa385f00d8ee210ef5c2a160705e36996" name="aa385f00d8ee210ef5c2a160705e36996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa385f00d8ee210ef5c2a160705e36996">&#9670;&#160;</a></span>torque_mNm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t infrabot::MaintenanceRequest::torque_mNm = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>力矩，单位 mN·m。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00341">341</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab241b63cbf9332d78c59e81995eafa2d" name="ab241b63cbf9332d78c59e81995eafa2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab241b63cbf9332d78c59e81995eafa2d">&#9670;&#160;</a></span>torque_ratio_milli</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t infrabot::MaintenanceRequest::torque_ratio_milli = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>电流上限，取电机最大值的千分比。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00343">343</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a384b39edd398d5806e7d5c168eaf7659" name="a384b39edd398d5806e7d5c168eaf7659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a384b39edd398d5806e7d5c168eaf7659">&#9670;&#160;</a></span>value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t infrabot::MaintenanceRequest::value = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>寄存器值或指令参数。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00336">336</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a10edbf4f230ae3ff1a15171787cc1c8d" name="a10edbf4f230ae3ff1a15171787cc1c8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10edbf4f230ae3ff1a15171787cc1c8d">&#9670;&#160;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t infrabot::MaintenanceRequest::value_type = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>INFRABOT_REGISTER_U32 或 _F32。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00334">334</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a529dee17fdd2d4fb5362eace18d5f75b" name="a529dee17fdd2d4fb5362eace18d5f75b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a529dee17fdd2d4fb5362eace18d5f75b">&#9670;&#160;</a></span>velocity_limit_mrad_s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t infrabot::MaintenanceRequest::velocity_limit_mrad_s = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>速度上限，单位 mrad/s。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00342">342</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afdb2fc0a5485dcfea8154e7804e2ede2" name="afdb2fc0a5485dcfea8154e7804e2ede2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdb2fc0a5485dcfea8154e7804e2ede2">&#9670;&#160;</a></span>velocity_mrad_s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t infrabot::MaintenanceRequest::velocity_mrad_s = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>速度，单位 mrad/s。</p>
+
+<p class="definition">在文件 <a class="el" href="robot_8hpp_source.html">robot.hpp</a> 第 <a class="el" href="robot_8hpp_source.html#l00338">338</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>include/infrabot/<a class="el" href="robot_8hpp_source.html">robot.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceinfrabot.html">infrabot</a></li><li class="navelem"><a class="el" href="structinfrabot_1_1MaintenanceRequest.html">MaintenanceRequest</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>
