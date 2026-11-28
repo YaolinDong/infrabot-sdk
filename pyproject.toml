@@ -12,3 +12,24 @@ license = "Apache-2.0"
 license-files = ["LICENSE", "THIRD_PARTY.md", "LICENSES/*.txt", "third_party/infrabot_ik/LICENSE", "third_party/infrabot_ik/README.md"]
 description = "C++ Robot SDK and Python bindings for Infrabot"
 requires-python = ">=3.10"
+keywords = ["robot", "robotics", "manipulator", "arm", "sdk", "udp", "real-time"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: C++",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://yaolindong.github.io/infrabot-sdk/"
+Documentation = "https://yaolindong.github.io/infrabot-sdk/"
+Repository = "https://github.com/YaolinDong/infrabot-sdk"
+Changelog = "https://github.com/YaolinDong/infrabot-sdk/blob/main/CHANGELOG.md"
