@@ -1,6 +1,6 @@
 # Robot API
 
-Create one `infrabot::Robot` (Python `infrabot.Robot`) per controller. Defaults are `192.168.0.50` and command/telemetry ports 5001/5000. The constructor configures the local object. `connect` performs discovery and starts the receiver and service threads. For a monitoring session call `set_heartbeat(false)` before connecting. The board routes telemetry to the registered receiver. [Public C++ declarations](../include/infrabot/robot.hpp) · [Python signatures](../python/infrabot/infrabot_native.pyi)
+Create one `infrabot::Robot` (Python `infrabot.Robot`) per controller. Defaults are `192.168.0.50` and command/telemetry ports 5001/5000. The constructor configures the local object. `connect` performs discovery and starts the receiver and service threads. For a monitoring session call `set_heartbeat(false)` before connecting. The board routes telemetry to the registered receiver. [API reference](https://yaolindong.github.io/infrabot-sdk/) for every function and type ([build it locally](reference/README.md)) · [Public C++ declarations](../include/infrabot/robot.hpp) · [Python signatures](../python/infrabot/infrabot_native.pyi)
 
 ## Timing
 

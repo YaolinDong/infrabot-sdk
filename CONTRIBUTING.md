@@ -17,7 +17,7 @@ ctest --test-dir build-tests --output-on-failure
 
 Set `INFRABOT_FIRMWARE_DIR` to a firmware checkout before configuring to enable canonical header comparison and the firmware FK check. Set `INFRABOT_DESCRIPTION_DIR` to an infrabot-description checkout to exercise the populated 3D view. Qt tests run offscreen; the second Qt test supplies a missing model. To check an asynchronous GUI change, run each test separately with `ctest --test-dir build-tests -R '^qt_motion_loopback$' --repeat until-fail:50 --output-on-failure` and the equivalent command for `qt_without_description`.
 
-The canonical protocol header lives in the firmware repository. Use `tools/sync_protocol.sh /path/to/infrabot-firmware` after a coordinated change. Keep its SDK license notice in the adjacent `.license` file. Regenerate Python type stubs with pybind11-stubgen against the built extension when the bindings change. Keep the two SPDX/copyright header lines and strip trailing whitespace from the generated stub.
+The canonical protocol header lives in the firmware repository. Use `tools/sync_protocol.sh /path/to/infrabot-firmware` after a coordinated change. Keep its SDK license notice in the adjacent `.license` file. Document every public C++ name and Python binding; the API reference build and the `python_docs` test fail otherwise. [Building and documenting the API reference](docs/reference/README.md) has the commands, including how to regenerate the Python type stub after a binding change.
 
 ## Check an update kit
 

@@ -1,0 +1,81 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Yaolin Dong
+# API reference: built on every push (an undocumented public name fails it) and
+# published to GitHub Pages for every release tag. Each release keeps its own
+# directory of the English and the Chinese sites, so older versions stay available.
+name: API reference
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends doxygen
+      - name: Build the reference
+        run: |
+          version=$(sed -nE 's/^project\(infrabot_sdk VERSION ([0-9.]+).*/\1/p' CMakeLists.txt)
+          if [ "${GITHUB_REF_TYPE}" = tag ] && [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
+            echo "tag ${GITHUB_REF_NAME} does not match project(VERSION ${version})" >&2
+            exit 1
+          fi
+          python3 -B docs/reference/doxygen_site.py --out site
+          echo "${version}" > site/version.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api-reference
+          path: site
+          retention-days: 14
+
+  publish:
+    if: github.repository == 'YaolinDong/infrabot-sdk' && github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    concurrency:
+      group: api-reference-pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: pages
+        continue-on-error: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: api-reference
+          path: site
+      - name: Add this version to the published sites
+        run: |
+          version=$(cat site/version.txt)
+          mkdir -p pages
+          cd pages
+          if [ ! -d .git ]; then
+            git init -q -b gh-pages
+            git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          fi
+          for lang in en zh; do
+            rm -rf "${lang}/${version}"
+            mkdir -p "${lang}"
+            cp -r "../site/${lang}/${version}" "${lang}/${version}"
+          done
+          touch .nojekyll
+          printf '<!doctype html>\n<meta charset="utf-8">\n<meta http-equiv="refresh" content="0; url=en/%s/cpp/index.html">\n<title>InfraBot SDK</title>\n' \
+            "${version}" > index.html
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -q -m "docs(api): publish ${version}" || exit 0
+          git push -q origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

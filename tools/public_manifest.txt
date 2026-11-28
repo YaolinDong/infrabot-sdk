@@ -6,6 +6,7 @@
 # license	python/bindings.cpp	LICENSES/BSD-3-Clause-pybind11.txt	pybind11
 # license	src/firmware_update.cpp	LICENSE	OpenSSL 3
 .gitattributes
+.github/workflows/api-reference.yml
 .github/workflows/ci.yml
 .gitignore
 CHANGELOG.md
@@ -21,6 +22,7 @@ README.zh-CN.md
 SECURITY.md
 THIRD_PARTY.md
 cmake/infrabot_sdkConfig.cmake.in
+cmake/version.hpp.in
 config/control_template.tsv
 config/infrabot.tsv
 docs/api.md
@@ -28,6 +30,15 @@ docs/examples.md
 docs/firmware-update.md
 docs/protocol.md
 docs/realtime.md
+docs/reference/README.md
+docs/reference/doxygen_site.py
+docs/reference/mainpage.md
+docs/reference/mainpage.python.md
+docs/reference/mainpage.python.zh.md
+docs/reference/mainpage.zh.md
+docs/reference/pysource.py
+docs/reference/text.py
+docs/reference/zh.json
 docs/update-kit.md
 examples/cpp/01_connect_info.cpp
 examples/cpp/02_enable_hold.cpp
@@ -74,9 +85,9 @@ include/infrabot/firmware_update.hpp
 include/infrabot/protocol.h
 include/infrabot/protocol.h.license
 include/infrabot/robot.hpp
-include/infrabot/version.hpp
 pyproject.toml
 python/bindings.cpp
+python/docs.hpp
 python/infrabot/__init__.py
 python/infrabot/infrabot_native.pyi
 python/infrabot/py.typed
@@ -105,6 +116,7 @@ tests/test_motion_session.cpp
 tests/test_passive_record.py
 tests/test_protocol.c
 tests/test_protocol.cpp
+tests/test_python_docs.py
 tests/test_qt_motion.cpp
 tests/test_robot_binding.py
 tests/test_robot_sdk.cpp

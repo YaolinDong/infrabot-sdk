@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 — unreleased
+
+- API reference built by Doxygen from the source: four sites per release, English and Chinese, each with the C++ API and the Python API, and every page switches between the two languages and the two APIs (`docs/reference/doxygen_site.py`, CMake target `api_doxygen`). Every public C++ name is documented, and an undocumented one fails the build.
+- Every entry of the reference explains what the call is for and how to use it, and the Examples tab shows the programs of `examples/` in full, the `.cpp` ones in the C++ sites and the `.py` ones in the Python sites.
+- Python docstrings for every class, field and method, also in the type stub that IDEs read. The ctest `python_docs` fails while a public name lacks one.
+- `infrabot/version.hpp` is generated from `project(VERSION)`, so `kSdkVersion` matches the release. The 0.2.0 header still said 0.1.2.
+
 ## 0.2.0 — 2026-11-26
 
 - Parameter service (protocol 1.1): `list_parameters`, `get_parameter` and `set_parameter` in C++ and Python read and write the gravity, impedance and admittance settings that were only reachable from the touchscreen. Firmware without `INFRABOT_CAP_PARAMETERS` is refused before anything is sent.
