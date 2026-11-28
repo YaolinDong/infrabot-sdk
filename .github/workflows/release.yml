@@ -98,7 +98,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pypa/cibuildwheel@v2.22.0
         env:
-          CIBW_BUILD: cp310-manylinux_x86_64 cp312-manylinux_x86_64
+          CIBW_BUILD: cp310-manylinux_x86_64 cp311-manylinux_x86_64 cp312-manylinux_x86_64 cp313-manylinux_x86_64
           CIBW_ARCHS_LINUX: x86_64
           # Ubuntu 22.04 (glibc 2.35) and newer; the image carries OpenSSL 3.
           CIBW_MANYLINUX_X86_64_IMAGE: quay.io/pypa/manylinux_2_34_x86_64
@@ -111,8 +111,41 @@ jobs:
           path: wheelhouse/*.whl
           retention-days: 7
 
+  sdist:
+    needs: version
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install --quiet build
+      - run: python3 -m build --sdist --outdir dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: dist/*
+          retention-days: 7
+
+  pypi:
+    # Trusted publishing: PyPI must hold a publisher for this repository, this
+    # workflow and the environment pypi; the repository variable PYPI_PUBLISH
+    # turns the upload on. See CONTRIBUTING.md, Releasing.
+    needs: [version, wheels, sdist]
+    if: vars.PYPI_PUBLISH == 'true'
+    runs-on: ubuntu-24.04
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          skip-existing: true
+
   publish:
-    needs: [version, tarball, deb, wheels]
+    needs: [version, tarball, deb, wheels, sdist]
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -126,7 +159,7 @@ jobs:
         run: |
           cd dist
           ls -l
-          sha256sum infrabot-sdk-* infrabot-sdk_* infrabot_sdk-*.whl > SHA256SUMS
+          sha256sum infrabot-sdk-* infrabot-sdk_* infrabot_sdk-* > SHA256SUMS
           cat SHA256SUMS
       - name: Write the release notes
         run: |
@@ -142,8 +175,11 @@ jobs:
             echo "  the CMake package files, for \`find_package(infrabot_sdk)\`."
             echo "- \`infrabot-sdk_${version}_jammy_amd64.deb\`, \`infrabot-sdk_${version}_noble_amd64.deb\`:"
             echo "  the same under \`/usr\`, for Ubuntu 22.04 and 24.04."
-            echo "- \`infrabot_sdk-${version}-cp310-*_x86_64.whl\`, \`...-cp312-*_x86_64.whl\`: the Python"
-            echo "  binding for Python 3.10 and 3.12, manylinux, glibc 2.34 or newer."
+            echo "- \`infrabot_sdk-${version}-cp3{10,11,12,13}-*.whl\`: the Python binding for Python"
+            echo "  3.10 to 3.13, manylinux, glibc 2.34 or newer. Also on PyPI:"
+            echo "  \`pip install infrabot-sdk==${version}\`."
+            echo "- \`infrabot_sdk-${version}.tar.gz\`: the source package, for any other platform"
+            echo "  (\`pip install\` builds it with CMake disabled, straight from \`setup.py\`)."
             echo "- \`SHA256SUMS\`: \`sha256sum -c SHA256SUMS\` checks the downloads."
             echo
             echo "The API reference for this version: https://yaolindong.github.io/infrabot-sdk/en/${version}/cpp/"

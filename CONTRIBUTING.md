@@ -35,3 +35,14 @@ Use English commit subjects of the form `type(scope): description`. Keep upstrea
 ## Checking a source release
 
 Set `INFRABOT_PRIVATE_DENYLIST` to a regular file outside the checkout, readable only by its owner (mode 0600), with one literal to reject per line. Run `tools/prepublish_check.sh --history` on the release repository to check the index, all reachable snapshots and Git metadata. In CI without the local file, the checker prints a skip notice for private literals and still checks key markers, paths, licenses and size exceptions.
+
+## Releasing
+
+A release is a tag on a `docs(changelog): release X.Y.Z` commit.
+
+1. Set `project(VERSION)` in `CMakeLists.txt` and `version` in `pyproject.toml` to `X.Y.Z`, date the section of `CHANGELOG.md`, and commit it as `docs(changelog): release X.Y.Z`.
+2. `git tag -a vX.Y.Z -m "infrabot-sdk X.Y.Z"`, then push the commit and the tag.
+3. `Release packages` builds the SDK tarball, the `.deb` for Ubuntu 22.04 and 24.04, the manylinux wheels for Python 3.10 to 3.13 and the source package, writes `SHA256SUMS`, and attaches all of them to the tag's GitHub Release. `gh workflow run "Release packages"` publishes an existing tag again without moving it.
+4. `API reference` publishes `en/X.Y.Z/` and `zh/X.Y.Z/` to GitHub Pages.
+
+The Python package is `infrabot-sdk` on PyPI; the import name stays `infrabot`. PyPI takes the upload through trusted publishing, so add a publisher once on PyPI: project `infrabot-sdk`, owner `YaolinDong`, repository `infrabot-sdk`, workflow `release.yml`, environment `pypi`. Then `gh variable set PYPI_PUBLISH --body true` turns the upload on. It uses `skip-existing`, so publishing a version twice is harmless.
