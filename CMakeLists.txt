@@ -302,4 +302,26 @@ if(Python3_Interpreter_FOUND AND DOXYGEN_EXECUTABLE)
         VERBATIM)
 endif()
 
+# Packages for a release: cpack -G TGZ for the tarball, cpack -G DEB for Ubuntu.
+# The tarball unpacks under /usr/local; the .deb installs under /usr, so pass
+# -D CPACK_PACKAGING_INSTALL_PREFIX=/usr with it.
+set(CPACK_PACKAGE_NAME "infrabot-sdk")
+set(CPACK_PACKAGE_VENDOR "InfraBot")
+set(CPACK_PACKAGE_CONTACT "Yaolin Dong <dong1505lin@gmail.com>")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY
+    "C++ Robot SDK and Python bindings for InfraBot controllers")
+set(CPACK_PACKAGE_DESCRIPTION
+    "The PC side of the InfraBot controller's UDP protocol: a C++ library and Python bindings, \
+one Robot per arm controller. It owns the link, keeps the controller alive and holds the arm \
+when the program stops talking. Install it and use find_package(infrabot_sdk).")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set(CPACK_PACKAGING_INSTALL_PREFIX "/usr/local")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Yaolin Dong <dong1505lin@gmail.com>")
+set(CPACK_DEBIAN_PACKAGE_SECTION "libdevel")
+# The static library links OpenSSL; a program that uses it needs libcrypto.
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libssl3 (>= 3.0)")
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+include(CPack)
+
 include(cmake/legacy.cmake OPTIONAL)
