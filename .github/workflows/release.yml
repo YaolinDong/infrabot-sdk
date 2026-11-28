@@ -101,7 +101,7 @@ jobs:
           CIBW_BUILD: cp310-manylinux_x86_64 cp312-manylinux_x86_64
           CIBW_ARCHS_LINUX: x86_64
           # Ubuntu 22.04 (glibc 2.35) and newer; the image carries OpenSSL 3.
-          CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_34
+          CIBW_MANYLINUX_X86_64_IMAGE: quay.io/pypa/manylinux_2_34_x86_64
           CIBW_BEFORE_ALL_LINUX: dnf install -y openssl-devel
           CIBW_TEST_REQUIRES: ""
           CIBW_TEST_COMMAND: python -c "import infrabot; assert infrabot.Robot"
