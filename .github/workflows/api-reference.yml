@@ -10,6 +10,11 @@ on:
     tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish this version to GitHub Pages
+        type: boolean
+        default: false
 permissions:
   contents: read
 
@@ -38,7 +43,9 @@ jobs:
           retention-days: 14
 
   publish:
-    if: github.repository == 'YaolinDong/infrabot-sdk' && github.ref_type == 'tag'
+    if: >-
+      github.repository == 'YaolinDong/infrabot-sdk' &&
+      (github.ref_type == 'tag' || (github.event_name == 'workflow_dispatch' && inputs.publish))
     needs: build
     runs-on: ubuntu-24.04
     permissions:
@@ -47,11 +54,6 @@ jobs:
       group: api-reference-pages
       cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: pages
-        continue-on-error: true
       - uses: actions/download-artifact@v4
         with:
           name: api-reference
@@ -59,11 +61,16 @@ jobs:
       - name: Add this version to the published sites
         run: |
           version=$(cat site/version.txt)
-          mkdir -p pages
+          # gh-pages holds the earlier releases. The branch does not exist yet on the
+          # first publish, and checking it out would leave a repository with no
+          # gh-pages ref, so this starts from an empty one and fetches what is there.
+          rm -rf pages
+          mkdir pages
           cd pages
-          if [ ! -d .git ]; then
-            git init -q -b gh-pages
-            git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git init -q -b gh-pages
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch -q --depth=1 origin gh-pages 2>/dev/null; then
+            git reset -q --hard FETCH_HEAD
           fi
           for lang in en zh; do
             rm -rf "${lang}/${version}"
@@ -75,7 +82,7 @@ jobs:
             "${version}" > index.html
           git add -A
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
-            commit -q -m "docs(api): publish ${version}" || exit 0
+            commit -q -m "docs(api): publish ${version}" || true
           git push -q origin gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
