@@ -7,6 +7,7 @@
 # license	src/firmware_update.cpp	LICENSE	OpenSSL 3
 .gitattributes
 .github/workflows/api-reference.yml
+.github/workflows/release.yml
 .github/workflows/ci.yml
 .gitignore
 CHANGELOG.md
