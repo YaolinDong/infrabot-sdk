@@ -1,0 +1,162 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Yaolin Dong
+# Release packages: built for every tag, and attached to that tag's GitHub
+# Release together with SHA256SUMS. Running the workflow by hand publishes the
+# tag of the version in CMakeLists.txt (or the tag given), without moving it.
+name: Release packages
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to publish (defaults to v<project VERSION>)
+        required: false
+permissions:
+  contents: read
+
+env:
+  SOURCE_DATE_EPOCH: 1700000000
+
+jobs:
+  version:
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.read.outputs.version }}
+      tag: ${{ steps.read.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: read
+        run: |
+          version=$(sed -nE 's/^project\(infrabot_sdk VERSION ([0-9.]+).*/\1/p' CMakeLists.txt)
+          tag="${{ inputs.tag }}"
+          [ -n "${tag}" ] || tag="v${version}"
+          if [ "${tag}" != "v${version}" ]; then
+            echo "tag ${tag} does not match project(VERSION ${version})" >&2
+            exit 1
+          fi
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+  tarball:
+    needs: version
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends cmake g++ libssl-dev
+      - name: Build the SDK tarball
+        run: |
+          cmake -S . -B build-package -DCMAKE_BUILD_TYPE=Release \
+            -DINFRABOT_BUILD_GUI=OFF -DINFRABOT_BUILD_PYTHON=OFF
+          cmake --build build-package --parallel 2
+          cd build-package
+          cpack -G TGZ -B "$GITHUB_WORKSPACE/dist" \
+            -D CPACK_PACKAGE_FILE_NAME=infrabot-sdk-${{ needs.version.outputs.version }}-linux-x86_64
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tarball
+          path: dist/*
+          retention-days: 7
+
+  deb:
+    needs: version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-22.04
+            codename: jammy
+          - runner: ubuntu-24.04
+            codename: noble
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends cmake g++ libssl-dev
+      - name: Build the Debian package
+        run: |
+          cmake -S . -B build-package -DCMAKE_BUILD_TYPE=Release \
+            -DINFRABOT_BUILD_GUI=OFF -DINFRABOT_BUILD_PYTHON=OFF
+          cmake --build build-package --parallel 2
+          cd build-package
+          cpack -G DEB -B "$GITHUB_WORKSPACE/dist" -D CPACK_PACKAGING_INSTALL_PREFIX=/usr
+          cd "$GITHUB_WORKSPACE/dist"
+          # One package per Ubuntu release, as libfranka does.
+          for f in infrabot-sdk_*_amd64.deb; do
+            mv "$f" "${f%.deb}-${{ matrix.codename }}.deb"
+          done
+          ls -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: deb-${{ matrix.codename }}
+          path: dist/*
+          retention-days: 7
+
+  wheels:
+    needs: version
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pypa/cibuildwheel@v2.22.0
+        env:
+          CIBW_BUILD: cp310-manylinux_x86_64 cp312-manylinux_x86_64
+          CIBW_ARCHS_LINUX: x86_64
+          # Ubuntu 22.04 (glibc 2.35) and newer; the image carries OpenSSL 3.
+          CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_34
+          CIBW_BEFORE_ALL_LINUX: dnf install -y openssl-devel
+          CIBW_TEST_REQUIRES: ""
+          CIBW_TEST_COMMAND: python -c "import infrabot; assert infrabot.Robot"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels
+          path: wheelhouse/*.whl
+          retention-days: 7
+
+  publish:
+    needs: [version, tarball, deb, wheels]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Add the checksums
+        run: |
+          cd dist
+          ls -l
+          sha256sum infrabot-sdk-* infrabot-sdk_* infrabot_sdk-*.whl > SHA256SUMS
+          cat SHA256SUMS
+      - name: Write the release notes
+        run: |
+          version="${{ needs.version.outputs.version }}"
+          tag="${{ needs.version.outputs.tag }}"
+          awk -v start="## ${version}" '$0 ~ "^## " && seen {exit} $0 ~ "^" start {seen=1} seen' \
+            CHANGELOG.md > notes.md
+          {
+            echo
+            echo "## Packages"
+            echo
+            echo "- \`infrabot-sdk-${version}-linux-x86_64.tar.gz\`: headers, \`libinfrabot_sdk.a\` and"
+            echo "  the CMake package files, for \`find_package(infrabot_sdk)\`."
+            echo "- \`infrabot-sdk_${version}_jammy_amd64.deb\`, \`infrabot-sdk_${version}_noble_amd64.deb\`:"
+            echo "  the same under \`/usr\`, for Ubuntu 22.04 and 24.04."
+            echo "- \`infrabot_sdk-${version}-cp310-*_x86_64.whl\`, \`...-cp312-*_x86_64.whl\`: the Python"
+            echo "  binding for Python 3.10 and 3.12, manylinux, glibc 2.34 or newer."
+            echo "- \`SHA256SUMS\`: \`sha256sum -c SHA256SUMS\` checks the downloads."
+            echo
+            echo "The API reference for this version: https://yaolindong.github.io/infrabot-sdk/en/${version}/cpp/"
+          } >> notes.md
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ needs.version.outputs.tag }}
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --title "infrabot-sdk ${VERSION}" --notes-file notes.md
+          else
+            gh release create "$TAG" --title "infrabot-sdk ${VERSION}" --notes-file notes.md
+          fi
+          gh release upload "$TAG" dist/* --clobber
