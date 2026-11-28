@@ -6,5 +6,8 @@ recursive-include python *.cpp
 recursive-include third_party/infrabot_ik/include *.h *.hpp
 recursive-include third_party/infrabot_ik/src *.cpp
 
+include CMakeLists.txt
+include cmake/version.hpp.in
+
 include firmware/release.pub
 recursive-include python/infrabot *.py *.pyi py.typed release.pub
