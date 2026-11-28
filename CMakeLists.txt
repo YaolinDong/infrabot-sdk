@@ -59,8 +59,12 @@ if(NOT pub_len EQUAL 64 OR NOT release_public MATCHES "^[0-9A-Fa-f]+$")
   message(FATAL_ERROR "Invalid firmware/release.pub")
 endif()
 target_compile_definitions(infrabot_sdk PRIVATE INFRABOT_RELEASE_PUBLIC="${release_public}")
+# infrabot/version.hpp carries project(VERSION), so a release changes the version in one place.
+set(INFRABOT_GENERATED_INCLUDE "${CMAKE_CURRENT_BINARY_DIR}/generated/include")
+configure_file(cmake/version.hpp.in "${INFRABOT_GENERATED_INCLUDE}/infrabot/version.hpp" @ONLY)
 target_include_directories(infrabot_sdk PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<BUILD_INTERFACE:${INFRABOT_GENERATED_INCLUDE}>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 target_compile_options(infrabot_sdk PRIVATE -Wall -Wextra -Wpedantic -O2)
 target_link_libraries(infrabot_sdk PRIVATE infrabot_ik_native Threads::Threads OpenSSL::Crypto)
@@ -94,7 +98,9 @@ if(INFRABOT_BUILD_PYTHON)
                  ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_robot_binding.py)
         add_test(NAME python_examples_loopback COMMAND ${Python3_EXECUTABLE} -B
                  ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_examples.py)
-        set_tests_properties(robot_python_loopback python_examples_loopback PROPERTIES
+        add_test(NAME python_docs COMMAND ${Python3_EXECUTABLE} -B
+                 ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_python_docs.py)
+        set_tests_properties(robot_python_loopback python_examples_loopback python_docs PROPERTIES
             ENVIRONMENT "PYTHONPATH=${python_root}:$<TARGET_FILE_DIR:_infrabot_test_mcu>" TIMEOUT 30)
         set_tests_properties(python_examples_loopback PROPERTIES TIMEOUT 240)
     endif()
@@ -262,6 +268,7 @@ endif()
 install(TARGETS infrabot_sdk infrabot_ik_native EXPORT infrabot_sdkTargets
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 install(DIRECTORY include/ DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+install(FILES "${INFRABOT_GENERATED_INCLUDE}/infrabot/version.hpp" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/infrabot")
 set(config_dir "${CMAKE_INSTALL_LIBDIR}/cmake/infrabot_sdk")
 install(EXPORT infrabot_sdkTargets NAMESPACE infrabot_sdk:: DESTINATION "${config_dir}")
 configure_package_config_file(cmake/infrabot_sdkConfig.cmake.in
@@ -281,5 +288,18 @@ install(FILES LICENSE THIRD_PARTY.md DESTINATION "${CMAKE_INSTALL_DATADIR}/infra
 install(DIRECTORY LICENSES/ DESTINATION "${CMAKE_INSTALL_DATADIR}/infrabot_sdk/LICENSES")
 install(FILES third_party/infrabot_ik/README.md third_party/infrabot_ik/LICENSE
     DESTINATION "${CMAKE_INSTALL_DATADIR}/infrabot_sdk/third_party/infrabot_ik")
+
+# API reference: cmake --build build --target api_doxygen, then open
+# build/api-doxygen/index.html. Needs doxygen; see docs/reference/README.md.
+find_package(Python3 COMPONENTS Interpreter QUIET)
+find_program(DOXYGEN_EXECUTABLE doxygen)
+if(Python3_Interpreter_FOUND AND DOXYGEN_EXECUTABLE)
+    add_custom_target(api_doxygen
+        COMMAND ${Python3_EXECUTABLE} -B ${CMAKE_CURRENT_SOURCE_DIR}/docs/reference/doxygen_site.py
+                --out ${CMAKE_CURRENT_BINARY_DIR}/api-doxygen
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Doxygen API reference in ${CMAKE_CURRENT_BINARY_DIR}/api-doxygen"
+        VERBATIM)
+endif()
 
 include(cmake/legacy.cmake OPTIONAL)
